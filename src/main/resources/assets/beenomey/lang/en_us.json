@@ -1,0 +1,21 @@
+{
+	"item.beenomey.common_bee": "Common Bee",
+	"item.beenomey.princess_bee": "Princess Bee",
+	"item.beenomey.queen_bee": "Queen Bee",
+	
+	"item.beenomey.wooden_scoop": "Wooden Scoop",
+	
+	"block.beenomey.oakwood_beehive_block": "Oakwood Beehive",
+	"block.beenomey.birchwood_beehive_block": "Birchwood Beehive",
+	"block.beenomey.sand_beehive_block": "Sand Beehive",
+	"block.beenomey.stone_beehive_block": "Stone Beehive",
+	"block.beenomey.junglewood_beehive_block": "Junglewood Beehive",
+	"block.beenomey.ice_beehive_block": "Ice Beehive",
+	"block.beenomey.ender_beehive_block": "Ender Beehive",
+	"block.beenomey.nether_beehive_block": "Nether Beehive",
+	"block.beenomey.water_beehive_block": "Water Beehive",
+	
+	"block.beenomey.apiary_mod_block": "Apiary",
+	
+	"creativemodetab.beenomey_tab": "Beenome Y"
+}

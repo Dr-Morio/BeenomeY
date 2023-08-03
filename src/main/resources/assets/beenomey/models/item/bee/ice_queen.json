@@ -1,0 +1,10 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "beenomey:item/bee/body/bee_base_0",
+		"layer1": "beenomey:item/bee/body/bee_body_color_0",
+		"layer2": "beenomey:item/bee/type_frame/ice",
+		"layer3": "beenomey:item/bee/type_frame_queen/ice",
+		"layer4": "beenomey:item/bee/crown/queen"
+	}
+}

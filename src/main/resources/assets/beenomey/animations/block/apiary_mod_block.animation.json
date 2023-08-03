@@ -1,0 +1,55 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"apiary_mod_block.open": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 0.5,
+			"bones": {
+				"Mover": {
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.5": {
+							"vector": [0, 9, 0],
+							"easing": "easeOutQuad"
+						}
+					}
+				}
+			}
+		},
+		"apiary_mod_block.closeIdle": {
+			"loop": true,
+			"animation_length": 0.5
+		},
+		"apiary_mod_block.close": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 0.5,
+			"bones": {
+				"Mover": {
+					"position": {
+						"0.0": {
+							"vector": [0, 9, 0]
+						},
+						"0.5": {
+							"vector": [0, 0, 0],
+							"easing": "easeOutQuad"
+						}
+					}
+				}
+			}
+		},
+		"apiary_mod_block.openIdle": {
+			"loop": true,
+			"animation_length": 0.5,
+			"bones": {
+				"Mover": {
+					"position": {
+						"vector": [0, 9, 0]
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

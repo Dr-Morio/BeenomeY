@@ -1,0 +1,69 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "beenomey:item/bee/body/bee_base_0",
+    "layer1": "beenomey:item/bee/body/bee_body_color_0"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "beenomey:texture_variant": 1
+      },
+      "model": "beenomey:item/bee/common_bee"
+    },
+    {
+      "predicate": {
+        "beenomey:texture_variant": 2
+      },
+      "model": "beenomey:item/bee/forest_bee"
+    },
+    {
+      "predicate": {
+        "beenomey:texture_variant": 3
+      },
+      "model": "beenomey:item/bee/ice_bee"
+    },
+    {
+      "predicate": {
+        "beenomey:texture_variant": 4
+      },
+      "model": "beenomey:item/bee/water_bee"
+    },
+    {
+      "predicate": {
+        "beenomey:texture_variant": 5
+      },
+      "model": "beenomey:item/bee/sand_bee"
+    },
+    {
+      "predicate": {
+        "beenomey:texture_variant": 6
+      },
+      "model": "beenomey:item/bee/stone_bee"
+    },
+    {
+      "predicate": {
+        "beenomey:texture_variant": 7
+      },
+      "model": "beenomey:item/bee/nether_bee"
+    },
+    {
+      "predicate": {
+        "beenomey:texture_variant": 8
+      },
+      "model": "beenomey:item/bee/ender_bee"
+    },
+    {
+      "predicate": {
+        "beenomey:texture_variant": 9
+      },
+      "model": "beenomey:item/bee/lava_bee"
+    },
+    {
+      "predicate": {
+        "beenomey:texture_variant": 10
+      },
+      "model": "beenomey:item/bee/modified_bee"
+    }
+  ]
+}
