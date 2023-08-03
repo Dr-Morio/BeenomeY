@@ -44,8 +44,8 @@ public class BeenomeY
         // Register Blocks
         BlockInit.register(modEventBus);
 
-        // TEST
-        BlockEntityInit.BLOCK_ENTITIES.register(modEventBus);
+        // Register Block Entites
+        BlockEntityInit.register(modEventBus);
         
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -78,7 +78,7 @@ public class BeenomeY
     		event.accept(BlockInit.NETHER_BEEHIVE_BLOCK);
     		event.accept(BlockInit.WATER_BEEHIVE_BLOCK);
     		event.accept(ItemInit.WOODEN_SCOOP);
-    		event.accept(BlockInit.apiary_mod_block); //ANIMATION FEHLT NOCH
+    		event.accept(BlockInit.APIARY_MOD_BLOCK); //ANIMATION FEHLT NOCH
     	}
     }
     
