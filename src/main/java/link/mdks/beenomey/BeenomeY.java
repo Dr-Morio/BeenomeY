@@ -28,7 +28,7 @@ public class BeenomeY
     // Define mod id in a common place for everything to reference
     public static final String MODID = "beenomey";
     // Directly reference a slf4j logger
-    
+    @SuppressWarnings("unused")
 	public static final Logger LOGGER = LogUtils.getLogger();
 // Some Shit ive Done
     
