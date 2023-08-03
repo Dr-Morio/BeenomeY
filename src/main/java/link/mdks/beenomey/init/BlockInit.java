@@ -5,7 +5,6 @@ import com.google.common.base.Supplier;
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.ApiaryModBlock;
 import link.mdks.beenomey.apiculture.blocks.BeehiveBlock;
-import link.mdks.beenomey.apiculture.blocks.entity.ApiaryModBlockEntity;
 import link.mdks.beenomey.util.BeeType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;

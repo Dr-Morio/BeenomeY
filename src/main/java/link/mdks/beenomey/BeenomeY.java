@@ -7,7 +7,6 @@ import link.mdks.beenomey.core.BeenomeYTabs;
 import link.mdks.beenomey.init.BlockEntityInit;
 import link.mdks.beenomey.init.BlockInit;
 import link.mdks.beenomey.init.ItemInit;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.CreativeModeTabEvent;
