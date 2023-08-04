@@ -7,12 +7,15 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.FurnaceMenu;
 import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
@@ -23,6 +26,12 @@ public class ApiaryModBlockMenu extends AbstractContainerMenu{
 	private final Level level;
 	private final ContainerData data;
 	
+	private final static int apiarySlots = 7;
+	
+	public static int getApiarySlots() {
+		return apiarySlots;
+	}
+	
 	public ApiaryModBlockMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
 		this(id, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));// how many variables are stored inside container -> progress / maxProgress
 
@@ -30,7 +39,7 @@ public class ApiaryModBlockMenu extends AbstractContainerMenu{
 	}
 	public ApiaryModBlockMenu(int id, Inventory inv, BlockEntity entity, ContainerData data) {
 		super(MenuTypeInit.APIARY_MOD_BLOCK_MENU.get(), id);
-		checkContainerSize(inv, 3); //Size of Container (Slots)
+		checkContainerSize(inv, apiarySlots); //Size of Container (Slots)
 		blockEntity = (ApiaryModBlockEntity) entity;
 		this.level = inv.player.level;
 		this.data = data;
@@ -41,9 +50,13 @@ public class ApiaryModBlockMenu extends AbstractContainerMenu{
 		//old
 		//this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
 		this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-			this.addSlot(new SlotItemHandler(handler, 0, 12, 15));
-			this.addSlot(new SlotItemHandler(handler, 1, 86, 15));
-			this.addSlot(new SlotItemHandler(handler, 2, 15, 60));
+			this.addSlot(new SlotItemHandler(handler, 0, 26, 32));
+			this.addSlot(new SlotItemHandler(handler, 1, 48, 32));
+			this.addSlot(new SlotItemHandler(handler, 2, 70, 32));
+			this.addSlot(new SlotItemHandler(handler, 3, 98/*89*/, 32));
+			this.addSlot(new SlotItemHandler(handler, 4, 134, 11));
+			this.addSlot(new SlotItemHandler(handler, 5, 134, 32));
+			this.addSlot(new SlotItemHandler(handler, 6, 134, 53));
 		});
 		
 		addDataSlots(data);
@@ -61,9 +74,8 @@ public class ApiaryModBlockMenu extends AbstractContainerMenu{
 		
 		return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
 	}
-	
 
-    // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
+	// CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
     // must assign a slot number to each of the slots used by the GUI.
     // For this container, we can see both the tile inventory's slots as well as the player inventory slots and the hotbar.
     // Each time we add a Slot to the container, it automatically increases the slotIndex, which means
@@ -78,7 +90,7 @@ public class ApiaryModBlockMenu extends AbstractContainerMenu{
     private static final int VANILLA_FIRST_SLOT_INDEX = 0;
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
-    private static final int TE_INVENTORY_SLOT_COUNT = 3;  /// Size of Container (Slots)
+    private static final int TE_INVENTORY_SLOT_COUNT = apiarySlots;  // must be the number of slots !
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {
@@ -112,7 +124,7 @@ public class ApiaryModBlockMenu extends AbstractContainerMenu{
         sourceSlot.onTake(playerIn, sourceStack);
         return copyOfSourceStack;
     }
-
+    
 	@Override
 	public boolean stillValid(Player player) {
 		return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
@@ -120,7 +132,7 @@ public class ApiaryModBlockMenu extends AbstractContainerMenu{
 	}
 	
 	private void addPlayerInventory(Inventory playerInventory) {
-		for (int i = 0; i < 3; i++)  { //Size of Container (Slots)
+		for (int i = 0; i < 3; i++)  {
 			for (int j = 0; j < 9; j++) {
 				this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8+ j * 18, 86 + i * 18));
 			}

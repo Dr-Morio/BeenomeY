@@ -99,7 +99,7 @@ public class ApiaryModBlockEntity extends BlockEntity implements GeoBlockEntity,
 
 	/* Inventory System */
 
-	public final ItemStackHandler itemHandler = new ItemStackHandler(3) {
+	public final ItemStackHandler itemHandler = new ItemStackHandler(ApiaryModBlockMenu.getApiarySlots()) { // was 3 before. Get information von ModBlockMenu
 		protected void onContentsChanged(int slot) {
 			setChanged();
 		};
