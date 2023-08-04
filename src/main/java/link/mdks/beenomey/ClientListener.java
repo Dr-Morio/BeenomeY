@@ -13,6 +13,6 @@ public class ClientListener {
 	
 	@SubscribeEvent
 	public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
-			event.registerBlockEntityRenderer(BlockEntityInit.apiary_mod_block.get(), context -> new ApiaryModBlockRenderer());
+			event.registerBlockEntityRenderer(BlockEntityInit.APIARY_MOD_BLOCK.get(), context -> new ApiaryModBlockRenderer());
 	}
 }

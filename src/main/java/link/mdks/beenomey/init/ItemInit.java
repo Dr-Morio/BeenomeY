@@ -19,7 +19,7 @@ public class ItemInit {
 			() -> new ItemScoop(null));
 	
 	public static final RegistryObject<BlockItem> apiary_mod_block = ITEMS.register("apiary_mod_block",
-			() -> new BlockItem(BlockInit.apiary_mod_block.get(),
+			() -> new BlockItem(BlockInit.APIARY_MOD_BLOCK.get(),
 					new Item.Properties()));
 	
     public static void register(IEventBus eventBus) {

@@ -7,6 +7,9 @@ import link.mdks.beenomey.core.BeenomeYTabs;
 import link.mdks.beenomey.init.BlockEntityInit;
 import link.mdks.beenomey.init.BlockInit;
 import link.mdks.beenomey.init.ItemInit;
+import link.mdks.beenomey.init.MenuTypeInit;
+import link.mdks.beenomey.sceen.ApiaryModBlockScreen;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.CreativeModeTabEvent;
@@ -46,6 +49,9 @@ public class BeenomeY
 
         // Register Block Entites
         BlockEntityInit.register(modEventBus);
+        
+        // Register Menu Types
+        MenuTypeInit.register(modEventBus);
         
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -89,7 +95,7 @@ public class BeenomeY
     public static class ClientModEvents {
     	@SubscribeEvent
     	public static void onClientSetup(FMLClientSetupEvent event) {
-    		
+    		MenuScreens.register(MenuTypeInit.APIARY_MOD_BLOCK_MENU.get(), ApiaryModBlockScreen::new);
     	}
     }
     

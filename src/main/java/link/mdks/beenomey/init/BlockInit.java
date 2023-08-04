@@ -55,7 +55,7 @@ public class BlockInit {
 	
 		/* Blocks */
 	
-	public static final RegistryObject<ApiaryModBlock> apiary_mod_block = BLOCKS.register("apiary_mod_block", 
+	public static final RegistryObject<ApiaryModBlock> APIARY_MOD_BLOCK = BLOCKS.register("apiary_mod_block", 
 			() -> new ApiaryModBlock());
 			
 	
