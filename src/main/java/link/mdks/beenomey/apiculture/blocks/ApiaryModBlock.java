@@ -112,7 +112,6 @@ public class ApiaryModBlock extends BaseEntityBlock implements EntityBlock{
 	}
 	
 	public void checkCurrentInteractions() {
-		BeenomeY.LOGGER.debug("LIST " + currentInteractions.size());
 		if(!currentInteractions.isEmpty()) {
 			for(Player p : currentInteractions.keySet()) {
 				if(!p.hasContainerOpen()) {

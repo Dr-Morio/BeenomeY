@@ -34,9 +34,8 @@ public class ApiaryModBlockMenu extends AbstractContainerMenu{
 	
 	public ApiaryModBlockMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
 		this(id, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));// how many variables are stored inside container -> progress / maxProgress
-
-	
 	}
+	
 	public ApiaryModBlockMenu(int id, Inventory inv, BlockEntity entity, ContainerData data) {
 		super(MenuTypeInit.APIARY_MOD_BLOCK_MENU.get(), id);
 		checkContainerSize(inv, apiarySlots); //Size of Container (Slots)
@@ -53,7 +52,7 @@ public class ApiaryModBlockMenu extends AbstractContainerMenu{
 			this.addSlot(new SlotItemHandler(handler, 0, 26, 32));
 			this.addSlot(new SlotItemHandler(handler, 1, 48, 32));
 			this.addSlot(new SlotItemHandler(handler, 2, 70, 32));
-			this.addSlot(new SlotItemHandler(handler, 3, 98/*89*/, 32));
+			this.addSlot(new SlotItemHandler(handler, 3, 98, 32));
 			this.addSlot(new SlotItemHandler(handler, 4, 134, 11));
 			this.addSlot(new SlotItemHandler(handler, 5, 134, 32));
 			this.addSlot(new SlotItemHandler(handler, 6, 134, 53));
@@ -70,7 +69,7 @@ public class ApiaryModBlockMenu extends AbstractContainerMenu{
 	public int getScaledProgress() {
 		int progress = this.data.get(0);
 		int maxProgress = this.data.get(1);
-		int progressArrowSize = 26; // This is the height in pixels of the loading bar
+		int progressArrowSize = 58; // This is the height in pixels of the loading bar
 		
 		return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
 	}

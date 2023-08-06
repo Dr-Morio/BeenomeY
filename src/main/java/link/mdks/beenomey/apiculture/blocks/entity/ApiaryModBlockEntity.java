@@ -3,6 +3,7 @@ package link.mdks.beenomey.apiculture.blocks.entity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.ApiaryModBlock;
 import link.mdks.beenomey.init.BlockEntityInit;
 import link.mdks.beenomey.sceen.ApiaryModBlockMenu;
@@ -50,7 +51,7 @@ public class ApiaryModBlockEntity extends BlockEntity implements GeoBlockEntity,
 	private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 	private final ContainerData data;
 	private int progress = 0;
-	private int maxProgress = 20;
+	private int maxProgress = 58;
 	
 	public ApiaryModBlockEntity(BlockPos pos, BlockState state) {
 		super(BlockEntityInit.APIARY_MOD_BLOCK.get(), pos, state);
@@ -164,11 +165,12 @@ public class ApiaryModBlockEntity extends BlockEntity implements GeoBlockEntity,
 	
 	public static void tick(Level level, BlockPos blockPos, BlockState blockState, ApiaryModBlockEntity pEntity) {
 		if(level.isClientSide()) {
-			((ApiaryModBlock) blockState.getBlock()).checkCurrentInteractions(); // updates Animation based on Interactions
+			((ApiaryModBlock) blockState.getBlock()).checkCurrentInteractions(); // updates BlockAnimation based on Interactions
 			return;
 		}
 		
 		if(hasRecipe(pEntity)) {
+			BeenomeY.LOGGER.debug("Client Side " + level.isClientSide());
 			pEntity.progress++;
 			setChanged(level, blockPos, blockState);
 			
