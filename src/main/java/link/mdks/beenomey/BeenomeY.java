@@ -8,7 +8,6 @@ import link.mdks.beenomey.init.BlockEntityInit;
 import link.mdks.beenomey.init.BlockInit;
 import link.mdks.beenomey.init.ItemInit;
 import link.mdks.beenomey.init.MenuTypeInit;
-import link.mdks.beenomey.init.RecipeInit;
 import link.mdks.beenomey.sceen.ApiaryModBlockScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;

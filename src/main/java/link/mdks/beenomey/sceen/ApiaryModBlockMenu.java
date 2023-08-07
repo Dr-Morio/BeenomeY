@@ -26,7 +26,7 @@ public class ApiaryModBlockMenu extends AbstractContainerMenu{
 	private final Level level;
 	private final ContainerData data;
 	
-	private final static int apiarySlots = 7;
+	private final static int apiarySlots = 11;
 	
 	public static int getApiarySlots() {
 		return apiarySlots;
@@ -49,13 +49,22 @@ public class ApiaryModBlockMenu extends AbstractContainerMenu{
 		//old
 		//this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
 		this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-			this.addSlot(new SlotItemHandler(handler, 0, 26, 32));
-			this.addSlot(new SlotItemHandler(handler, 1, 48, 32));
-			this.addSlot(new SlotItemHandler(handler, 2, 70, 32));
-			this.addSlot(new SlotItemHandler(handler, 3, 98, 32));
-			this.addSlot(new SlotItemHandler(handler, 4, 134, 11));
-			this.addSlot(new SlotItemHandler(handler, 5, 134, 32));
-			this.addSlot(new SlotItemHandler(handler, 6, 134, 53));
+			//Comp Slots
+			this.addSlot(new SlotItemHandler(handler, 0, 21, 26));
+			this.addSlot(new SlotItemHandler(handler, 1, 139, 26));
+			this.addSlot(new SlotItemHandler(handler, 2, 21, 48));
+			this.addSlot(new SlotItemHandler(handler, 3, 139, 48));
+			
+			//Bee Slots
+			this.addSlot(new SlotItemHandler(handler, 4, 68, 13));
+			this.addSlot(new SlotItemHandler(handler, 5, 92, 13));
+			this.addSlot(new SlotItemHandler(handler, 6, 56, 37));
+			this.addSlot(new SlotItemHandler(handler, 7, 104, 37));
+			this.addSlot(new SlotItemHandler(handler, 8, 68, 61));
+			this.addSlot(new SlotItemHandler(handler, 9, 92, 61));
+			
+			//Princess Slot
+			this.addSlot(new SlotItemHandler(handler, 10, 80, 37));
 		});
 		
 		addDataSlots(data);
@@ -69,7 +78,8 @@ public class ApiaryModBlockMenu extends AbstractContainerMenu{
 	public int getScaledProgress() {
 		int progress = this.data.get(0);
 		int maxProgress = this.data.get(1);
-		int progressArrowSize = 58; // This is the height in pixels of the loading bar
+		//int progressArrowSize = 58; // This is the height in pixels of the loading bar
+		int progressArrowSize = 64; // This is the height in pixels of the loading bar
 		
 		return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
 	}

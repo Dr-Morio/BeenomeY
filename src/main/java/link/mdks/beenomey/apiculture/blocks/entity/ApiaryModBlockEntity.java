@@ -7,6 +7,7 @@ import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.ApiaryModBlock;
 import link.mdks.beenomey.init.BlockEntityInit;
 import link.mdks.beenomey.sceen.ApiaryModBlockMenu;
+import link.mdks.beenomey.util.ApiaryModBlockRecipeHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -169,18 +170,56 @@ public class ApiaryModBlockEntity extends BlockEntity implements GeoBlockEntity,
 			return;
 		}
 		
-		if(hasRecipe(pEntity)) {
-			BeenomeY.LOGGER.debug("Client Side " + level.isClientSide());
-			pEntity.progress++;
-			setChanged(level, blockPos, blockState);
-			
-			if(pEntity.progress >= pEntity.maxProgress) {
-				craftItem(pEntity);
+		// Determine Apiary Mode
+		ApiaryModBlockRecipeHandler.ApiaryMode mode = ApiaryModBlockRecipeHandler.determineApiaryMode(pEntity);
+		int bees = ApiaryModBlockRecipeHandler.beeLoad(pEntity);
+		switch (mode) {
+		case DECIDE:
+			if(bees < 6) {
+				pEntity.resetProgress();
+				break;}
+			else {
+				//Decide beginns
+				pEntity.progress++;
+				setChanged(level, blockPos, blockState);
+				
+				if(pEntity.progress >= pEntity.maxProgress) {
+					ApiaryModBlockRecipeHandler.updateBees(pEntity, mode);
+					pEntity.resetProgress();
+					setChanged(level, blockPos, blockState);
+				}
 			}
-		} else {
-			pEntity.resetProgress();
-			setChanged(level, blockPos, blockState);
+			break;
+		case BREED:
+			if(bees < 3 || pEntity.itemHandler.getStackInSlot(10).getItem() == Items.AIR) {
+				pEntity.resetProgress();
+				break;}
+			else {
+				//BREED beginns
+				pEntity.progress++;
+				setChanged(level, blockPos, blockState);
+				if(pEntity.progress >= pEntity.maxProgress) {
+					ApiaryModBlockRecipeHandler.updateBees(pEntity, mode);
+					pEntity.resetProgress();
+					setChanged(level, blockPos, blockState);
+				}
+			}
+			break;
 		}
+		
+		
+//		if(hasRecipe(pEntity)) {
+//			BeenomeY.LOGGER.debug("Client Side " + level.isClientSide());
+//			pEntity.progress++;
+//			setChanged(level, blockPos, blockState);
+//			
+//			if(pEntity.progress >= pEntity.maxProgress) {
+//				craftItem(pEntity);
+//			}
+//		} else {
+//			pEntity.resetProgress();
+//			setChanged(level, blockPos, blockState);
+//		}
 		
 	}
 

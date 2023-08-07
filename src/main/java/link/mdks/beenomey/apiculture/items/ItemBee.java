@@ -18,14 +18,14 @@ import net.minecraftforge.common.extensions.IForgeItem;
 public class ItemBee extends Item implements IForgeItem{
 
 	public ItemBee(Properties properties) {
-		super(new Item.Properties().durability(10).rarity(Rarity.COMMON).durability(1));
+		super(new Item.Properties().durability(2).rarity(Rarity.COMMON));
 	}
 
 //	@Override
 //	public boolean isDamageable(ItemStack stack) {
 //		return true;
 //	}
-	
+
 	@Override
 	public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> components, TooltipFlag tooltipFlag) {
 		BeeType mainBeeType;
@@ -59,6 +59,8 @@ public class ItemBee extends Item implements IForgeItem{
 				components.add(Component.literal("EffectiveLifecycle: " + itemStack.getTag().getInt("EffectiveLifecycle")));
 				components.add(Component.literal("EffectiveLifecycleAD: " + itemStack.getTag().getInt("EffectiveLifecycleAD"))); //After Damage
 				components.add(Component.literal("EffectiveCompDrop: " + itemStack.getTag().getInt("EffectiveCompDrop")));
+				components.add(Component.literal("DEBUG: " + itemStack.getMaxDamage()));
+				components.add(Component.literal("DEBUG: " + itemStack.getDamageValue()));
 			}
 		}
 	}

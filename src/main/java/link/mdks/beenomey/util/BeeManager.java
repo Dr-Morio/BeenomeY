@@ -44,6 +44,7 @@ public class BeeManager {
         }
         return itemStack;
     }
+    
 
     private static int CalculateEffectiveValue(float value, float multiplier) {
         return Math.round(value * multiplier);
