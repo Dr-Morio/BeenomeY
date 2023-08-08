@@ -21,10 +21,6 @@ public class ItemBee extends Item implements IForgeItem{
 		super(new Item.Properties().durability(2).rarity(Rarity.COMMON));
 	}
 
-//	@Override
-//	public boolean isDamageable(ItemStack stack) {
-//		return true;
-//	}
 
 	@Override
 	public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> components, TooltipFlag tooltipFlag) {

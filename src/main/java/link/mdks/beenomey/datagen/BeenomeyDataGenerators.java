@@ -20,7 +20,7 @@ public class BeenomeyDataGenerators {
 		generator.addProvider(true, new BeenomeyRecipeProvider(packOutput));
 		//generator.addProvider(true, new BeenomeyLootTableProvider().create(packOutput));
 		//generator.addProvider(true, new BeenomeyBlockstateProvider(packOutput, existingFileHeler));
-		generator.addProvider(true, new BeenomeyItemModelProvider(packOutput, existingFileHeler));
+		//generator.addProvider(true, new BeenomeyItemModelProvider(packOutput, existingFileHeler));
 
 	}
 	

@@ -12,7 +12,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class BeenomeyBlockLootTables extends BlockLootSubProvider{
 
-	public BeenomeyBlockLootTables(Set<Item> p_249153_, FeatureFlagSet p_251215_) {
+	public BeenomeyBlockLootTables() {
 		super(Set.of(), FeatureFlags.REGISTRY.allFlags());
 	}
 

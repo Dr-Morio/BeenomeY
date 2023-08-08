@@ -1,7 +1,6 @@
 package link.mdks.beenomey.datagen;
 
 import link.mdks.beenomey.BeenomeY;
-import link.mdks.beenomey.init.BlockInit;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockStateProvider;

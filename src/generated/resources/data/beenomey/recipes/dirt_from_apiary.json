@@ -1,0 +1,13 @@
+{
+  "type": "beenomey:apiary_recipe",
+  "ingredients": [
+    {
+      "item": "minecraft:diamond"
+    },
+    "DAFUQ"
+  ],
+  "output": {
+    "TEST": "MY TEST",
+    "item": "minecraft:dirt"
+  }
+}
