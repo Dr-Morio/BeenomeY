@@ -29,17 +29,17 @@ public class BeenomeyRecipeProvider extends RecipeProvider implements ICondition
 	protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
 		
 		
+		ItemStack bee = BeeManager.getBee(BeeType.COPPER, BeeType.DIAMOND, new ItemStack(BeeInit.getCommonBee()));
+		ItemStack princess = BeeManager.getBee(BeeType.FOREST, BeeType.ENDER, new ItemStack(BeeInit.getPrincessBee()));
+		ItemStack resultBee = BeeManager.getBee(BeeType.FOREST, BeeType.DIAMOND, new ItemStack(BeeInit.getCommonBee()));
 		
 		
 		
-		
-//		new ApiaryRecipeBuilder(BeeManager.getBee(BeeType.FOREST, BeeType.FOREST, new ItemStack(BeeInit.getCommonBee())),
-//				BeeManager.getBee(BeeType.ENDER, BeeType.ENDER, new ItemStack(BeeInit.getPrincessBee())),
-//				Items.DIRT, 1)
-//		.unlockedBy("has_dirt", inventoryTrigger(ItemPredicate.Builder.item()
-//				.of(Items.DIRT).build()))
-//		.save(consumer);
-		beeCombinationBuilder(consumer);
+		new ApiaryRecipeBuilder(bee, princess, resultBee, 50)
+		.unlockedBy("has_dirt", inventoryTrigger(ItemPredicate.Builder.item()
+				.of(Items.DIRT).build()))
+		.save(consumer);
+		//beeCombinationBuilder(consumer);
 	}
 	
 	private void beeCombinationBuilder(Consumer<FinishedRecipe> consumer){
@@ -88,17 +88,17 @@ public class BeenomeyRecipeProvider extends RecipeProvider implements ICondition
 		}
 		
 		//JUST DEBUG
-		for (RecipeTypeHolder l : recipes) {
-			BeenomeY.LOGGER.debug("DEBUG REC: " + l.getBeeType() + " + " + l.getPrincessType() + " = " + l.getResult());
-			
-			ItemStack bee = BeeManager.getBee(l.getBeeType().get(0), l.getBeeType().get(1), new ItemStack(BeeInit.getCommonBee()));
-			ItemStack princess = BeeManager.getBee(l.getPrincessType().get(0), l.getPrincessType().get(1), new ItemStack(BeeInit.getPrincessBee()));
-			ItemStack resultBee = BeeManager.getBee(l.getResult().get(0), l.getResult().get(1), new ItemStack(BeeInit.getCommonBee()));
-			
-			new ApiaryRecipeBuilder(bee, princess, resultBee, l.getResultChance())
-			.unlockedBy("has_dirt", inventoryTrigger(ItemPredicate.Builder.item()
-					.of(Items.DIRT).build()))
-					.save(consumer);
+//		for (RecipeTypeHolder l : recipes) {
+//			BeenomeY.LOGGER.debug("DEBUG REC: " + l.getBeeType() + " + " + l.getPrincessType() + " = " + l.getResult());
+//			
+//			ItemStack bee = BeeManager.getBee(l.getBeeType().get(0), l.getBeeType().get(1), new ItemStack(BeeInit.getCommonBee()));
+//			ItemStack princess = BeeManager.getBee(l.getPrincessType().get(0), l.getPrincessType().get(1), new ItemStack(BeeInit.getPrincessBee()));
+//			ItemStack resultBee = BeeManager.getBee(l.getResult().get(0), l.getResult().get(1), new ItemStack(BeeInit.getCommonBee()));
+//			
+//			new ApiaryRecipeBuilder(bee, princess, resultBee, l.getResultChance())
+//			.unlockedBy("has_dirt", inventoryTrigger(ItemPredicate.Builder.item()
+//					.of(Items.DIRT).build()))
+//					.save(consumer);
 			
 			
 //			new ApiaryRecipeBuilder(BeeManager.getBee(BeeType.FOREST, BeeType.FOREST, new ItemStack(BeeInit.getCommonBee())),
@@ -109,9 +109,6 @@ public class BeenomeyRecipeProvider extends RecipeProvider implements ICondition
 //	.save(consumer);
 			
 		}
-		
-		
-	}
 	
 	private class RecipeTypeHolder {
 		private final List<BeeType> beeType;
@@ -142,7 +139,10 @@ public class BeenomeyRecipeProvider extends RecipeProvider implements ICondition
 		}
 		
 	}
-}
+		
+	}
+
+
 
 	
 

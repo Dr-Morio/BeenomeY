@@ -1,0 +1,19 @@
+{
+  "type": "beenomey:apiary_recipe",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "COPPER",
+      "secondType": "ENDER"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "FOREST"
+    }
+  ],
+  "output": {
+    "item": "beenomey:common_bee",
+    "mainType": "FOREST",
+    "secondType": "DIAMOND"
+  }
+}

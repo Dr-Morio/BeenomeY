@@ -2,24 +2,22 @@ package link.mdks.beenomey.apiculture.recipe;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import link.mdks.beenomey.BeenomeY;
+import link.mdks.beenomey.apiculture.items.BeeInit;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.util.NonNullLazy;
 
 public class ApiaryModBlockRecipe implements Recipe<SimpleContainer>{
 	
@@ -42,14 +40,15 @@ public class ApiaryModBlockRecipe implements Recipe<SimpleContainer>{
 		if(pLevel.isClientSide) {
 			return false;
 		}
+		BeenomeY.LOGGER.debug("MATCHES GOAT-FINDER: " + recipeItems.get(0).getItems() + " matching " + pContainer.getItem(1));
 		
-		return recipeItems.get(0).test(pContainer.getItem(1));
+		return recipeItems.get(0).test(pContainer.getItem(1)); //compares to slot one(1)
 		
 	}
 
 	@Override
 	public ItemStack assemble(SimpleContainer pContainer, RegistryAccess pLevel) {
-		return null;
+		return output;
 	}
 
 	@Override
@@ -85,18 +84,32 @@ public class ApiaryModBlockRecipe implements Recipe<SimpleContainer>{
 	
 	public static class Serializer implements RecipeSerializer<ApiaryModBlockRecipe> {
 		public static final Serializer INSTANCE = new Serializer();
-		public static final ResourceLocation ID = new ResourceLocation(BeenomeY.MODID, "apiary_recapie");
+		public static final ResourceLocation ID = new ResourceLocation(BeenomeY.MODID, "apiary_recipe");
 		
 		@Override
 		public ApiaryModBlockRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {
-			ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "output"));
-			
-			JsonArray ingredients = GsonHelper.getAsJsonArray(pSerializedRecipe, "ingredients");
+			BeenomeY.LOGGER.debug("SERIALIZER: LEL");
+			JsonObject outputObject = pSerializedRecipe.getAsJsonObject("output");
+			ItemStack output = new ItemStack(BeeInit.getPrincessBee());
 			NonNullList<Ingredient> inputs = NonNullList.withSize(1, Ingredient.EMPTY);
+			inputs.set(0, Ingredient.of(Items.DIRT.asItem()));
+//			
+//			JsonArray ingredientsArray = pSerializedRecipe.getAsJsonArray("ingredients");
+//			NonNullList<Ingredient> inputs = NonNullList.withSize(ingredientsArray.size(), Ingredient.EMPTY);
+//			for (int i = 0; i < ingredientsArray.size(); i++) {
+//				inputs.add(i, Ingredient.fromJson(ingredientsArray.get(i)));
+//			}
 			
-			for (int i = 0; i < inputs.size(); i++) {
-				inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
-			}
+//			ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "output"));
+//			
+//			JsonArray ingredients = GsonHelper.getAsJsonArray(pSerializedRecipe, "ingredients");
+//			NonNullList<Ingredient> inputs = NonNullList.withSize(1, Ingredient.EMPTY);
+//			
+//			for (int i = 0; i < inputs.size(); i++) {
+//				inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
+//			}
+//			
+			BeenomeY.LOGGER.debug("SERIALIZER: " + inputs.get(0) + " -- " + output);
 			
 			return new ApiaryModBlockRecipe(pRecipeId, output, inputs);
 			
@@ -111,6 +124,7 @@ public class ApiaryModBlockRecipe implements Recipe<SimpleContainer>{
 			}
 			
 			ItemStack output = buf.readItem();
+			BeenomeY.LOGGER.debug("SERIALIZER: CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL");
 			return new ApiaryModBlockRecipe(id, output, inputs);
 			
 		}
