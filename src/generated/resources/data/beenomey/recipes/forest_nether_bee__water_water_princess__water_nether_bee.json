@@ -3,17 +3,18 @@
   "ingredients": [
     {
       "item": "beenomey:common_bee",
-      "mainType": "COPPER",
-      "secondType": "ENDER"
+      "mainType": "WATER",
+      "secondType": "WATER"
     },
     {
       "item": "beenomey:princess_bee",
-      "mainType": "FOREST"
+      "mainType": "FOREST",
+      "secondType": "NETHER"
     }
   ],
   "output": {
     "item": "beenomey:common_bee",
-    "mainType": "FOREST",
-    "secondType": "DIAMOND"
+    "mainType": "WATER",
+    "secondType": "NETHER"
   }
 }

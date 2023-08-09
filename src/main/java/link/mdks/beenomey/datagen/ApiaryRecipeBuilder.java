@@ -1,4 +1,4 @@
-package link.mdks.beenomey.apiculture.recipe;
+package link.mdks.beenomey.datagen;
 
 
 import java.util.function.Consumer;
@@ -7,6 +7,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import link.mdks.beenomey.BeenomeY;
+import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockRecipe;
+import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockRecipe.Serializer;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.CriterionTriggerInstance;
@@ -111,15 +113,16 @@ public class ApiaryRecipeBuilder implements RecipeBuilder{
 			
 			// Add properties in reverse value
 			// add Bee
+			ingredientBeeObject.addProperty("secondType", ingredientPrincess.getTag().getString("SecondType").toString());
+			ingredientBeeObject.addProperty("mainType", ingredientPrincess.getTag().getString("MainType").toString());
+			ingredientBeeObject.addProperty("item", ForgeRegistries.ITEMS.getKey(ingredientBee.getItem()).toString());
+			ingredientsArray.add(ingredientBeeObject);
+			// add Princess
 			ingredientPrincessObject.addProperty("secondType", ingredientBee.getTag().getString("SecondType").toString());
 			ingredientPrincessObject.addProperty("mainType", ingredientBee.getTag().getString("MainType").toString());
-			ingredientPrincessObject.addProperty("item", ForgeRegistries.ITEMS.getKey(ingredientBee.getItem()).toString());
+			ingredientPrincessObject.addProperty("item", ForgeRegistries.ITEMS.getKey(ingredientPrincess.getItem()).toString());
 			ingredientsArray.add(ingredientPrincessObject);
-			// add Princess
-			ingredientPrincessObject.addProperty("secondType", ingredientPrincess.getTag().getString("SecondType").toString());
-			ingredientBeeObject.addProperty("mainType", ingredientPrincess.getTag().getString("MainType").toString());
-			ingredientBeeObject.addProperty("item", ForgeRegistries.ITEMS.getKey(ingredientPrincess.getItem()).toString());
-			ingredientsArray.add(ingredientBeeObject);
+
 			
 			pJson.add("ingredients", ingredientsArray);
 			
@@ -165,9 +168,8 @@ public class ApiaryRecipeBuilder implements RecipeBuilder{
 			
 			String path = (mTypeBee + "_" + sTypeBee + "_bee__" + 
 					mTypePrincess + "_" + sTypePrincess + "_princess__" +
-					mTypeResult + "_" + sTypeResult).toLowerCase();
+					mTypeResult + "_" + sTypeResult).toLowerCase() + "_bee";
 			
-			BeenomeY.LOGGER.debug("DEBUG PATH: " + path);
 
 			ResourceLocation name = new ResourceLocation(BeenomeY.MODID, path);
 			

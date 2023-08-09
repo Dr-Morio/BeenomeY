@@ -8,8 +8,10 @@ import link.mdks.beenomey.util.BeeType;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -20,8 +22,13 @@ public class ItemBee extends Item implements IForgeItem{
 	public ItemBee(Properties properties) {
 		super(new Item.Properties().durability(2).rarity(Rarity.COMMON));
 	}
+	
 
-
+	@Override
+	public boolean isEnchantable(ItemStack pStack) {
+		return false;
+	}
+	
 	@Override
 	public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> components, TooltipFlag tooltipFlag) {
 		BeeType mainBeeType;

@@ -178,6 +178,10 @@ public class ApiaryModBlockEntity extends BlockEntity implements GeoBlockEntity,
 		
 		
         SimpleContainer inventory = new SimpleContainer(pEntity.itemHandler.getSlots());
+        //fill the container
+        for (int i = 0; i < pEntity.itemHandler.getSlots(); i++) {
+            inventory.setItem(i, pEntity.itemHandler.getStackInSlot(i));
+        }
 		Optional<ApiaryModBlockRecipe> recipe = level.getRecipeManager().getRecipeFor(ApiaryModBlockRecipe.Type.INSTANCE, inventory, level);
 		
 		//BeenomeY.LOGGER.debug("RECIPE: " + recipe.isPresent());
@@ -244,29 +248,29 @@ public class ApiaryModBlockEntity extends BlockEntity implements GeoBlockEntity,
 	}
 
 
-	private static void craftItem(ApiaryModBlockEntity pEntity) {
-		
-		if(hasRecipe(pEntity)) {
-			pEntity.itemHandler.extractItem(1, 1, false);
-			pEntity.itemHandler.setStackInSlot(2, new ItemStack(Items.STONE,
-					pEntity.itemHandler.getStackInSlot(2).getCount() + 1));
-			pEntity.resetProgress();
-		}
-		
-	}
-
-
-	private static boolean hasRecipe(ApiaryModBlockEntity entity) {
-		SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
-		for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
-			inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
-		}
-		
-		boolean hasDirtInFirstSlot = entity.itemHandler.getStackInSlot(1).getItem()	 == Items.DIRT;
-		
-		return hasDirtInFirstSlot;
-		
-		
-	}
+//	private static void craftItem(ApiaryModBlockEntity pEntity) {
+//		
+//		if(hasRecipe(pEntity)) {
+//			pEntity.itemHandler.extractItem(1, 1, false);
+//			pEntity.itemHandler.setStackInSlot(2, new ItemStack(Items.STONE,
+//					pEntity.itemHandler.getStackInSlot(2).getCount() + 1));
+//			pEntity.resetProgress();
+//		}
+//		
+//	}
+//
+//
+//	private static boolean hasRecipe(ApiaryModBlockEntity entity) {
+//		SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
+//		for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
+//			inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
+//		}
+//		
+//		boolean hasDirtInFirstSlot = entity.itemHandler.getStackInSlot(1).getItem()	 == Items.DIRT;
+//		
+//		return hasDirtInFirstSlot;
+//		
+//		
+//	}
 	
 }

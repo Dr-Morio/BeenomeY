@@ -1,0 +1,20 @@
+{
+  "type": "beenomey:apiary_recipe",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "WATER",
+      "secondType": "WATER"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "NETHER",
+      "secondType": "NETHER"
+    }
+  ],
+  "output": {
+    "item": "beenomey:common_bee",
+    "mainType": "WATER",
+    "secondType": "NETHER"
+  }
+}
