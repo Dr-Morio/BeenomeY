@@ -111,18 +111,18 @@ public class ApiaryRecipeBuilder implements RecipeBuilder{
 			JsonObject ingredientBeeObject = new JsonObject();
 			JsonObject outputOject = new JsonObject();
 			
-			// Add properties in reverse value
+			// Add properties of Item in Reverse Order
+
 			// add Bee
-			ingredientBeeObject.addProperty("secondType", ingredientPrincess.getTag().getString("SecondType").toString());
-			ingredientBeeObject.addProperty("mainType", ingredientPrincess.getTag().getString("MainType").toString());
+			ingredientBeeObject.addProperty("secondType", ingredientBee.getTag().getString("SecondType").toString());
+			ingredientBeeObject.addProperty("mainType", ingredientBee.getTag().getString("MainType").toString());
 			ingredientBeeObject.addProperty("item", ForgeRegistries.ITEMS.getKey(ingredientBee.getItem()).toString());
 			ingredientsArray.add(ingredientBeeObject);
 			// add Princess
-			ingredientPrincessObject.addProperty("secondType", ingredientBee.getTag().getString("SecondType").toString());
-			ingredientPrincessObject.addProperty("mainType", ingredientBee.getTag().getString("MainType").toString());
+			ingredientPrincessObject.addProperty("secondType", ingredientPrincess.getTag().getString("SecondType").toString());
+			ingredientPrincessObject.addProperty("mainType", ingredientPrincess.getTag().getString("MainType").toString());
 			ingredientPrincessObject.addProperty("item", ForgeRegistries.ITEMS.getKey(ingredientPrincess.getItem()).toString());
 			ingredientsArray.add(ingredientPrincessObject);
-
 			
 			pJson.add("ingredients", ingredientsArray);
 			

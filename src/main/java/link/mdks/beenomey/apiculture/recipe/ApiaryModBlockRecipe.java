@@ -5,10 +5,10 @@ import org.jetbrains.annotations.Nullable;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.items.BeeInit;
 import link.mdks.beenomey.util.BeeManager;
 import link.mdks.beenomey.util.BeeType;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
@@ -26,15 +26,13 @@ public class ApiaryModBlockRecipe implements Recipe<SimpleContainer>{
 	
 	private final ResourceLocation id;
 	private final ItemStack output;
-	private ItemStack inputBee;
-	private ItemStack inputPrincess;
-	private final NonNullList<Ingredient> recipeItems;
+	private final NonNullList<ItemStack> inputs;
 	
 
-	public ApiaryModBlockRecipe(ResourceLocation id, ItemStack output, NonNullList<Ingredient> recipeItems) {
+	public ApiaryModBlockRecipe(ResourceLocation id, ItemStack output, NonNullList<ItemStack> inputs) {
 		this.id = id;
 		this.output = output;
-		this.recipeItems = recipeItems;
+		this.inputs = inputs;
 	}
 
 	@Override
@@ -45,9 +43,10 @@ public class ApiaryModBlockRecipe implements Recipe<SimpleContainer>{
 		if(pLevel.isClientSide) {
 			return false;
 		}
-		BeenomeY.LOGGER.debug("MATCHES GOAT-FINDER: " + recipeItems.get(0) + " matching " + pContainer.getItem(0));
+		return false; //TODO: FIX
+		//BeenomeY.LOGGER.debug("MATCHES GOAT-FINDER: " + recipeItems.get(0) + " matching " + pContainer.getItem(0));
 		//return recipeItems.get(0).test(pContainer.getItem(1)); //compares to slot one(1)
-		return recipeItems.get(0).test(pContainer.getItem(0));
+		//return recipeItems.get(0).test(pContainer.getItem(0));
 	}
 
 	@Override
@@ -80,9 +79,18 @@ public class ApiaryModBlockRecipe implements Recipe<SimpleContainer>{
 		return Type.INSTANCE;
 	}
 
+
+	public NonNullList<ItemStack> getIngredientsAsItemStacks() {
+		return inputs;
+	}
+	
 	@Override
 	public NonNullList<Ingredient> getIngredients() {
-		return recipeItems;
+		NonNullList<Ingredient> ingredients = NonNullList.withSize(2, Ingredient.EMPTY); // Static...
+		for (int i = 0; i < inputs.size(); i++) {
+		    ingredients.set(i, Ingredient.of(inputs.get(i)));
+		}
+		return ingredients;
 	}
 	
 	public static class Type implements RecipeType<ApiaryModBlockRecipe> {
@@ -105,7 +113,7 @@ public class ApiaryModBlockRecipe implements Recipe<SimpleContainer>{
             ItemStack output = BeeManager.getBee(BeeType.valueOf(outputMainType), BeeType.valueOf(outputSecondType), new ItemStack(BeeInit.getCommonBee()));
             
             JsonArray ingredientsArray = pSerializedRecipe.getAsJsonArray("ingredients");
-            NonNullList<Ingredient> inputs = NonNullList.withSize(ingredientsArray.size(), Ingredient.EMPTY);
+            NonNullList<ItemStack> inputs = NonNullList.withSize(ingredientsArray.size(), ItemStack.EMPTY);
             
 			for (int i = 0; i < ingredientsArray.size(); i++) {
 				JsonObject ingredientObject = ingredientsArray.get(i).getAsJsonObject();
@@ -115,10 +123,10 @@ public class ApiaryModBlockRecipe implements Recipe<SimpleContainer>{
 				String mainType = ingredientObject.get("mainType").getAsString();
 				String secondType = ingredientObject.get("secondType").getAsString();
 				
-				/* Get ingredients as Item -> ItemStack -> Ingredient to get hold of Types*/
+				/* Item to ItemStack to attach Types*/
 				ItemStack input = BeeManager.getBee(BeeType.valueOf(mainType), BeeType.valueOf(secondType),
 						new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(jItem))));
-				inputs.set(i, Ingredient.of(input));
+				inputs.set(i, input);
 				
 				//TODO: Get hold if ingredient as ItemStacks to access them from JEIPlugin
 				
@@ -138,10 +146,10 @@ public class ApiaryModBlockRecipe implements Recipe<SimpleContainer>{
 		
 		@Override
 		public @Nullable ApiaryModBlockRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
-	           NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
+	           NonNullList<ItemStack> inputs = NonNullList.withSize(buf.readInt(), ItemStack.EMPTY);
 
 	            for (int i = 0; i < inputs.size(); i++) {
-	                inputs.set(i, Ingredient.fromNetwork(buf));
+	                inputs.set(i, buf.readItem());
 	            }
 
 	            ItemStack output = buf.readItem();
@@ -154,10 +162,10 @@ public class ApiaryModBlockRecipe implements Recipe<SimpleContainer>{
 			
             buf.writeInt(recipe.getIngredients().size());
 
-            for (Ingredient ing : recipe.getIngredients()) {
-                ing.toNetwork(buf);
+            for (ItemStack is : recipe.getIngredientsAsItemStacks()) {
+                buf.writeItemStack(is, false);
             }
-            buf.writeItemStack(recipe.getResultItem(null), false);
+            buf.writeItemStack(recipe.getResultItem(Minecraft.getInstance().level.registryAccess()), false);
 			
 		}
 	}
