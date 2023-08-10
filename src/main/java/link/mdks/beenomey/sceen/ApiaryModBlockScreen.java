@@ -29,9 +29,8 @@ public class ApiaryModBlockScreen extends AbstractContainerScreen<ApiaryModBlock
 		
 		this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
 		renderProgressBar(pPoseStack, x, y);
-		
 	}
-
+	
 	private void renderProgressBar(PoseStack pPoseStack, int x, int y) {
 		if(menu.isCrafting()) {
 			//blit(pPoseStack,x + 164,y + 11,176,0,4,  menu.getScaledProgress());

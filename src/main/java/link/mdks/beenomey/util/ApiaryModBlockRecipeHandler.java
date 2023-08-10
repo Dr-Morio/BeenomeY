@@ -25,7 +25,9 @@ public class ApiaryModBlockRecipeHandler{
 		
 	}
 	
+	/** Returns amount of bees in Apiary (Slot 4-9)*/
 	public static int beeLoad(ApiaryModBlockEntity pEntity) {
+
 		int bees = 0;
 		for (int i = 4; i < 10; i++) {
 			if (pEntity.itemHandler.getStackInSlot(i).getItem() == BeeInit.COMMON_BEE.get()) {
@@ -35,12 +37,18 @@ public class ApiaryModBlockRecipeHandler{
 		return bees;
 	}
 
+	/** Updates all Bees and the Princess inside Apiary Inventory */
 	public static void updateBees(ApiaryModBlockEntity pEntity, ApiaryMode mode) {
 		//This method should only be called server sided;
 		if (Thread.currentThread().getThreadGroup() == SidedThreadGroups.SERVER) {
 			int emptyBeeSlots = 0;
 			
-			// Update all Bees
+			// drop Combs
+			if(mode == ApiaryMode.BREED) {
+				//TODO: CombDropFunction
+			}
+			
+			// Update all bees and princess
 		    for(int i = 4; i <=10; i++) {
 		    	ItemStack is = pEntity.itemHandler.getStackInSlot(i);
 		    	if(is.getItem() != Items.AIR) {
@@ -66,13 +74,13 @@ public class ApiaryModBlockRecipeHandler{
 		    	}
 		    }
 			
-		    // DECIDE
+		    // DECIDE which bee will be Princess
 		    if(mode == ApiaryMode.DECIDE) {
 				SpawnPrincess(pEntity);
 				return;
 		    }
 		    
-		    // BREED
+		    // Breed new bee
 		    if(mode == ApiaryMode.BREED && emptyBeeSlots != 0 && emptyBeeSlots != 6 && pEntity.itemHandler.getStackInSlot(10).getItem() != Items.AIR) {
 				Long gameTime = pEntity.getLevel().getGameTime(); //used for seed. To sync Server and Client for random on tick
 				Random randomProvider = new Random(gameTime);
@@ -122,8 +130,6 @@ public class ApiaryModBlockRecipeHandler{
 			commonBee = pEntity.itemHandler.getStackInSlot(beeSlot);
 			secondType = BeeType.valueOf(commonBee.getTag().getString("SecondType").toString());
 		}
-//		default:
-//			secondType = mainType;
 		
 		//Chose slot for bee placement
 	    for(int i = 4; i <=9; i++) {
@@ -160,6 +166,10 @@ public class ApiaryModBlockRecipeHandler{
 		pEntity.itemHandler.extractItem(beeSlot, 1, false); //Consumes bee
 		pEntity.itemHandler.setStackInSlot(10, princess); // Sets Princess in Princess Slot
 		
+		
+	}
+
+	private static void dropCombs(ApiaryModBlockEntity pEntity) {
 		
 	}
 	

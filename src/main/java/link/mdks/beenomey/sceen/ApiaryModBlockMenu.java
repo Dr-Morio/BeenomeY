@@ -3,6 +3,9 @@ package link.mdks.beenomey.sceen;
 import link.mdks.beenomey.apiculture.blocks.entity.ApiaryModBlockEntity;
 import link.mdks.beenomey.init.BlockInit;
 import link.mdks.beenomey.init.MenuTypeInit;
+import link.mdks.beenomey.sceen.slots.BeeSlot;
+import link.mdks.beenomey.sceen.slots.CombSlot;
+import link.mdks.beenomey.sceen.slots.PrincessSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -50,21 +53,21 @@ public class ApiaryModBlockMenu extends AbstractContainerMenu{
 		//this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
 		this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
 			//Comp Slots
-			this.addSlot(new SlotItemHandler(handler, 0, 21, 26));
-			this.addSlot(new SlotItemHandler(handler, 1, 139, 26));
-			this.addSlot(new SlotItemHandler(handler, 2, 21, 48));
-			this.addSlot(new SlotItemHandler(handler, 3, 139, 48));
+			this.addSlot(new CombSlot(handler, 0, 21, 26));
+			this.addSlot(new CombSlot(handler, 1, 139, 26));
+			this.addSlot(new CombSlot(handler, 2, 21, 48));
+			this.addSlot(new CombSlot(handler, 3, 139, 48));
 			
 			//Bee Slots
-			this.addSlot(new SlotItemHandler(handler, 4, 68, 13));
-			this.addSlot(new SlotItemHandler(handler, 5, 92, 13));
-			this.addSlot(new SlotItemHandler(handler, 6, 56, 37));
-			this.addSlot(new SlotItemHandler(handler, 7, 104, 37));
-			this.addSlot(new SlotItemHandler(handler, 8, 68, 61));
-			this.addSlot(new SlotItemHandler(handler, 9, 92, 61));
+			this.addSlot(new BeeSlot(handler, 4, 68, 13));
+			this.addSlot(new BeeSlot(handler, 5, 92, 13));
+			this.addSlot(new BeeSlot(handler, 6, 56, 37));
+			this.addSlot(new BeeSlot(handler, 7, 104, 37));
+			this.addSlot(new BeeSlot(handler, 8, 68, 61));
+			this.addSlot(new BeeSlot(handler, 9, 92, 61));
 			
 			//Princess Slot
-			this.addSlot(new SlotItemHandler(handler, 10, 80, 37));
+			this.addSlot(new PrincessSlot(handler, 10, 80, 37));
 		});
 		
 		addDataSlots(data);
@@ -73,6 +76,10 @@ public class ApiaryModBlockMenu extends AbstractContainerMenu{
 	
 	public boolean isCrafting() {
 		return data.get(0) > 0;
+	}
+	
+	public int getMode() {
+		return this.data.get(2);
 	}
 	
 	public int getScaledProgress() {

@@ -57,7 +57,7 @@ public class ItemBee extends Item implements IForgeItem{
 				components.add(Component.literal("LifeCycle: " + itemStack.getTag().getInt("LifeCycle")).withStyle(mainColor));
 				components.add(Component.literal("CompDrop: " + itemStack.getTag().getInt("CompDrop")).withStyle(mainColor));
 				components.add(Component.literal("LifecycleMultiplier: " + itemStack.getTag().getFloat("LifecycleMultiplier")).withStyle(secondColor));
-				components.add(Component.literal("TikMultiplier: " + itemStack.getTag().getFloat("TikMultiplier")).withStyle(secondColor));
+				components.add(Component.literal("RandomTickChance: " + itemStack.getTag().getFloat("RandomTickChance")).withStyle(secondColor));
 				components.add(Component.literal("CompDropMultiplier: " + itemStack.getTag().getFloat("CompDropMultiplier")).withStyle(secondColor));
 				components.add(Component.literal("EffectiveLifecycle: " + itemStack.getTag().getInt("EffectiveLifecycle")));
 				components.add(Component.literal("EffectiveLifecycleAD: " + itemStack.getTag().getInt("EffectiveLifecycleAD"))); //After Damage

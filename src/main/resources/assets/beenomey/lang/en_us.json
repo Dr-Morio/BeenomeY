@@ -5,6 +5,23 @@
 	
 	"item.beenomey.wooden_scoop": "Wooden Scoop",
 	
+	"item.beenomey.honeycomb": "Honeycomb",
+	"item.beenomey.ice_honeycomb": "Ice Honeycomb",
+	"item.beenomey.watery_honeycomb": "Watery Honeycomb",
+	"item.beenomey.sand_honeycomb": "Sand oneycomb",
+	"item.beenomey.stone_honeycomb": "Stone Honeycomb",
+	"item.beenomey.nether_honeycomb": "Nether Honeycomb",
+	"item.beenomey.ender_honeycomb": "Ender Honeycomb",
+	"item.beenomey.lava_honeycomb": "Hot Honeycomb",
+	"item.beenomey.paper_honeycomb": "Paper Honeycomb",
+	"item.beenomey.lapis_honeycomb": "Lapis Honeycomb",
+	"item.beenomey.redstone_honeycomb": "Redstone Honeycomb",
+	"item.beenomey.iron_honeycomb": "Iron Honeycomb",
+	"item.beenomey.gold_honeycomb": "Gold Honeycomb",
+	"item.beenomey.copper_honeycomb": "Copper Honeycomb",
+	"item.beenomey.diamond_honeycomb": "Diamond Honeycomb",
+	"item.beenomey.obsidian_honeycomb": "Obsidian Honeycomb",
+	
 	"block.beenomey.oakwood_beehive_block": "Oakwood Beehive",
 	"block.beenomey.birchwood_beehive_block": "Birchwood Beehive",
 	"block.beenomey.sand_beehive_block": "Sand Beehive",

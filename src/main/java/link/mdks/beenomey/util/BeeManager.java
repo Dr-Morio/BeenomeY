@@ -1,5 +1,6 @@
 package link.mdks.beenomey.util;
 
+import link.mdks.beenomey.init.ItemInit;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 
@@ -18,7 +19,7 @@ public class BeeManager {
 
         int lifeCycle = mainBeeType.lifecycle;
         float lifecycleMultiplier = secondBeeType.lifecycleMultiplier;
-        float tikMultiplier = secondBeeType.tickMultiplier;
+        int randomTickChance = mainBeeType.randomTickChance;
         int compDrop = mainBeeType.compDrop;
         float compDropMultiplier = secondBeeType.compDropMultiplier;
 
@@ -30,7 +31,7 @@ public class BeeManager {
         tag.putInt("EffectiveLifecycle", CalculateEffectiveValue(lifeCycle, lifecycleMultiplier));
         tag.putInt("EffectiveLifecycleAD", CalculateEffectiveValue(lifeCycle, lifecycleMultiplier));
 
-        tag.putFloat("TikMultiplier", tikMultiplier);
+        tag.putInt("RandomTickChance", randomTickChance);
 
         tag.putFloat("CompDrop", compDrop);
         tag.putFloat("CompDropMultiplier", compDropMultiplier);
@@ -48,6 +49,14 @@ public class BeeManager {
 
     private static int CalculateEffectiveValue(float value, float multiplier) {
         return Math.round(value * multiplier);
+    }
+    
+    public static ItemStack getComb(BeeType type) {
+    	return switch (type) {
+    		case FOREST -> new ItemStack(ItemInit.HONEYCOMB.get()) ;
+    		default -> new ItemStack(ItemInit.HONEYCOMB.get());
+    	};
+    	
     }
     
 }

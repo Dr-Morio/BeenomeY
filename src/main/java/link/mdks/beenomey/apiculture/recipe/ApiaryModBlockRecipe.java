@@ -43,7 +43,7 @@ public class ApiaryModBlockRecipe implements Recipe<SimpleContainer>{
 		if(pLevel.isClientSide) {
 			return false;
 		}
-		return false; //TODO: FIX
+		return false; //TODO: FIX? - Maybe i dont need that because of my own RecipeManager class
 		//BeenomeY.LOGGER.debug("MATCHES GOAT-FINDER: " + recipeItems.get(0) + " matching " + pContainer.getItem(0));
 		//return recipeItems.get(0).test(pContainer.getItem(1)); //compares to slot one(1)
 		//return recipeItems.get(0).test(pContainer.getItem(0));

@@ -11,6 +11,7 @@ import link.mdks.beenomey.init.MenuTypeInit;
 import link.mdks.beenomey.init.RecipeInit;
 import link.mdks.beenomey.sceen.ApiaryModBlockScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.CreativeModeTabEvent;
@@ -20,6 +21,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.RegistryObject;
 import software.bernie.geckolib.GeckoLib;
 
 import org.slf4j.Logger;
@@ -76,6 +78,13 @@ public class BeenomeY
     
 	private void addCreative(CreativeModeTabEvent.BuildContents event) {
     	if(event.getTab() == BeenomeYTabs.BEENOMEY_TAB) {
+    		
+    		/* Register all Combs*/
+    		for(RegistryObject<Item> comb : ItemInit.getHoneyCombItems()) {
+    			event.accept(comb);
+    		}
+    		
+    		event.accept(ItemInit.WOODEN_SCOOP);
     		event.accept(BeeInit.COMMON_BEE);
     		event.accept(BeeInit.PRINCESS_BEE);
     		event.accept(BeeInit.QUEEN_BEE);
@@ -88,8 +97,7 @@ public class BeenomeY
     		event.accept(BlockInit.ENDER_BEEHIVE_BLOCK);
     		event.accept(BlockInit.NETHER_BEEHIVE_BLOCK);
     		event.accept(BlockInit.WATER_BEEHIVE_BLOCK);
-    		event.accept(ItemInit.WOODEN_SCOOP);
-    		event.accept(BlockInit.APIARY_MOD_BLOCK); //ANIMATION FEHLT NOCH
+    		event.accept(BlockInit.APIARY_MOD_BLOCK);
     	}
     }
     

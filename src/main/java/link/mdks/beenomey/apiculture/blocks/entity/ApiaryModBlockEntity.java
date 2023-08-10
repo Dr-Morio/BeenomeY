@@ -1,15 +1,16 @@
 package link.mdks.beenomey.apiculture.blocks.entity;
 
-import java.util.Optional;
+
+import java.util.Random;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.ApiaryModBlock;
-import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockRecipe;
 import link.mdks.beenomey.init.BlockEntityInit;
 import link.mdks.beenomey.sceen.ApiaryModBlockMenu;
+import link.mdks.beenomey.util.ApiaryModBlockRecipeHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -21,7 +22,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -125,7 +125,6 @@ public class ApiaryModBlockEntity extends BlockEntity implements GeoBlockEntity,
 	@Override
 	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
 		
-		//if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
 		if (cap == ForgeCapabilities.ITEM_HANDLER) {
 			return lazyItemHandler.cast();
 		}
@@ -171,106 +170,75 @@ public class ApiaryModBlockEntity extends BlockEntity implements GeoBlockEntity,
 			((ApiaryModBlock) blockState.getBlock()).checkCurrentInteractions(); // updates BlockAnimation based on Interactions
 			return;
 		}
+		// Determine Apiary Mode
 		
-//		// Determine Apiary Mode
-//		ApiaryModBlockRecipeHandler.ApiaryMode mode = ApiaryModBlockRecipeHandler.determineApiaryMode(pEntity);
-//		int bees = ApiaryModBlockRecipeHandler.beeLoad(pEntity);
-		
-		
-        SimpleContainer inventory = new SimpleContainer(pEntity.itemHandler.getSlots());
-        //fill the container
-        for (int i = 0; i < pEntity.itemHandler.getSlots(); i++) {
-            inventory.setItem(i, pEntity.itemHandler.getStackInSlot(i));
-        }
-		Optional<ApiaryModBlockRecipe> recipe = level.getRecipeManager().getRecipeFor(ApiaryModBlockRecipe.Type.INSTANCE, inventory, level);
-		
-		//BeenomeY.LOGGER.debug("RECIPE: " + recipe.isPresent());
-		
-		
-		
-		
-		
-		
-		
-//		switch (mode) {
-//		case DECIDE:
-//			if(bees < 6) {
-//				pEntity.resetProgress();
-//				break;}
-//			else {
-//				//Decide beginns
-//				pEntity.progress++;
-//				setChanged(level, blockPos, blockState);
-//				
-//				if(pEntity.progress >= pEntity.maxProgress) {
-//					ApiaryModBlockRecipeHandler.updateBees(pEntity, mode);
-//					pEntity.resetProgress();
-//					setChanged(level, blockPos, blockState);
-//				}
-//			}
-//			break;
-//		case BREED:
-//			if(bees < 3 || pEntity.itemHandler.getStackInSlot(10).getItem() == Items.AIR) {
-//				pEntity.resetProgress();
-//				break;}
-//			else {
-//				//BREED beginns
-//				pEntity.progress++;
-//				setChanged(level, blockPos, blockState);
-//				if(pEntity.progress >= pEntity.maxProgress) {
-//					ApiaryModBlockRecipeHandler.updateBees(pEntity, mode);
-//					pEntity.resetProgress();
-//					setChanged(level, blockPos, blockState);
-//				}
-//			}
-//			break;
-//		}
-		
-		
-//		if(hasRecipe(pEntity)) {
-//			BeenomeY.LOGGER.debug("Client Side " + level.isClientSide());
-//			pEntity.progress++;
-//			setChanged(level, blockPos, blockState);
-//			
-//			if(pEntity.progress >= pEntity.maxProgress) {
-//				craftItem(pEntity);
-//			}
-//		} else {
-//			pEntity.resetProgress();
-//			setChanged(level, blockPos, blockState);
-//		}
-		
-	}
+		ApiaryModBlockRecipeHandler.ApiaryMode mode = ApiaryModBlockRecipeHandler.determineApiaryMode(pEntity);
+		int bees = ApiaryModBlockRecipeHandler.beeLoad(pEntity);
 
+		switch (mode) {
+		case DECIDE:
+			if(bees < 6) {
+				pEntity.resetProgress();
+				break;}
+			else {
+				//Decide beginns
+				pEntity.progress++;
+				setChanged(level, blockPos, blockState);
+				
+				if(pEntity.progress >= pEntity.maxProgress) {
+					ApiaryModBlockRecipeHandler.updateBees(pEntity, mode);
+					pEntity.resetProgress();
+					setChanged(level, blockPos, blockState);
+				}
+			}
+			break;
+		case BREED:
+			if(bees < 3 || pEntity.itemHandler.getStackInSlot(10).getItem() == Items.AIR) {
+				pEntity.resetProgress();
+				break;}
+			else {
+				//BREED beginns
+				//pEntity.progress++;
+				// Bee will determine progress speed
+				addBreedProgress(pEntity);
+				setChanged(level, blockPos, blockState);
+				if(pEntity.progress >= pEntity.maxProgress) {
+					ApiaryModBlockRecipeHandler.updateBees(pEntity, mode);
+					pEntity.resetProgress();
+					setChanged(level, blockPos, blockState);
+				}
+			}
+			break;
+		}
+	
+	}
 
 	private void resetProgress() {
 		this.progress = 0;
 	}
-
-
-//	private static void craftItem(ApiaryModBlockEntity pEntity) {
-//		
-//		if(hasRecipe(pEntity)) {
-//			pEntity.itemHandler.extractItem(1, 1, false);
-//			pEntity.itemHandler.setStackInSlot(2, new ItemStack(Items.STONE,
-//					pEntity.itemHandler.getStackInSlot(2).getCount() + 1));
-//			pEntity.resetProgress();
-//		}
-//		
-//	}
-//
-//
-//	private static boolean hasRecipe(ApiaryModBlockEntity entity) {
-//		SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
-//		for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
-//			inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
-//		}
-//		
-//		boolean hasDirtInFirstSlot = entity.itemHandler.getStackInSlot(1).getItem()	 == Items.DIRT;
-//		
-//		return hasDirtInFirstSlot;
-//		
-//		
-//	}
+	
+	private static void addBreedProgress(ApiaryModBlockEntity pEntity ) {
+		// get Tick multiplayer
+		int randomTickChance = pEntity.itemHandler.getStackInSlot(10).getTag().getInt("RandomTickChance");
+		Random randomProvider = new Random();
+		int referencePositiveTickChance = randomProvider.nextInt(1,100);
+		int referenceNegativeTickChance = referencePositiveTickChance * -1;
+		BeenomeY.LOGGER.debug("RANDOM TICK: " + referencePositiveTickChance + " / " + randomTickChance);
+		
+		if(randomTickChance > 0) {
+			if (randomTickChance >= referencePositiveTickChance) {
+				pEntity.progress++;//Positive Progress by Chance
+				BeenomeY.LOGGER.debug("RANDOM TICK: TICK");
+			}
+		} else {
+			if (randomTickChance >= referenceNegativeTickChance) {
+				BeenomeY.LOGGER.debug("RANDOM TICK: NO TICK");
+				pEntity.progress--; //Negative Progress by Chance
+			}
+			
+		}
+		//Default Progress
+		pEntity.progress++;
+	}
 	
 }

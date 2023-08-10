@@ -1,6 +1,9 @@
 package link.mdks.beenomey.datagen;
 
+import java.util.Collection;
+
 import link.mdks.beenomey.BeenomeY;
+import link.mdks.beenomey.init.ItemInit;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -17,14 +20,19 @@ public class BeenomeyItemModelProvider extends ItemModelProvider{
 
 	@Override
 	protected void registerModels() {
-		//simpleItem(ItemInit.WOODEN_SCOOP);
+		
+		/* Register Honeycombs */
+		Collection<RegistryObject<Item>> combs = ItemInit.getHoneyCombItems();
+		for(RegistryObject<Item> comb: combs) {
+			simpleComb(comb);
+		}
+		
 	}
 	
-	@SuppressWarnings("unused")
-	private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
+	private ItemModelBuilder simpleComb(RegistryObject<Item> item) {
 		return withExistingParent(item.getId().getPath(),
 				new ResourceLocation("item/generated")).texture("layer0", 
-						new ResourceLocation(BeenomeY.MODID, "item/" + item.getId().getPath()));
+						new ResourceLocation(BeenomeY.MODID, "item/combs/" + item.getId().getPath()));
 	}
 
 	@SuppressWarnings("unused")
