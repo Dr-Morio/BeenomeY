@@ -5,7 +5,7 @@ import org.jetbrains.annotations.Nullable;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import link.mdks.beenomey.apiculture.items.BeeInit;
+import link.mdks.beenomey.init.BeeInit;
 import link.mdks.beenomey.util.BeeManager;
 import link.mdks.beenomey.util.BeeType;
 import net.minecraft.client.Minecraft;
@@ -128,17 +128,8 @@ public class ApiaryModBlockRecipe implements Recipe<SimpleContainer>{
 						new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(jItem))));
 				inputs.set(i, input);
 				
-				//TODO: Get hold if ingredient as ItemStacks to access them from JEIPlugin
-				
+		
 			}
-            
-//            JsonArray ingredients = GsonHelper.getAsJsonArray(pSerializedRecipe, "ingredients");
-//            
-//            
-//            NonNullList<Ingredient> inputs = NonNullList.withSize(2, Ingredient.EMPTY);
-//            for (int i = 0; i < inputs.size(); i++) {
-//            	inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
-//            }
             
             return new ApiaryModBlockRecipe(pRecipeId, output, inputs);
 			
@@ -157,6 +148,7 @@ public class ApiaryModBlockRecipe implements Recipe<SimpleContainer>{
 			
 		}
 		
+		@SuppressWarnings("resource")
 		@Override
 		public void toNetwork(FriendlyByteBuf buf, ApiaryModBlockRecipe recipe) {
 			

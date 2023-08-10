@@ -3,7 +3,7 @@ package link.mdks.beenomey.util;
 import java.util.Random;
 
 import link.mdks.beenomey.apiculture.blocks.entity.ApiaryModBlockEntity;
-import link.mdks.beenomey.apiculture.items.BeeInit;
+import link.mdks.beenomey.init.BeeInit;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.fml.util.thread.SidedThreadGroups;

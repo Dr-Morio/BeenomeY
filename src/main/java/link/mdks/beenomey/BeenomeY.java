@@ -2,8 +2,8 @@ package link.mdks.beenomey;
 
 import com.mojang.logging.LogUtils;
 
-import link.mdks.beenomey.apiculture.items.BeeInit;
 import link.mdks.beenomey.core.BeenomeYTabs;
+import link.mdks.beenomey.init.BeeInit;
 import link.mdks.beenomey.init.BlockEntityInit;
 import link.mdks.beenomey.init.BlockInit;
 import link.mdks.beenomey.init.ItemInit;

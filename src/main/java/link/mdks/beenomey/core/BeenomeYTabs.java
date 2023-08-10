@@ -1,7 +1,7 @@
 package link.mdks.beenomey.core;
 
 import link.mdks.beenomey.BeenomeY;
-import link.mdks.beenomey.apiculture.items.BeeInit;
+import link.mdks.beenomey.init.BeeInit;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;

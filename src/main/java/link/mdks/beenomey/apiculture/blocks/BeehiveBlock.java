@@ -2,9 +2,9 @@ package link.mdks.beenomey.apiculture.blocks;
 
 import java.util.Random;
 
-import link.mdks.beenomey.apiculture.items.BeeInit;
 import link.mdks.beenomey.apiculture.items.ItemBee;
 import link.mdks.beenomey.apiculture.items.ItemScoop;
+import link.mdks.beenomey.init.BeeInit;
 import link.mdks.beenomey.init.BlockInit;
 import link.mdks.beenomey.util.BeeManager;
 import link.mdks.beenomey.util.BeeType;
