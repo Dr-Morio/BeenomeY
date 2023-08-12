@@ -29,6 +29,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fml.util.thread.SidedThreadGroups;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
@@ -170,6 +171,9 @@ public class ApiaryModBlockEntity extends BlockEntity implements GeoBlockEntity,
 			((ApiaryModBlock) blockState.getBlock()).checkCurrentInteractions(); // updates BlockAnimation based on Interactions
 			return;
 		}
+
+		//The fllowing should only be called on server side
+		if (Thread.currentThread().getThreadGroup() == SidedThreadGroups.SERVER) {
 		// Determine Apiary Mode
 		
 		ApiaryModBlockRecipeHandler.ApiaryMode mode = ApiaryModBlockRecipeHandler.determineApiaryMode(pEntity);
@@ -212,6 +216,7 @@ public class ApiaryModBlockEntity extends BlockEntity implements GeoBlockEntity,
 		}
 	
 	}
+}
 
 	private void resetProgress() {
 		this.progress = 0;
