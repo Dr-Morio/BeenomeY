@@ -5,6 +5,7 @@ import com.google.common.base.Supplier;
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.ApiaryModBlock;
 import link.mdks.beenomey.apiculture.blocks.BeehiveBlock;
+import link.mdks.beenomey.apiculture.blocks.BreederBlock;
 import link.mdks.beenomey.util.BeeType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -57,6 +58,9 @@ public class BlockInit {
 	
 	public static final RegistryObject<ApiaryModBlock> APIARY_MOD_BLOCK = BLOCKS.register("apiary_mod_block", 
 			() -> new ApiaryModBlock());
+	
+	public static final RegistryObject<BreederBlock> BREEDER_BLOCK = BLOCKS.register("breeder_block", 
+			() -> new BreederBlock());
 			
 	
 	private static <T extends Block> RegistryObject<T> registerHiveBlock(String name, Supplier<T> block) {

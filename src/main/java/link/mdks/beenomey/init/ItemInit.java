@@ -61,8 +61,12 @@ public class ItemInit {
 	
 	
 	/* BlockItems */
-	public static final RegistryObject<BlockItem> apiary_mod_block = ITEMS.register("apiary_mod_block",
+	public static final RegistryObject<BlockItem> APIARY_MOD_BLOCK = ITEMS.register("apiary_mod_block",
 			() -> new BlockItem(BlockInit.APIARY_MOD_BLOCK.get(),
+					new Item.Properties()));
+	
+	public static final RegistryObject<BlockItem> BREEDER_BLOCK = ITEMS.register("breeder_block",
+			() -> new BlockItem(BlockInit.BREEDER_BLOCK.get(),
 					new Item.Properties()));
 	
     public static void register(IEventBus eventBus) {

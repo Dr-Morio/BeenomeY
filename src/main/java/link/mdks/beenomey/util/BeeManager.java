@@ -1,7 +1,11 @@
 package link.mdks.beenomey.util;
 
+import javax.annotation.Nullable;
+
 import link.mdks.beenomey.init.ItemInit;
+import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 public class BeeManager {
@@ -51,10 +55,25 @@ public class BeeManager {
         return Math.round(value * multiplier);
     }
     
-    public static ItemStack getComb(BeeType type) {
+    public static ItemStack getComb(BeeType type, @Nullable int count) {
     	return switch (type) {
-    		case FOREST -> new ItemStack(ItemInit.HONEYCOMB.get()) ;
-    		default -> new ItemStack(ItemInit.HONEYCOMB.get());
+    		case FOREST -> new ItemStack(ItemInit.HONEYCOMB.get(), count);
+    		case ICE -> new ItemStack(ItemInit.ICEY_HONEYCOMB.get(), count);
+    		case WATER -> new ItemStack(ItemInit.WATERY_HONEYCOMB.get(), count);
+    		case SAND -> new ItemStack(ItemInit.SAND_HONEYCOMB.get(), count);
+    		case STONE -> new ItemStack(ItemInit.STONE_HONEYCOMB.get(), count);
+    		case NETHER -> new ItemStack(ItemInit.NETHER_HONEYCOMB.get(), count);
+    		case ENDER -> new ItemStack(ItemInit.ENDER_HONEYCOMB.get(), count);
+    		case LAVA -> new ItemStack(ItemInit.LAVA_HONEYCOMB.get(), count);
+    		case PAPER -> new ItemStack(ItemInit.PAPER_HONEYCOMB.get(), count);
+    		case LAPIS_LAZULI -> new ItemStack(ItemInit.LAPIS_HONEYCOMB.get(), count);
+    		case REDSTONE -> new ItemStack(ItemInit.REDSTONE_HONEYCOMB.get(), count);
+    		case IRON -> new ItemStack(ItemInit.IRON_HONEYCOMB.get(), count);
+    		case GOLD -> new ItemStack(ItemInit.GOLD_HONEYCOMB.get(), count);
+    		case COPPER -> new ItemStack(ItemInit.COPPER_HONEYCOMB.get(), count);
+    		case DIAMOND -> new ItemStack(ItemInit.DIAMOND_HONEYCOMB.get(), count);
+    		case OBSIDIAN -> new ItemStack(ItemInit.OBSIDIAN_HONEYCOMB.get(), count);
+    		default -> new ItemStack(ItemInit.HONEYCOMB.get(), count);
     	};
     	
     }

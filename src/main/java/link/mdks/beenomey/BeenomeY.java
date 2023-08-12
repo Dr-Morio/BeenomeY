@@ -98,6 +98,7 @@ public class BeenomeY
     		event.accept(BlockInit.NETHER_BEEHIVE_BLOCK);
     		event.accept(BlockInit.WATER_BEEHIVE_BLOCK);
     		event.accept(BlockInit.APIARY_MOD_BLOCK);
+    		event.accept(BlockInit.BREEDER_BLOCK);
     	}
     }
     
