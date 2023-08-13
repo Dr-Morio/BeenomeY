@@ -34,7 +34,7 @@ public class ApiaryModBlockScreen extends AbstractContainerScreen<ApiaryModBlock
 	private void renderProgressBar(PoseStack pPoseStack, int x, int y) {
 		if(menu.isCrafting()) {
 			//blit(pPoseStack,x + 164,y + 11,176,0,4,  menu.getScaledProgress());
-			blit(pPoseStack,x + 56,y + 13,176,0,64,  menu.getScaledProgress()); 
+			blit(pPoseStack,x + 56,y + 9,176,0,64,  menu.getScaledProgress()); 
 		}
 	}
 
@@ -50,7 +50,11 @@ public class ApiaryModBlockScreen extends AbstractContainerScreen<ApiaryModBlock
 		super.init();
 	}
 	
-	
+	@Override
+	protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY) {
+	      this.font.draw(pPoseStack, this.title, (float)this.titleLabelX, (float)this.titleLabelY, 14803425);
+	      this.font.draw(pPoseStack, this.playerInventoryTitle, (float)this.inventoryLabelX, (float)this.inventoryLabelY, 14803425);
+	}
 	
 	
 }

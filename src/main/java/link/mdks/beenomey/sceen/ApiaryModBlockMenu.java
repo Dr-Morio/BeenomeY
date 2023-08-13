@@ -53,21 +53,21 @@ public class ApiaryModBlockMenu extends AbstractContainerMenu{
 		//this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
 		this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
 			//Comp Slots
-			this.addSlot(new CombSlot(handler, 0, 21, 26));
-			this.addSlot(new CombSlot(handler, 1, 139, 26));
-			this.addSlot(new CombSlot(handler, 2, 21, 48));
-			this.addSlot(new CombSlot(handler, 3, 139, 48));
+			this.addSlot(new CombSlot(handler, 0, 28, 22));
+			this.addSlot(new CombSlot(handler, 1, 132, 22));
+			this.addSlot(new CombSlot(handler, 2, 28, 44));
+			this.addSlot(new CombSlot(handler, 3, 132, 44));
 			
 			//Bee Slots
-			this.addSlot(new BeeSlot(handler, 4, 68, 13));
-			this.addSlot(new BeeSlot(handler, 5, 92, 13));
-			this.addSlot(new BeeSlot(handler, 6, 56, 37));
-			this.addSlot(new BeeSlot(handler, 7, 104, 37));
-			this.addSlot(new BeeSlot(handler, 8, 68, 61));
-			this.addSlot(new BeeSlot(handler, 9, 92, 61));
+			this.addSlot(new BeeSlot(handler, 4, 68, 9));
+			this.addSlot(new BeeSlot(handler, 5, 92, 9));
+			this.addSlot(new BeeSlot(handler, 6, 56, 33));
+			this.addSlot(new BeeSlot(handler, 7, 104, 33));
+			this.addSlot(new BeeSlot(handler, 8, 68, 57));
+			this.addSlot(new BeeSlot(handler, 9, 92, 57));
 			
 			//Princess Slot
-			this.addSlot(new PrincessSlot(handler, 10, 80, 37));
+			this.addSlot(new PrincessSlot(handler, 10, 80, 33));
 		});
 		
 		addDataSlots(data);
