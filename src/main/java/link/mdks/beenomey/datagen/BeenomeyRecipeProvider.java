@@ -38,13 +38,13 @@ public class BeenomeyRecipeProvider extends RecipeProvider implements ICondition
 		
 		// Hardcoded Dummy Recipe Set
 		List<ItemStack> cleanDummyRecipe_1 = dummyRecipeBuilder(BeeType.FOREST,BeeType.FOREST,BeeType.FOREST,BeeType.FOREST,BeeType.FOREST,BeeType.FOREST); //Holds 3 Item Stacks // Input + Input = Output
-		List<ItemStack> cleanDummyRecipe_2 = dummyRecipeBuilder(BeeType.NETHER,BeeType.NETHER,BeeType.NETHER,BeeType.NETHER,BeeType.NETHER,BeeType.NETHER);
+		List<ItemStack> cleanDummyRecipe_2 = dummyRecipeBuilder(BeeType.INFERNO,BeeType.INFERNO,BeeType.INFERNO,BeeType.INFERNO,BeeType.INFERNO,BeeType.INFERNO);
 		
-		List<ItemStack> crossDummyRecipe_1 = dummyRecipeBuilder(BeeType.FOREST,BeeType.FOREST,BeeType.WATER,BeeType.WATER,BeeType.WATER,BeeType.FOREST);
-		List<ItemStack> crossDummyRecipe_2 = dummyRecipeBuilder(BeeType.NETHER,BeeType.NETHER,BeeType.WATER,BeeType.WATER,BeeType.WATER,BeeType.NETHER);
+		List<ItemStack> crossDummyRecipe_1 = dummyRecipeBuilder(BeeType.FOREST,BeeType.FOREST,BeeType.OCEAN,BeeType.OCEAN,BeeType.OCEAN,BeeType.FOREST);
+		List<ItemStack> crossDummyRecipe_2 = dummyRecipeBuilder(BeeType.INFERNO,BeeType.INFERNO,BeeType.OCEAN,BeeType.OCEAN,BeeType.OCEAN,BeeType.INFERNO);
 		
-		List<ItemStack> crossDummyRecipe_3v1 = dummyRecipeBuilder(BeeType.FOREST,BeeType.NETHER,BeeType.WATER,BeeType.WATER,BeeType.WATER,BeeType.FOREST);
-		List<ItemStack> crossDummyRecipe_3v2 = dummyRecipeBuilder(BeeType.FOREST,BeeType.NETHER,BeeType.WATER,BeeType.WATER,BeeType.WATER,BeeType.NETHER);
+		List<ItemStack> crossDummyRecipe_3v1 = dummyRecipeBuilder(BeeType.FOREST,BeeType.INFERNO,BeeType.OCEAN,BeeType.OCEAN,BeeType.OCEAN,BeeType.FOREST);
+		List<ItemStack> crossDummyRecipe_3v2 = dummyRecipeBuilder(BeeType.FOREST,BeeType.INFERNO,BeeType.OCEAN,BeeType.OCEAN,BeeType.OCEAN,BeeType.INFERNO);
 		
 		List<List<ItemStack>> recipes = new ArrayList<List<ItemStack>>();
 		recipes.add(cleanDummyRecipe_1);

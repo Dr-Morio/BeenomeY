@@ -58,13 +58,13 @@ public class BeeManager {
     public static ItemStack getComb(BeeType type, @Nullable int count) {
     	return switch (type) {
     		case FOREST -> new ItemStack(ItemInit.HONEYCOMB.get(), count);
-    		case ICE -> new ItemStack(ItemInit.ICEY_HONEYCOMB.get(), count);
-    		case WATER -> new ItemStack(ItemInit.WATERY_HONEYCOMB.get(), count);
-    		case SAND -> new ItemStack(ItemInit.SAND_HONEYCOMB.get(), count);
-    		case STONE -> new ItemStack(ItemInit.STONE_HONEYCOMB.get(), count);
-    		case NETHER -> new ItemStack(ItemInit.NETHER_HONEYCOMB.get(), count);
-    		case ENDER -> new ItemStack(ItemInit.ENDER_HONEYCOMB.get(), count);
-    		case LAVA -> new ItemStack(ItemInit.LAVA_HONEYCOMB.get(), count);
+    		case FROZEN -> new ItemStack(ItemInit.FROZEN_HONEYCOMB.get(), count);
+    		case OCEAN -> new ItemStack(ItemInit.OCEAN_HONEYCOMB.get(), count);
+    		case DESERT -> new ItemStack(ItemInit.DESERT_HONEYCOMB.get(), count);
+    		case ROCK -> new ItemStack(ItemInit.ROCK_HONEYCOMB.get(), count);
+    		case INFERNO -> new ItemStack(ItemInit.INFERNO_HONEYCOMB.get(), count);
+    		case VOID -> new ItemStack(ItemInit.VOID_HONEYCOMB.get(), count);
+    		case MAGMA -> new ItemStack(ItemInit.MAGMA_HONEYCOMB.get(), count);
     		case PAPER -> new ItemStack(ItemInit.PAPER_HONEYCOMB.get(), count);
     		case LAPIS_LAZULI -> new ItemStack(ItemInit.LAPIS_HONEYCOMB.get(), count);
     		case REDSTONE -> new ItemStack(ItemInit.REDSTONE_HONEYCOMB.get(), count);

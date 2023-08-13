@@ -43,12 +43,12 @@ public class BeehiveBlock extends Block implements IForgeBlock{
 	
     @Override
     public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-    	if (blockState.getBlock() == BlockInit.SAND_BEEHIVE_BLOCK.get() |
-			blockState.getBlock() == BlockInit.STONE_BEEHIVE_BLOCK.get() |
-			blockState.getBlock() == BlockInit.ENDER_BEEHIVE_BLOCK.get() |
-			blockState.getBlock() == BlockInit.ICE_BEEHIVE_BLOCK.get() |
-			blockState.getBlock() == BlockInit.NETHER_BEEHIVE_BLOCK.get() |
-			blockState.getBlock() == BlockInit.WATER_BEEHIVE_BLOCK.get()) {
+    	if (blockState.getBlock() == BlockInit.DESERT_BEEHIVE_BLOCK.get() |
+			blockState.getBlock() == BlockInit.ROCK_BEEHIVE_BLOCK.get() |
+			blockState.getBlock() == BlockInit.VOID_BEEHIVE_BLOCK.get() |
+			blockState.getBlock() == BlockInit.FROZEN_BEEHIVE_BLOCK.get() |
+			blockState.getBlock() == BlockInit.INFERNO_BEEHIVE_BLOCK.get() |
+			blockState.getBlock() == BlockInit.OCEAN_BEEHIVE_BLOCK.get()) {
     		return makeBottomShape();
     	} else {
         	return makeTopShape();

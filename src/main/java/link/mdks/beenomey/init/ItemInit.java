@@ -28,19 +28,19 @@ public class ItemInit {
 	/* Honeycombs */
 	public static final RegistryObject<Item> HONEYCOMB = HONEYCOMBS.register("honeycomb",
 			() -> new ItemHoneycomb(new Item.Properties()));
-	public static final RegistryObject<Item> ICEY_HONEYCOMB = HONEYCOMBS.register("ice_honeycomb",
+	public static final RegistryObject<Item> FROZEN_HONEYCOMB = HONEYCOMBS.register("frozen_honeycomb",
 			() -> new ItemHoneycomb(new Item.Properties()));
-	public static final RegistryObject<Item> WATERY_HONEYCOMB = HONEYCOMBS.register("watery_honeycomb",
+	public static final RegistryObject<Item> OCEAN_HONEYCOMB = HONEYCOMBS.register("ocean_honeycomb",
 			() -> new ItemHoneycomb(new Item.Properties()));
-	public static final RegistryObject<Item> SAND_HONEYCOMB = HONEYCOMBS.register("sand_honeycomb",
+	public static final RegistryObject<Item> DESERT_HONEYCOMB = HONEYCOMBS.register("desert_honeycomb",
 			() -> new ItemHoneycomb(new Item.Properties()));
-	public static final RegistryObject<Item> STONE_HONEYCOMB = HONEYCOMBS.register("stone_honeycomb",
+	public static final RegistryObject<Item> ROCK_HONEYCOMB = HONEYCOMBS.register("rock_honeycomb",
 			() -> new ItemHoneycomb(new Item.Properties()));
-	public static final RegistryObject<Item> NETHER_HONEYCOMB = HONEYCOMBS.register("nether_honeycomb",
+	public static final RegistryObject<Item> INFERNO_HONEYCOMB = HONEYCOMBS.register("inferno_honeycomb",
 			() -> new ItemHoneycomb(new Item.Properties()));
-	public static final RegistryObject<Item> ENDER_HONEYCOMB = HONEYCOMBS.register("ender_honeycomb",
+	public static final RegistryObject<Item> VOID_HONEYCOMB = HONEYCOMBS.register("void_honeycomb",
 			() -> new ItemHoneycomb(new Item.Properties()));
-	public static final RegistryObject<Item> LAVA_HONEYCOMB = HONEYCOMBS.register("lava_honeycomb",
+	public static final RegistryObject<Item> MAGMA_HONEYCOMB = HONEYCOMBS.register("magma_honeycomb",
 			() -> new ItemHoneycomb(new Item.Properties()));
 	public static final RegistryObject<Item> PAPER_HONEYCOMB = HONEYCOMBS.register("paper_honeycomb",
 			() -> new ItemHoneycomb(new Item.Properties()));

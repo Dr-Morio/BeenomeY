@@ -93,13 +93,13 @@ public class ApiaryModBlockRecipeCategory implements IRecipeCategory<ApiaryModBl
 		if(oMainType == BeeType.FOREST && oSecondType == BeeType.FOREST) {
 			builder = helper.drawableBuilder(new ResourceLocation(BeenomeY.MODID, "textures/gui/icons/apiary_mod_block_menu_jei_forest_forest_icon.png"), 0, 0, 24, 24);
 		}
-		if(oMainType == BeeType.WATER && oSecondType == BeeType.FOREST) {
+		if(oMainType == BeeType.OCEAN && oSecondType == BeeType.FOREST) {
 			builder = helper.drawableBuilder(new ResourceLocation(BeenomeY.MODID, "textures/gui/icons/apiary_mod_block_menu_jei_water_forest_icon.png"), 0, 0, 24, 24);
 		}
-		if(oMainType == BeeType.WATER && oSecondType == BeeType.NETHER) {
+		if(oMainType == BeeType.OCEAN && oSecondType == BeeType.INFERNO) {
 			builder = helper.drawableBuilder(new ResourceLocation(BeenomeY.MODID, "textures/gui/icons/apiary_mod_block_menu_jei_water_nether_icon.png"), 0, 0, 24, 24);
 		}
-		if(oMainType == BeeType.NETHER && oSecondType == BeeType.NETHER) {
+		if(oMainType == BeeType.INFERNO && oSecondType == BeeType.INFERNO) {
 			builder = helper.drawableBuilder(new ResourceLocation(BeenomeY.MODID, "textures/gui/icons/apiary_mod_block_menu_jei_nether_nether_icon.png"), 0, 0, 24, 24);
 		}
 		builder.setTextureSize(24, 24);

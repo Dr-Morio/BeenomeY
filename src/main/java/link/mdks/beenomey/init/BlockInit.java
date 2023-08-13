@@ -33,26 +33,26 @@ public class BlockInit {
 	public static final RegistryObject<Block> BIRCHWOOD_BEEHIVE_BLOCK = registerHiveBlock("birchwood_beehive_block",
 			() -> new BeehiveBlock(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1f, 3f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor((bs, br, bp) -> false), BeeType.FOREST));
 	
-	public static final RegistryObject<Block> SAND_BEEHIVE_BLOCK = registerHiveBlock("sand_beehive_block",
-			() -> new BeehiveBlock(Properties.of(Material.WOOD).sound(SoundType.STONE).strength(1f, 3f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor((bs, br, bp) -> false), BeeType.SAND));
+	public static final RegistryObject<Block> DESERT_BEEHIVE_BLOCK = registerHiveBlock("desert_beehive_block",
+			() -> new BeehiveBlock(Properties.of(Material.WOOD).sound(SoundType.STONE).strength(1f, 3f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor((bs, br, bp) -> false), BeeType.DESERT));
 	
-	public static final RegistryObject<Block> STONE_BEEHIVE_BLOCK = registerHiveBlock("stone_beehive_block",
-			() -> new BeehiveBlock(Properties.of(Material.WOOD).sound(SoundType.STONE).strength(1f, 3f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor((bs, br, bp) -> false), BeeType.STONE));
+	public static final RegistryObject<Block> ROCK_BEEHIVE_BLOCK = registerHiveBlock("rock_beehive_block",
+			() -> new BeehiveBlock(Properties.of(Material.WOOD).sound(SoundType.STONE).strength(1f, 3f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor((bs, br, bp) -> false), BeeType.ROCK));
 	
 	public static final RegistryObject<Block> JUNGLEWOOD_BEEHIVE_BLOCK = registerHiveBlock("junglewood_beehive_block",
 			() -> new BeehiveBlock(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1f, 3f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor((bs, br, bp) -> false), BeeType.FOREST));
 	
-	public static final RegistryObject<Block> ICE_BEEHIVE_BLOCK = registerHiveBlock("ice_beehive_block",
-			() -> new BeehiveBlock(Properties.of(Material.ICE).sound(SoundType.WOOD).strength(1f, 3f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor((bs, br, bp) -> false), BeeType.ICE));
+	public static final RegistryObject<Block> FROZEN_BEEHIVE_BLOCK = registerHiveBlock("frozen_beehive_block",
+			() -> new BeehiveBlock(Properties.of(Material.ICE).sound(SoundType.WOOD).strength(1f, 3f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor((bs, br, bp) -> false), BeeType.FROZEN));
 	
-	public static final RegistryObject<Block> ENDER_BEEHIVE_BLOCK = registerHiveBlock("ender_beehive_block",
-			() -> new BeehiveBlock(Properties.of(Material.STONE).sound(SoundType.WOOD).strength(1f, 3f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor((bs, br, bp) -> false), BeeType.ENDER));
+	public static final RegistryObject<Block> VOID_BEEHIVE_BLOCK = registerHiveBlock("void_beehive_block",
+			() -> new BeehiveBlock(Properties.of(Material.STONE).sound(SoundType.WOOD).strength(1f, 3f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor((bs, br, bp) -> false), BeeType.VOID));
 	
-	public static final RegistryObject<Block> NETHER_BEEHIVE_BLOCK = registerHiveBlock("nether_beehive_block",
-			() -> new BeehiveBlock(Properties.of(Material.STONE).sound(SoundType.WOOD).strength(1f, 3f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor((bs, br, bp) -> false), BeeType.NETHER));
+	public static final RegistryObject<Block> INFERNO_BEEHIVE_BLOCK = registerHiveBlock("inferno_beehive_block",
+			() -> new BeehiveBlock(Properties.of(Material.STONE).sound(SoundType.WOOD).strength(1f, 3f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor((bs, br, bp) -> false), BeeType.INFERNO));
 	
-	public static final RegistryObject<Block> WATER_BEEHIVE_BLOCK = registerHiveBlock("water_beehive_block",
-			() -> new BeehiveBlock(Properties.of(Material.STONE).sound(SoundType.WOOD).strength(1f, 3f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor((bs, br, bp) -> false), BeeType.WATER));
+	public static final RegistryObject<Block> OCEAN_BEEHIVE_BLOCK = registerHiveBlock("ocean_beehive_block",
+			() -> new BeehiveBlock(Properties.of(Material.STONE).sound(SoundType.WOOD).strength(1f, 3f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor((bs, br, bp) -> false), BeeType.OCEAN));
 	
 		/* Blocks */
 	

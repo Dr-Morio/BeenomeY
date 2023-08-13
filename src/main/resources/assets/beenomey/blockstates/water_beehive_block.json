@@ -1,8 +1,0 @@
-{
-	"variants": {
-		"facing=north": { "model": "beenomey:block/water_beehive_block" },
-		"facing=east": { "model": "beenomey:block/water_beehive_block", "y": 90},
-		"facing=south": { "model": "beenomey:block/water_beehive_block", "y": 180},
-		"facing=west": { "model": "beenomey:block/water_beehive_block", "y": 270}
-	}
-}

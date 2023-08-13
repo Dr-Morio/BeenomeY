@@ -4,17 +4,17 @@
     {
       "item": "beenomey:common_bee",
       "mainType": "FOREST",
-      "secondType": "NETHER"
+      "secondType": "INFERNO"
     },
     {
       "item": "beenomey:princess_bee",
-      "mainType": "WATER",
-      "secondType": "WATER"
+      "mainType": "OCEAN",
+      "secondType": "OCEAN"
     }
   ],
   "output": {
     "item": "beenomey:common_bee",
-    "mainType": "WATER",
-    "secondType": "FOREST"
+    "mainType": "OCEAN",
+    "secondType": "INFERNO"
   }
 }

@@ -90,13 +90,13 @@ public class BeenomeY
     		event.accept(BeeInit.QUEEN_BEE);
     		event.accept(BlockInit.OAKWOOD_BEEHIVE_BLOCK);
     		event.accept(BlockInit.BIRCHWOOD_BEEHIVE_BLOCK);
-    		event.accept(BlockInit.SAND_BEEHIVE_BLOCK);
-    		event.accept(BlockInit.STONE_BEEHIVE_BLOCK);
+    		event.accept(BlockInit.DESERT_BEEHIVE_BLOCK);
+    		event.accept(BlockInit.ROCK_BEEHIVE_BLOCK);
     		event.accept(BlockInit.JUNGLEWOOD_BEEHIVE_BLOCK);
-    		event.accept(BlockInit.ICE_BEEHIVE_BLOCK);
-    		event.accept(BlockInit.ENDER_BEEHIVE_BLOCK);
-    		event.accept(BlockInit.NETHER_BEEHIVE_BLOCK);
-    		event.accept(BlockInit.WATER_BEEHIVE_BLOCK);
+    		event.accept(BlockInit.FROZEN_BEEHIVE_BLOCK);
+    		event.accept(BlockInit.VOID_BEEHIVE_BLOCK);
+    		event.accept(BlockInit.INFERNO_BEEHIVE_BLOCK);
+    		event.accept(BlockInit.OCEAN_BEEHIVE_BLOCK);
     		event.accept(BlockInit.APIARY_MOD_BLOCK);
     		event.accept(BlockInit.BREEDER_BLOCK);
     	}

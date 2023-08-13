@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "beenomey:block/water_beehive_block",
-		"particle": "beenomey:block/water_beehive_block"
+		"0": "beenomey:block/desert_beehive_block",
+		"particle": "beenomey:block/desert_beehive_block"
 	},
 	"elements": [
 		{
