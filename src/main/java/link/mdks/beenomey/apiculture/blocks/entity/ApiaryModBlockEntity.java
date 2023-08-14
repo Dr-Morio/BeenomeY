@@ -8,9 +8,12 @@ import org.jetbrains.annotations.Nullable;
 
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.ApiaryModBlock;
+import link.mdks.beenomey.init.BeeInit;
 import link.mdks.beenomey.init.BlockEntityInit;
+import link.mdks.beenomey.init.ItemInit;
 import link.mdks.beenomey.sceen.ApiaryModBlockMenu;
 import link.mdks.beenomey.util.ApiaryModBlockRecipeHandler;
+import link.mdks.beenomey.util.WrappedItemHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -22,6 +25,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -83,6 +87,7 @@ public class ApiaryModBlockEntity extends BlockEntity implements GeoBlockEntity,
 				};
 			}
 		};
+		
 	}
 
 
@@ -105,12 +110,32 @@ public class ApiaryModBlockEntity extends BlockEntity implements GeoBlockEntity,
 	/* Inventory System */
 
 	public final ItemStackHandler itemHandler = new ItemStackHandler(ApiaryModBlockMenu.getApiarySlots()) { // was 3 before. Get information von ModBlockMenu
+		@Override
 		protected void onContentsChanged(int slot) {
 			setChanged();
 		};
+		
+		@Override
+		public boolean isItemValid(int slot, ItemStack stack) {
+			return switch(slot) {
+			case 0 -> false;
+			case 1 -> stack.getItem().getClass() == ItemInit.HONEYCOMB.get().getClass();
+			case 2 -> stack.getItem().getClass() == ItemInit.HONEYCOMB.get().getClass();
+			case 3 -> stack.getItem().getClass() == ItemInit.HONEYCOMB.get().getClass();
+			case 4 -> stack.getItem().getClass() == BeeInit.COMMON_BEE.get().getClass();
+			case 5 -> stack.getItem().getClass() == BeeInit.COMMON_BEE.get().getClass();
+			case 6 -> stack.getItem().getClass() == BeeInit.COMMON_BEE.get().getClass();
+			case 7 -> stack.getItem().getClass() == BeeInit.COMMON_BEE.get().getClass();
+			case 8 -> stack.getItem().getClass() == BeeInit.COMMON_BEE.get().getClass();
+			case 9 -> stack.getItem().getClass() == BeeInit.COMMON_BEE.get().getClass();
+			case 10 -> stack.getItem().getClass() == BeeInit.PRINCESS_BEE.get().getClass();
+			default -> false;  
+			};
+		};
+			
 	};
-	
 
+	
 	
 	@Override
 	public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
@@ -127,9 +152,24 @@ public class ApiaryModBlockEntity extends BlockEntity implements GeoBlockEntity,
 	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
 		
 		if (cap == ForgeCapabilities.ITEM_HANDLER) {
+			if(side == Direction.UP) { //Insertion
+				// WrappedItemHandler overrides the ItemHandler isValid attributes
+				return LazyOptional.of(() -> new WrappedItemHandler(itemHandler,
+						(i) -> i == 0 || i == 1 || i == 2 || i == 3,
+						(index, stack) -> itemHandler.isItemValid(4, stack) || itemHandler.isItemValid(5, stack) ||
+												itemHandler.isItemValid(6, stack) || itemHandler.isItemValid(7, stack) ||
+												itemHandler.isItemValid(8, stack) || itemHandler.isItemValid(9, stack) ||
+												itemHandler.isItemValid(10, stack))).cast();
+			}
+			
+			if(side == Direction.DOWN) { //Extraction
+				return LazyOptional.of(() -> new WrappedItemHandler(itemHandler,
+						(i) -> i == 0 || i == 1 || i == 2 || i == 3,
+						(index, stack) -> itemHandler.isItemValid(4, stack))).cast();  // need to be given at least one
+				
+			}
 			return lazyItemHandler.cast();
 		}
-		
 		return super.getCapability(cap, side);
 	}
 	
