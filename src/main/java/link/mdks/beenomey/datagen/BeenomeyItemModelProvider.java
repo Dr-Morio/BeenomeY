@@ -22,9 +22,15 @@ public class BeenomeyItemModelProvider extends ItemModelProvider{
 	protected void registerModels() {
 		
 		/* Register Honeycombs */
-		Collection<RegistryObject<Item>> combs = ItemInit.getHoneyCombItems();
+		Collection<RegistryObject<Item>> combs = ItemInit.getHoneycombItems();
 		for(RegistryObject<Item> comb: combs) {
 			simpleComb(comb);
+		}
+		
+		/* Register Structurecombs */
+		Collection<RegistryObject<Item>> structurecombs = ItemInit.getStructurecombItems();
+		for(RegistryObject<Item> comb: structurecombs) {
+			simpleStructureComb(comb);
 		}
 		
 	}
@@ -35,6 +41,12 @@ public class BeenomeyItemModelProvider extends ItemModelProvider{
 						new ResourceLocation(BeenomeY.MODID, "item/combs/" + item.getId().getPath()));
 	}
 
+	private ItemModelBuilder simpleStructureComb(RegistryObject<Item> item) {
+		return withExistingParent(item.getId().getPath(),
+				new ResourceLocation("item/generated")).texture("layer0", 
+						new ResourceLocation(BeenomeY.MODID, "item/structurecombs/" + item.getId().getPath()));
+	}
+	
 	@SuppressWarnings("unused")
 	private ItemModelBuilder handheldItem(RegistryObject<Item> item) {
 		return withExistingParent(item.getId().getPath(), 

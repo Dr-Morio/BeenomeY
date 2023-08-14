@@ -3,6 +3,7 @@ package link.mdks.beenomey.sceen;
 import link.mdks.beenomey.apiculture.blocks.entity.BreederBlockEntity;
 import link.mdks.beenomey.init.BlockInit;
 import link.mdks.beenomey.init.MenuTypeInit;
+import link.mdks.beenomey.sceen.slots.BeeSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -24,7 +25,10 @@ public class BreederBlockMenu extends AbstractContainerMenu{
 	public final BreederBlockEntity blockEntity;
 	private final Level level;
 	private final ContainerData data;
-	private final static int breederSlots = 11;
+	private final static int breederSlots = 6;
+	
+	@SuppressWarnings("unused")
+	private int screenHightOffset = BreederBlockScreen.getHightOffset();
 
 	/* Constructor */
 	
@@ -45,8 +49,17 @@ public class BreederBlockMenu extends AbstractContainerMenu{
 		
 
 		this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-			//example Slots
-			this.addSlot(new SlotItemHandler(handler, 0, 28, 22));
+			//Bee Slots
+			this.addSlot(new BeeSlot(handler, 0, 46, -6)); // Slot yPosition -21 (Half of additional image Size)
+			this.addSlot(new BeeSlot(handler, 1, 114, -6)); // Slot yPosition -21 (Half of additional image Size)
+			this.addSlot(new BeeSlot(handler, 2, 46, 50)); // Slot yPosition -21 (Half of additional image Size)
+			this.addSlot(new BeeSlot(handler, 3, 114, 50)); // Slot yPosition -21 (Half of additional image Size)
+			
+			//Result Slot
+			this.addSlot(new SlotItemHandler(handler, 4, 80, 22)); // Slot yPosition -21 (Half of additional image Size)
+			
+			//Hones Slot
+			this.addSlot(new SlotItemHandler(handler, 5, 155, 76)); // Slot yPosition -21 (Half of additional image Size)
 
 		});
 		
@@ -131,7 +144,7 @@ public class BreederBlockMenu extends AbstractContainerMenu{
 	private void addPlayerInventory(Inventory playerInventory) {
 		for (int i = 0; i < 3; i++)  {
 			for (int j = 0; j < 9; j++) {
-				this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8+ j * 18, 86 + i * 18));
+				this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8+ j * 18, 105 + i * 18));
 			}
 		
 		}
@@ -140,7 +153,7 @@ public class BreederBlockMenu extends AbstractContainerMenu{
 
 	private void addPlayerHotbar(Inventory playerInventory) {
 		for (int i = 0; i < 9; i++) {
-			this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 144));
+			this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 163));
 		}
 	}
 

@@ -80,8 +80,12 @@ public class BeenomeY
 	private void addCreative(CreativeModeTabEvent.BuildContents event) {
     	if(event.getTab() == BeenomeYTabs.BEENOMEY_TAB) {
     		
-    		/* Register all Combs*/
-    		for(RegistryObject<Item> comb : ItemInit.getHoneyCombItems()) {
+    		/* Register all Honeycombs*/
+    		for(RegistryObject<Item> comb : ItemInit.getHoneycombItems()) {
+    			event.accept(comb);
+    		}
+    		/* Register all Structureombs*/
+    		for(RegistryObject<Item> comb : ItemInit.getStructurecombItems()) {
     			event.accept(comb);
     		}
     		

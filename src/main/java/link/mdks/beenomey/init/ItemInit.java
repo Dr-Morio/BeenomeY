@@ -4,9 +4,12 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.stringtemplate.v4.ST;
+
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.items.ItemHoneycomb;
 import link.mdks.beenomey.apiculture.items.ItemScoop;
+import link.mdks.beenomey.apiculture.items.ItemStructurecomb;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -20,6 +23,7 @@ public class ItemInit {
 	
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, BeenomeY.MODID);
 	public static final DeferredRegister<Item> HONEYCOMBS = DeferredRegister.create(ForgeRegistries.ITEMS, BeenomeY.MODID);
+	public static final DeferredRegister<Item> STRUCTURECOMBS = DeferredRegister.create(ForgeRegistries.ITEMS, BeenomeY.MODID);
 
 	/* Util Items*/
 	public static final RegistryObject<Item> WOODEN_SCOOP = ITEMS.register("wooden_scoop",
@@ -59,6 +63,10 @@ public class ItemInit {
 	public static final RegistryObject<Item> OBSIDIAN_HONEYCOMB = HONEYCOMBS.register("obsidian_honeycomb",
 			() -> new ItemHoneycomb(new Item.Properties()));
 	
+	/* Stricturecombs */
+	
+	public static final RegistryObject<Item> STRUCTURECOMB = STRUCTURECOMBS.register("structurecomb",
+			() -> new ItemStructurecomb(new Item.Properties()));
 	
 	/* BlockItems */
 	public static final RegistryObject<BlockItem> APIARY_MOD_BLOCK = ITEMS.register("apiary_mod_block",
@@ -72,10 +80,15 @@ public class ItemInit {
     public static void register(IEventBus eventBus) {
     	ITEMS.register(eventBus);
     	HONEYCOMBS.register(eventBus);
+    	STRUCTURECOMBS.register(eventBus);
     }
     
-    public static Collection<RegistryObject<Item>> getHoneyCombItems() {
+    public static Collection<RegistryObject<Item>> getHoneycombItems() {
     	return HONEYCOMBS.getEntries();
+    }
+    
+    public static Collection<RegistryObject<Item>> getStructurecombItems() {
+    	return STRUCTURECOMBS.getEntries();
     }
 	
 }
