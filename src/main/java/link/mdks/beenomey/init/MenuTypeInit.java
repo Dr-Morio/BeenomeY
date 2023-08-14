@@ -2,6 +2,7 @@ package link.mdks.beenomey.init;
 
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.sceen.ApiaryModBlockMenu;
+import link.mdks.beenomey.sceen.BreederBlockMenu;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
@@ -17,6 +18,9 @@ public class MenuTypeInit {
 	
 	public static final RegistryObject<MenuType<ApiaryModBlockMenu>> APIARY_MOD_BLOCK_MENU =
 			registerMenuType(ApiaryModBlockMenu::new, "apiary_mod_block_menu");
+	
+	public static final RegistryObject<MenuType<BreederBlockMenu>> BREEDER_BLOCK_MENU =
+			registerMenuType(BreederBlockMenu::new, "breeder_block_menu");
 	
 	
 	private static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory, String name) {

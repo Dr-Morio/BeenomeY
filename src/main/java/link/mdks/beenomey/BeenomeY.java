@@ -10,6 +10,7 @@ import link.mdks.beenomey.init.ItemInit;
 import link.mdks.beenomey.init.MenuTypeInit;
 import link.mdks.beenomey.init.RecipeInit;
 import link.mdks.beenomey.sceen.ApiaryModBlockScreen;
+import link.mdks.beenomey.sceen.BreederBlockScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
@@ -110,6 +111,7 @@ public class BeenomeY
     	@SubscribeEvent
     	public static void onClientSetup(FMLClientSetupEvent event) {
     		MenuScreens.register(MenuTypeInit.APIARY_MOD_BLOCK_MENU.get(), ApiaryModBlockScreen::new);
+    		MenuScreens.register(MenuTypeInit.BREEDER_BLOCK_MENU.get(), BreederBlockScreen::new);
     	}
     }
     

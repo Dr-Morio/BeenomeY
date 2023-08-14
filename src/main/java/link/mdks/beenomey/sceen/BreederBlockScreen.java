@@ -10,17 +10,25 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class ApiaryModBlockScreen extends AbstractContainerScreen<ApiaryModBlockMenu>{
-
-	public static final ResourceLocation TEXTURE = new ResourceLocation(BeenomeY.MODID, "textures/gui/apiary_mod_block_menu_dark.png");
+public class BreederBlockScreen extends AbstractContainerScreen<BreederBlockMenu>{
 	
-	public ApiaryModBlockScreen(ApiaryModBlockMenu menu, Inventory inventory, Component component) {
-		super(menu, inventory, component);
+	/* Fields */
+	
+	public static final ResourceLocation TEXTURE = new ResourceLocation(BeenomeY.MODID, "textures/gui/breeder_block_menu_dark.png");
+	
+	
+	
+	/* Constructor */
+	
+	public BreederBlockScreen(BreederBlockMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
+		super(pMenu, pPlayerInventory, pTitle);
 	}
 
+	/* Rendering */
+	
 	@SuppressWarnings("static-access")
 	@Override
-	protected void renderBg(PoseStack pPoseStack, float pPartialtick, int pMouseX, int pMouseY) {
+	protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {
 		RenderSystem.setShader(GameRenderer::getPositionColorTexShader);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		RenderSystem.setShaderTexture(0, TEXTURE);
@@ -44,11 +52,7 @@ public class ApiaryModBlockScreen extends AbstractContainerScreen<ApiaryModBlock
 		super.render(pPoseStack, mouseX,mouseY,delta);
 		renderTooltip(pPoseStack, mouseX, mouseY);
 	}
-	
-	@Override
-	protected void init() {
-		super.init();
-	}
+
 	
 	@Override
 	protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY) {
@@ -56,4 +60,10 @@ public class ApiaryModBlockScreen extends AbstractContainerScreen<ApiaryModBlock
 	      this.font.draw(pPoseStack, this.playerInventoryTitle, (float)this.inventoryLabelX, (float)this.inventoryLabelY, 14803425);
 	}
 	
+	
+	@Override
+	protected void init() {
+		super.init();
+	}
+
 }
