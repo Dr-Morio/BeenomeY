@@ -4,8 +4,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import link.mdks.beenomey.apiculture.blocks.BreederBlock;
+import link.mdks.beenomey.apiculture.screen.BreederBlockMenu;
 import link.mdks.beenomey.init.BlockEntityInit;
-import link.mdks.beenomey.sceen.BreederBlockMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;

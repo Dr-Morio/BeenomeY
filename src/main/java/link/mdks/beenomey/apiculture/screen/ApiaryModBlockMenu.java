@@ -1,11 +1,11 @@
-package link.mdks.beenomey.sceen;
+package link.mdks.beenomey.apiculture.screen;
 
 import link.mdks.beenomey.apiculture.blocks.entity.ApiaryModBlockEntity;
+import link.mdks.beenomey.apiculture.screen.slots.BeeSlot;
+import link.mdks.beenomey.apiculture.screen.slots.CombSlot;
+import link.mdks.beenomey.apiculture.screen.slots.PrincessSlot;
 import link.mdks.beenomey.init.BlockInit;
 import link.mdks.beenomey.init.MenuTypeInit;
-import link.mdks.beenomey.sceen.slots.BeeSlot;
-import link.mdks.beenomey.sceen.slots.CombSlot;
-import link.mdks.beenomey.sceen.slots.PrincessSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;

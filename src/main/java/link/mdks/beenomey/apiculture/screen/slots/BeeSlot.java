@@ -1,4 +1,4 @@
-package link.mdks.beenomey.sceen.slots;
+package link.mdks.beenomey.apiculture.screen.slots;
 
 import org.jetbrains.annotations.NotNull;
 

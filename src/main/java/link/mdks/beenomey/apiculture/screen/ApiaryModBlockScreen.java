@@ -1,4 +1,4 @@
-package link.mdks.beenomey.sceen;
+package link.mdks.beenomey.apiculture.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -10,36 +10,17 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class BreederBlockScreen extends AbstractContainerScreen<BreederBlockMenu>{
+public class ApiaryModBlockScreen extends AbstractContainerScreen<ApiaryModBlockMenu>{
+
+	public static final ResourceLocation TEXTURE = new ResourceLocation(BeenomeY.MODID, "textures/gui/apiary_mod_block_menu_dark.png");
 	
-	/* Fields */
-	
-	public static final ResourceLocation TEXTURE = new ResourceLocation(BeenomeY.MODID, "textures/gui/breeder_block_menu_dark.png");
-	
-	private static int hightOffset = 42; // 42 Pixel higher than default
-	
-   /** The X size of the inventory window in pixels. */
-   protected int imageWidth = 176;
-   /** The Y size of the inventory window in pixels. */
-   protected int imageHeight = 166 + hightOffset;
-	
-	/* Constructor */
-	
-	public BreederBlockScreen(BreederBlockMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
-		super(pMenu, pPlayerInventory, pTitle);
-	}
-	
-	/* Helper Functions */
-	
-	public static int getHightOffset() {
-		return hightOffset;
+	public ApiaryModBlockScreen(ApiaryModBlockMenu menu, Inventory inventory, Component component) {
+		super(menu, inventory, component);
 	}
 
-	/* Rendering */
-	
 	@SuppressWarnings("static-access")
 	@Override
-	protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {
+	protected void renderBg(PoseStack pPoseStack, float pPartialtick, int pMouseX, int pMouseY) {
 		RenderSystem.setShader(GameRenderer::getPositionColorTexShader);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		RenderSystem.setShaderTexture(0, TEXTURE);
@@ -63,17 +44,16 @@ public class BreederBlockScreen extends AbstractContainerScreen<BreederBlockMenu
 		super.render(pPoseStack, mouseX,mouseY,delta);
 		renderTooltip(pPoseStack, mouseX, mouseY);
 	}
-
-	
-	@Override
-	protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY) {
-	      this.font.draw(pPoseStack, this.title, (float)this.titleLabelX, (float)this.titleLabelY + 21, 14803425);
-	      this.font.draw(pPoseStack, this.playerInventoryTitle, (float)this.inventoryLabelX, (float)this.inventoryLabelY + 21, 14803425);
-	}
-	
 	
 	@Override
 	protected void init() {
 		super.init();
 	}
+	
+	@Override
+	protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY) {
+	      this.font.draw(pPoseStack, this.title, (float)this.titleLabelX, (float)this.titleLabelY, 14803425);
+	      this.font.draw(pPoseStack, this.playerInventoryTitle, (float)this.inventoryLabelX, (float)this.inventoryLabelY, 14803425);
+	}
+	
 }

@@ -8,10 +8,10 @@ import org.jetbrains.annotations.Nullable;
 
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.ApiaryModBlock;
+import link.mdks.beenomey.apiculture.screen.ApiaryModBlockMenu;
 import link.mdks.beenomey.init.BeeInit;
 import link.mdks.beenomey.init.BlockEntityInit;
 import link.mdks.beenomey.init.ItemInit;
-import link.mdks.beenomey.sceen.ApiaryModBlockMenu;
 import link.mdks.beenomey.util.ApiaryModBlockRecipeHandler;
 import link.mdks.beenomey.util.WrappedItemHandler;
 import net.minecraft.core.BlockPos;

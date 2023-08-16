@@ -1,9 +1,9 @@
-package link.mdks.beenomey.sceen;
+package link.mdks.beenomey.apiculture.screen;
 
 import link.mdks.beenomey.apiculture.blocks.entity.BreederBlockEntity;
+import link.mdks.beenomey.apiculture.screen.slots.BeeSlot;
 import link.mdks.beenomey.init.BlockInit;
 import link.mdks.beenomey.init.MenuTypeInit;
-import link.mdks.beenomey.sceen.slots.BeeSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;

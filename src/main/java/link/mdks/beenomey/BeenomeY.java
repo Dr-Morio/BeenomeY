@@ -2,6 +2,8 @@ package link.mdks.beenomey;
 
 import com.mojang.logging.LogUtils;
 
+import link.mdks.beenomey.apiculture.screen.ApiaryModBlockScreen;
+import link.mdks.beenomey.apiculture.screen.BreederBlockScreen;
 import link.mdks.beenomey.core.BeenomeYTabs;
 import link.mdks.beenomey.init.BeeInit;
 import link.mdks.beenomey.init.BlockEntityInit;
@@ -9,8 +11,6 @@ import link.mdks.beenomey.init.BlockInit;
 import link.mdks.beenomey.init.ItemInit;
 import link.mdks.beenomey.init.MenuTypeInit;
 import link.mdks.beenomey.init.RecipeInit;
-import link.mdks.beenomey.sceen.ApiaryModBlockScreen;
-import link.mdks.beenomey.sceen.BreederBlockScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
