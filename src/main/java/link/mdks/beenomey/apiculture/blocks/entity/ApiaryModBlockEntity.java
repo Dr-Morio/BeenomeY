@@ -1,6 +1,7 @@
 package link.mdks.beenomey.apiculture.blocks.entity;
 
 
+import java.util.Map;
 import java.util.Random;
 
 import org.jetbrains.annotations.NotNull;
@@ -43,7 +44,7 @@ import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class ApiaryModBlockEntity extends BlockEntity implements GeoBlockEntity, MenuProvider{
+public class ApiaryModBlockEntity extends BlockEntity implements  GeoBlockEntity, MenuProvider{
 
 	private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 	
@@ -56,7 +57,6 @@ public class ApiaryModBlockEntity extends BlockEntity implements GeoBlockEntity,
 	private static final RawAnimation CLOSE = RawAnimation.begin().thenPlay("apiary_mod_block.close").thenLoop("apiary_mod_block.closeIdle");
 	
 	// Inventory Stuff
-	private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 	private final ContainerData data;
 	private int progress = 0;
 	private int maxProgress = 58;
@@ -109,6 +109,7 @@ public class ApiaryModBlockEntity extends BlockEntity implements GeoBlockEntity,
 
 	/* Inventory System */
 
+
 	public final ItemStackHandler itemHandler = new ItemStackHandler(ApiaryModBlockMenu.getApiarySlots()) { // was 3 before. Get information von ModBlockMenu
 		@Override
 		protected void onContentsChanged(int slot) {
@@ -134,7 +135,6 @@ public class ApiaryModBlockEntity extends BlockEntity implements GeoBlockEntity,
 		};
 			
 	};
-
 	
 	
 	@Override
@@ -147,30 +147,81 @@ public class ApiaryModBlockEntity extends BlockEntity implements GeoBlockEntity,
 	public Component getDisplayName() {
 		return Component.literal("Apiary");
 	}
+
+    private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
+    /*
+    private final Map<Direction, LazyOptional<WrappedItemHandler>> directionWrappedHandlerMap =
+            Map.of(
+//            		Direction.UP, LazyOptional.of(() -> new WrappedItemHandler(itemHandler,
+//            		(index) -> index == 0 || index == 1 || index == 2 || index == 3,
+//            		(index, stack) ->
+//           		 	itemHandler.isItemValid(4, stack) || itemHandler.isItemValid(5, stack)
+//                 || itemHandler.isItemValid(6, stack) || itemHandler.isItemValid(7, stack) 
+//                 || itemHandler.isItemValid(8, stack) || itemHandler.isItemValid(9, stack)
+//                 || itemHandler.isItemValid(10, stack) )),
+            		
+            		Direction.DOWN, LazyOptional.of(() -> new WrappedItemHandler(itemHandler,
+                    		(index) -> index == 0 || index == 1 || index == 2 || index == 3,
+                          (index, stack) ->
+                    		 itemHandler.isItemValid(4, stack) || itemHandler.isItemValid(5, stack)
+                          || itemHandler.isItemValid(6, stack) || itemHandler.isItemValid(7, stack) 
+                          || itemHandler.isItemValid(8, stack) || itemHandler.isItemValid(9, stack)
+                          || itemHandler.isItemValid(10, stack) ))
+            		);
+            		
+
+    
+//                    Direction.NORTH, LazyOptional.of(() -> new WrappedItemHandler(itemHandler,
+//                    		(index) -> index == 1,
+//                            (index, stack) -> itemHandler.isItemValid(1, stack))),
+//                    
+//                    Direction.SOUTH, LazyOptional.of(() -> new WrappedItemHandler(itemHandler,
+//                    		(i) -> i == 2,
+//                    		(i, s) -> false)),
+//                    
+//                    Direction.EAST, LazyOptional.of(() -> new WrappedItemHandler(itemHandler,
+//                    		(i) -> i == 1,
+//                            (index, stack) -> itemHandler.isItemValid(1, stack))),
+//                    
+//                    Direction.WEST, LazyOptional.of(() -> new WrappedItemHandler(itemHandler,
+//                    		(index) -> index == 0 || index == 1,
+//                            (index, stack) -> itemHandler.isItemValid(0, stack) || itemHandler.isItemValid(1, stack))));
+
+*/
 	
 	@Override
 	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-		
-		if (cap == ForgeCapabilities.ITEM_HANDLER) {
-			if(side == Direction.UP) { //Insertion
-				// WrappedItemHandler overrides the ItemHandler isValid attributes
-				return LazyOptional.of(() -> new WrappedItemHandler(itemHandler,
-						(i) -> i == 0 || i == 1 || i == 2 || i == 3,
-						(index, stack) -> itemHandler.isItemValid(4, stack) || itemHandler.isItemValid(5, stack) ||
-												itemHandler.isItemValid(6, stack) || itemHandler.isItemValid(7, stack) ||
-												itemHandler.isItemValid(8, stack) || itemHandler.isItemValid(9, stack) ||
-												itemHandler.isItemValid(10, stack))).cast();
-			}
-			
-			if(side == Direction.DOWN) { //Extraction
-				return LazyOptional.of(() -> new WrappedItemHandler(itemHandler,
-						(i) -> i == 0 || i == 1 || i == 2 || i == 3,
-						(index, stack) -> itemHandler.isItemValid(4, stack))).cast();  // need to be given at least one
-				
-			}
-			return lazyItemHandler.cast();
-		}
-		return super.getCapability(cap, side);
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
+            if(side == null) {
+                return lazyItemHandler.cast();
+            } else {
+            	return LazyOptional.of(() -> new WrappedItemHandler(itemHandler,
+                		(index) -> index == 0 || index == 1 || index == 2 || index == 3,
+                      (index, stack) ->
+                		 itemHandler.isItemValid(4, stack) || itemHandler.isItemValid(5, stack)
+                      || itemHandler.isItemValid(6, stack) || itemHandler.isItemValid(7, stack) 
+                      || itemHandler.isItemValid(8, stack) || itemHandler.isItemValid(9, stack)
+                      || itemHandler.isItemValid(10, stack) )).cast();
+            }
+
+            
+//            if(directionWrappedHandlerMap.containsKey(side)) {
+//                Direction localDir = this.getBlockState().getValue(ApiaryModBlock.FACING);
+//
+//                if(side == Direction.UP || side == Direction.DOWN) {
+//                    return directionWrappedHandlerMap.get(side).cast();
+//                }
+//
+//                return switch (localDir) {
+//                    default -> directionWrappedHandlerMap.get(side.getOpposite()).cast();
+////                    case EAST -> directionWrappedHandlerMap.get(side.getClockWise()).cast(); 
+////                    case SOUTH -> directionWrappedHandlerMap.get(side).cast();
+////                    case WEST -> directionWrappedHandlerMap.get(side.getCounterClockWise()).cast();
+//                };
+//            }
+        }
+
+        return super.getCapability(cap, side);
 	}
 	
 	@Override

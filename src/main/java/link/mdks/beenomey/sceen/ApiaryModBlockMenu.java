@@ -36,6 +36,8 @@ public class ApiaryModBlockMenu extends AbstractContainerMenu{
 		return apiarySlots;
 	}
 	
+	
+	
 	/* Constructor */
 	
 	public ApiaryModBlockMenu(int id, Inventory inv, FriendlyByteBuf extraData) {

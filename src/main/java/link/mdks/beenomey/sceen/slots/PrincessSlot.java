@@ -16,7 +16,7 @@ public class PrincessSlot extends SlotItemHandler{
 	@Override
 	public boolean mayPlace(@NotNull ItemStack stack) {
 	
-		if(stack.getItem() instanceof ItemPrincess) {
+		if(stack.getItem().getClass() == ItemPrincess.class) {
 			return true;
 		} else {
 			return false;

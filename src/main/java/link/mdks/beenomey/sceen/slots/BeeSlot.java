@@ -16,7 +16,7 @@ public class BeeSlot extends SlotItemHandler{
 	@Override
 	public boolean mayPlace(@NotNull ItemStack stack) {
 	
-		if(stack.getItem() instanceof ItemBee) {
+		if(stack.getItem().getClass() == ItemBee.class) {
 			return true;
 		} else {
 			return false;
