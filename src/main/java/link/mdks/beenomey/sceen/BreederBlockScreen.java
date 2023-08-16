@@ -76,5 +76,4 @@ public class BreederBlockScreen extends AbstractContainerScreen<BreederBlockMenu
 	protected void init() {
 		super.init();
 	}
-
 }

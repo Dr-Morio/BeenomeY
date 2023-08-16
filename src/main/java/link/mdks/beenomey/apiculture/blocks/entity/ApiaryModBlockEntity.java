@@ -1,7 +1,6 @@
 package link.mdks.beenomey.apiculture.blocks.entity;
 
 
-import java.util.Map;
 import java.util.Random;
 
 import org.jetbrains.annotations.NotNull;
@@ -53,8 +52,8 @@ public class ApiaryModBlockEntity extends BlockEntity implements  GeoBlockEntity
 	private static final RawAnimation CLOSE_IDLE = RawAnimation.begin().thenLoop("apiary_mod_block.closeIdle");
 	@SuppressWarnings("unused")
 	private static final RawAnimation OPEN_IDLE = RawAnimation.begin().thenLoop("apiary_mod_block.openIdle");
-	private static final RawAnimation OPEN = RawAnimation.begin().thenPlay("apiary_mod_block.open").thenLoop("apiary_mod_block.openIdle");
-	private static final RawAnimation CLOSE = RawAnimation.begin().thenPlay("apiary_mod_block.close").thenLoop("apiary_mod_block.closeIdle");
+	private static final RawAnimation OPEN = RawAnimation.begin().thenPlayAndHold("apiary_mod_block.open");//.thenLoop("apiary_mod_block.openIdle");
+	private static final RawAnimation CLOSE = RawAnimation.begin().thenPlayAndHold("apiary_mod_block.close");//.thenLoop("apiary_mod_block.closeIdle");
 	
 	// Inventory Stuff
 	private final ContainerData data;
@@ -93,14 +92,15 @@ public class ApiaryModBlockEntity extends BlockEntity implements  GeoBlockEntity
 
 	@Override
 	public void registerControllers(ControllerRegistrar controllers) {
+			
 		controllers.add(new AnimationController<>(this, state -> {
 			if (((ApiaryModBlock) state.getAnimatable().getBlockState().getBlock()).isInteractedBlock(worldPosition) ) {
 				return state.setAndContinue(OPEN);
 			} else {
 				return state.setAndContinue(CLOSE);
 			}
-			
-		}));		
+		}));
+	
 	}
 
 	@Override
@@ -143,6 +143,10 @@ public class ApiaryModBlockEntity extends BlockEntity implements  GeoBlockEntity
 		return new ApiaryModBlockMenu(id, inventory, this, this.data);
 	}
 
+	
+	public void opener() {
+		
+	}
 
 	@Override
 	public Component getDisplayName() {

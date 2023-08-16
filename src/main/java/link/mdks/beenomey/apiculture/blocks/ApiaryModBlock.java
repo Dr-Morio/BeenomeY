@@ -93,7 +93,6 @@ public class ApiaryModBlock extends BaseEntityBlock implements EntityBlock{
 			BlockEntity entity = pLevel.getBlockEntity(pPos);
 			if (entity instanceof ApiaryModBlockEntity) {
 				NetworkHooks.openScreen((ServerPlayer)pPlayer, (ApiaryModBlockEntity)entity, pPos);
-				
 				// Set Last Player Interaction for Entity Animation
 				currentInteractions.put(pPlayer, pPos.immutable());
 				
