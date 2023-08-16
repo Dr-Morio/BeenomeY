@@ -5,7 +5,7 @@
     "layer1": "beenomey:item/bee/body/bee_body_color_0",
     "layer2": "beenomey:item/bee/crown/princess"
   },
-  "overrides": [
+   "overrides": [
     {
       "predicate": {
         "beenomey:texture_variant": 1
@@ -22,47 +22,95 @@
       "predicate": {
         "beenomey:texture_variant": 3
       },
-      "model": "beenomey:item/bee/ice_princess"
+      "model": "beenomey:item/bee/frozen_princess"
     },
     {
       "predicate": {
         "beenomey:texture_variant": 4
       },
-      "model": "beenomey:item/bee/water_princess"
+      "model": "beenomey:item/bee/ocean_princess"
     },
     {
       "predicate": {
         "beenomey:texture_variant": 5
       },
-      "model": "beenomey:item/bee/sand_princess"
+      "model": "beenomey:item/bee/desert_princess"
     },
     {
       "predicate": {
         "beenomey:texture_variant": 6
       },
-      "model": "beenomey:item/bee/stone_princess"
+      "model": "beenomey:item/bee/rock_princess"
     },
     {
       "predicate": {
         "beenomey:texture_variant": 7
       },
-      "model": "beenomey:item/bee/nether_princess"
+      "model": "beenomey:item/bee/inferno_princess"
     },
     {
       "predicate": {
         "beenomey:texture_variant": 8
       },
-      "model": "beenomey:item/bee/ender_princess"
+      "model": "beenomey:item/bee/void_princess"
     },
     {
       "predicate": {
         "beenomey:texture_variant": 9
       },
-      "model": "beenomey:item/bee/lava_princess"
+      "model": "beenomey:item/bee/magma_princess"
     },
     {
       "predicate": {
         "beenomey:texture_variant": 10
+      },
+      "model": "beenomey:item/bee/paper_princess"
+    },
+        {
+      "predicate": {
+        "beenomey:texture_variant": 11
+      },
+      "model": "beenomey:item/bee/lapis_princess"
+    },
+        {
+      "predicate": {
+        "beenomey:texture_variant": 12
+      },
+      "model": "beenomey:item/bee/redstone_princess"
+    },
+        {
+      "predicate": {
+        "beenomey:texture_variant": 13
+      },
+      "model": "beenomey:item/bee/iron_princess"
+    },
+        {
+      "predicate": {
+        "beenomey:texture_variant": 14
+      },
+      "model": "beenomey:item/bee/gold_princess"
+    },
+        {
+      "predicate": {
+        "beenomey:texture_variant": 15
+      },
+      "model": "beenomey:item/bee/copper_princess"
+    },
+        {
+      "predicate": {
+        "beenomey:texture_variant": 16
+      },
+      "model": "beenomey:item/bee/diamond_princess"
+    },
+        {
+      "predicate": {
+        "beenomey:texture_variant": 17
+      },
+      "model": "beenomey:item/bee/obsidian_princess"
+    },
+        {
+      "predicate": {
+        "beenomey:texture_variant": 18
       },
       "model": "beenomey:item/bee/modified_princess"
     }

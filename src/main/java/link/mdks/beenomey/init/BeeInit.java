@@ -3,7 +3,6 @@ package link.mdks.beenomey.init;
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.items.ItemBee;
 import link.mdks.beenomey.apiculture.items.ItemPrincess;
-import link.mdks.beenomey.apiculture.items.ItemQueen;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -22,9 +21,7 @@ public class BeeInit {
 	
 	public static final RegistryObject<Item> PRINCESS_BEE = ITEMS.register("princess_bee",
 			() -> new ItemPrincess(new Item.Properties().durability(1)));
-	
-	public static final RegistryObject<Item> QUEEN_BEE = ITEMS.register("queen_bee",
-			() -> new ItemQueen(new Item.Properties().durability(1)));
+
 	
     public static void register(IEventBus eventBus) {
     	ITEMS.register(eventBus);
@@ -36,10 +33,6 @@ public class BeeInit {
     
     public static final Item getPrincessBee() {
     	return PRINCESS_BEE.get();
-    }
-    
-    public static final Item getQueenBee() {
-    	return QUEEN_BEE.get();
     }
     
 }

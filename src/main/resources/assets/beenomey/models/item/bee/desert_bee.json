@@ -3,7 +3,6 @@
 	"textures": {
 		"layer0": "beenomey:item/bee/body/bee_base_0",
 		"layer1": "beenomey:item/bee/body/bee_body_color_0",
-		"layer2": "beenomey:item/bee/type_frame/water",
-		"layer3": "beenomey:item/bee/crown/princess"
+		"layer2": "beenomey:item/bee/type_frame/desert"
 	}
 }

@@ -13,13 +13,13 @@ public enum BeeType {
     VOID(8.0f, 1, 1.3f, 50, 3, 4.0f, ChatFormatting.DARK_BLUE),
     MAGMA(9.0f, 4, 1f, 30, 2, 2.0f, ChatFormatting.RED),
     PAPER(10f, 4, 1f, 10, 2, 1.8f, ChatFormatting.WHITE),
-    LAPIS_LAZULI(10F, 5, 1.2f, 10, 1, 1.5f, ChatFormatting.DARK_BLUE),
-    REDSTONE(10F, 4, 1.8f, 20, 2, 1.7f, ChatFormatting.RED),
-    IRON(10F, 5, 1.9f, -5, 1, 1.5f,ChatFormatting.GRAY),
-    GOLD(10F, 2, 1.1f, -10, 2, 1.4f,ChatFormatting.GOLD),
-    COPPER(10F, 1, 2.2f, 5, 2, 1.8f, ChatFormatting.DARK_RED),
-    DIAMOND(10F, 10, 2.4f, -30, 1, 0.5f, ChatFormatting.AQUA),
-    OBSIDIAN(10F, 15, 3.5f, -50, 1, 0.5f, ChatFormatting.OBFUSCATED);
+    LAPIS_LAZULI(11F, 5, 1.2f, 10, 1, 1.5f, ChatFormatting.DARK_BLUE),
+    REDSTONE(12F, 4, 1.8f, 20, 2, 1.7f, ChatFormatting.RED),
+    IRON(13F, 5, 1.9f, -5, 1, 1.5f,ChatFormatting.GRAY),
+    GOLD(14F, 2, 1.1f, -10, 2, 1.4f,ChatFormatting.GOLD),
+    COPPER(15F, 1, 2.2f, 5, 2, 1.8f, ChatFormatting.DARK_RED),
+    DIAMOND(16F, 10, 2.4f, -30, 1, 0.5f, ChatFormatting.AQUA),
+    OBSIDIAN(17F, 15, 3.5f, -50, 1, 0.5f, ChatFormatting.OBFUSCATED);
 
 
     public float textureTypeValue;

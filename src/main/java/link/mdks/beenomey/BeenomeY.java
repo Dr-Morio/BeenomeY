@@ -11,6 +11,7 @@ import link.mdks.beenomey.init.BlockInit;
 import link.mdks.beenomey.init.ItemInit;
 import link.mdks.beenomey.init.MenuTypeInit;
 import link.mdks.beenomey.init.RecipeInit;
+import link.mdks.beenomey.util.ItemBeeTextureProperties;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
@@ -92,7 +93,6 @@ public class BeenomeY
     		event.accept(ItemInit.WOODEN_SCOOP);
     		event.accept(BeeInit.COMMON_BEE);
     		event.accept(BeeInit.PRINCESS_BEE);
-    		event.accept(BeeInit.QUEEN_BEE);
     		event.accept(BlockInit.OAKWOOD_BEEHIVE_BLOCK);
     		event.accept(BlockInit.BIRCHWOOD_BEEHIVE_BLOCK);
     		event.accept(BlockInit.DESERT_BEEHIVE_BLOCK);
@@ -116,6 +116,8 @@ public class BeenomeY
     	public static void onClientSetup(FMLClientSetupEvent event) {
     		MenuScreens.register(MenuTypeInit.APIARY_MOD_BLOCK_MENU.get(), ApiaryModBlockScreen::new);
     		MenuScreens.register(MenuTypeInit.BREEDER_BLOCK_MENU.get(), BreederBlockScreen::new);
+    		
+    		event.enqueueWork(() -> ItemBeeTextureProperties.addCustomTextureVariantPropertie()); // someone said it's not Thread save :)
     	}
     }
     
