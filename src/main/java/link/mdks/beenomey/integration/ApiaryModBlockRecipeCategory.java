@@ -34,7 +34,7 @@ public class ApiaryModBlockRecipeCategory implements IRecipeCategory<ApiaryModBl
     private IGuiHelper helper;
 
     public ApiaryModBlockRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(DEFAULT_BACKGROUND, 0, 0, 176, 85);
+        this.background = helper.createDrawable(DEFAULT_BACKGROUND, 0, 0, 176, 78); //85
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(BlockInit.APIARY_MOD_BLOCK.get()));
         this.helper = helper;
     }
@@ -63,9 +63,9 @@ public class ApiaryModBlockRecipeCategory implements IRecipeCategory<ApiaryModBl
 	@Override
 	public void setRecipe(IRecipeLayoutBuilder builder, ApiaryModBlockRecipe recipe, IFocusGroup focuses) {
 		//builder.setShapeless(162,5);
-        builder.addSlot(RecipeIngredientRole.INPUT, 27, 13).addItemStack(recipe.getIngredientsAsItemStacks().get(0));
-        builder.addSlot(RecipeIngredientRole.INPUT, 39, 37).addItemStack(recipe.getIngredientsAsItemStacks().get(1));
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 103, 13).addItemStack(recipe.getResultItem(Minecraft.getInstance().level.registryAccess()));
+        builder.addSlot(RecipeIngredientRole.INPUT, 27, 9).addItemStack(recipe.getIngredientsAsItemStacks().get(0));
+        builder.addSlot(RecipeIngredientRole.INPUT, 39, 33).addItemStack(recipe.getIngredientsAsItemStacks().get(1));
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 101, 9).addItemStack(recipe.getResultItem(Minecraft.getInstance().level.registryAccess()));
 		}
 
 	
@@ -116,13 +116,13 @@ public class ApiaryModBlockRecipeCategory implements IRecipeCategory<ApiaryModBl
 			information = Component.literal("Cross Breeding").withStyle(ChatFormatting.WHITE);
 		}
 		
-		Minecraft.getInstance().font.draw(matrix, example, 85, 58, 1);
-		Minecraft.getInstance().font.drawShadow(matrix, example, 85, 58, 1);
-		Minecraft.getInstance().font.draw(matrix, information, 85, 69, 1);
-		Minecraft.getInstance().font.drawShadow(matrix, information, 85, 69, 1);
+		Minecraft.getInstance().font.draw(matrix, example, 85, 51, 1);
+		Minecraft.getInstance().font.drawShadow(matrix, example, 85, 51, 1);
+		Minecraft.getInstance().font.draw(matrix, information, 85, 63, 1);
+		Minecraft.getInstance().font.drawShadow(matrix, information, 85, 63, 1);
 		
 		// Set Icon
-		icon.draw(matrix, 145, 28);
+		icon.draw(matrix, 145, 15);
 		
 	}
 	
