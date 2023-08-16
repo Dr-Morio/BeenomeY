@@ -91,7 +91,7 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 	@Override
 	public void registerControllers(ControllerRegistrar controllers) {
 		controllers.add(new AnimationController<>(this, state -> {
-			if (((BreederBlock) state.getAnimatable().getBlockState().getBlock()).isInteractedWith()) {
+			if (((BreederBlock) state.getAnimatable().getBlockState().getBlock()).isInteractedBlock(worldPosition)) {
 				return state.setAndContinue(OPEN);
 			} else {
 				return state.setAndContinue(CLOSE);

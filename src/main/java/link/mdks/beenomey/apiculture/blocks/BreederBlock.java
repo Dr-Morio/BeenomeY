@@ -31,7 +31,7 @@ public class BreederBlock extends BaseEntityBlock implements EntityBlock{
 
 	/* Fields */
 	
-    Map<Player, Boolean> currentInteractions = new HashMap<Player, Boolean>();
+    Map<Player, BlockPos> currentInteractions = new HashMap<Player, BlockPos>();
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     
 	public static boolean shouldBeOpend = false;
@@ -68,11 +68,6 @@ public class BreederBlock extends BaseEntityBlock implements EntityBlock{
 	
 	/* Helper Functions */
 	
-	public boolean isInteractedWith() {
-		return shouldBeOpend;
-	}
-	
-	
 	public void checkCurrentInteractions() {
 		if(!currentInteractions.isEmpty()) {
 			for(Player p : currentInteractions.keySet()) {
@@ -80,10 +75,17 @@ public class BreederBlock extends BaseEntityBlock implements EntityBlock{
 					currentInteractions.remove(p);
 				}
 			}
-		} else {
-			shouldBeOpend = false;
 		}
 	}	
+	
+	public boolean isInteractedBlock(BlockPos pPos) {
+		for (BlockPos pos : currentInteractions.values()) {
+			if (pos.asLong() == pPos.asLong()) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	/* Inventory System */
 	
@@ -97,8 +99,7 @@ public class BreederBlock extends BaseEntityBlock implements EntityBlock{
 				NetworkHooks.openScreen((ServerPlayer)pPlayer, (BreederBlockEntity)entity, pPos);
 				
 				// Set Last Player Interaction for Entity Animation
-				shouldBeOpend = true;
-				currentInteractions.put(pPlayer, true);
+				currentInteractions.put(pPlayer, pPos.immutable());
 				
 			} else {
 				throw new IllegalStateException("Our Container provider is missing!");

@@ -94,11 +94,12 @@ public class ApiaryModBlockEntity extends BlockEntity implements  GeoBlockEntity
 	@Override
 	public void registerControllers(ControllerRegistrar controllers) {
 		controllers.add(new AnimationController<>(this, state -> {
-			if (((ApiaryModBlock) state.getAnimatable().getBlockState().getBlock()).isInteractedWith()) {
+			if (((ApiaryModBlock) state.getAnimatable().getBlockState().getBlock()).isInteractedBlock(worldPosition) ) {
 				return state.setAndContinue(OPEN);
 			} else {
 				return state.setAndContinue(CLOSE);
 			}
+			
 		}));		
 	}
 

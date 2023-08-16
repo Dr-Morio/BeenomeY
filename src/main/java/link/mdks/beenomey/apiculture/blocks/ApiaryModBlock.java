@@ -31,11 +31,8 @@ import net.minecraftforge.network.NetworkHooks;
 
 public class ApiaryModBlock extends BaseEntityBlock implements EntityBlock{
 	
-    Map<Player, Boolean> currentInteractions = new HashMap<Player, Boolean>();
+    Map<Player, BlockPos> currentInteractions = new HashMap<Player, BlockPos>();
     
-	public static boolean shouldBeOpend = false;
-	
-	
 	public ApiaryModBlock() {
 		super(Properties.of(Material.WOOD).noOcclusion());
 	}
@@ -79,8 +76,13 @@ public class ApiaryModBlock extends BaseEntityBlock implements EntityBlock{
 		super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
 	}
 	
-	public boolean isInteractedWith() {
-		return shouldBeOpend;
+	public boolean isInteractedBlock(BlockPos pPos) {
+		for (BlockPos pos : currentInteractions.values()) {
+			if (pos.asLong() == pPos.asLong()) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	@Override
@@ -93,8 +95,7 @@ public class ApiaryModBlock extends BaseEntityBlock implements EntityBlock{
 				NetworkHooks.openScreen((ServerPlayer)pPlayer, (ApiaryModBlockEntity)entity, pPos);
 				
 				// Set Last Player Interaction for Entity Animation
-				shouldBeOpend = true;
-				currentInteractions.put(pPlayer, true);
+				currentInteractions.put(pPlayer, pPos.immutable());
 				
 			} else {
 				throw new IllegalStateException("Our Container provider is missing!");
@@ -118,8 +119,6 @@ public class ApiaryModBlock extends BaseEntityBlock implements EntityBlock{
 					currentInteractions.remove(p);
 				}
 			}
-		} else {
-			shouldBeOpend = false;
 		}
 	}	
 }
