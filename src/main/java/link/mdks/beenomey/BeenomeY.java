@@ -9,6 +9,8 @@ import link.mdks.beenomey.core.BeenomeYTabs;
 import link.mdks.beenomey.init.BeeInit;
 import link.mdks.beenomey.init.BlockEntityInit;
 import link.mdks.beenomey.init.BlockInit;
+import link.mdks.beenomey.init.FluidInit;
+import link.mdks.beenomey.init.FluidTypeInit;
 import link.mdks.beenomey.init.ItemInit;
 import link.mdks.beenomey.init.MenuTypeInit;
 import link.mdks.beenomey.init.RecipeInit;
@@ -29,6 +31,13 @@ import software.bernie.geckolib.GeckoLib;
 
 import org.slf4j.Logger;
 
+
+/**
+* Some classes and methods are heavily influenced by Kaupenjoe.
+* I started this mod and used his tutorial series to grasp the concepts of Minecraft modding.
+* A big thanks to him for providing such an amazing video series!
+*/
+
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(BeenomeY.MODID)
 public class BeenomeY
@@ -47,6 +56,7 @@ public class BeenomeY
 
         // Register Items
         ItemInit.register(modEventBus);
+        
         // Register Bee Items
         BeeInit.register(modEventBus);
         
@@ -61,6 +71,11 @@ public class BeenomeY
         
         // Register Recipes
         RecipeInit.register(modEventBus);
+        
+        // Register FluidTypes
+        FluidTypeInit.register(modEventBus);
+        // Register Fluids
+        FluidInit.register(modEventBus);
        
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -88,9 +103,15 @@ public class BeenomeY
     		for(RegistryObject<Item> comb : ItemInit.getHoneycombItems()) {
     			event.accept(comb);
     		}
+    		
     		/* Register all Structureombs*/
     		for(RegistryObject<Item> comb : ItemInit.getStructurecombItems()) {
     			event.accept(comb);
+    		}
+    		
+    		/* Register all Buckets*/
+    		for(RegistryObject<Item> bucket : ItemInit.getBucketItems()) {
+    			event.accept(bucket);
     		}
     		
     		event.accept(ItemInit.WOODEN_SCOOP);

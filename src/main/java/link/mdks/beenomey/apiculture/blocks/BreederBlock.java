@@ -97,7 +97,6 @@ public class BreederBlock extends BaseEntityBlock implements EntityBlock{
 			BlockEntity entity = pLevel.getBlockEntity(pPos);
 			if (entity instanceof BreederBlockEntity) {
 				NetworkHooks.openScreen((ServerPlayer)pPlayer, (BreederBlockEntity)entity, pPos);
-				
 				// Set Last Player Interaction for Entity Animation
 				currentInteractions.put(pPlayer, pPos.immutable());
 				

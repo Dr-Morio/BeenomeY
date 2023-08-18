@@ -33,6 +33,12 @@ public class BeenomeyItemModelProvider extends ItemModelProvider{
 			simpleStructureComb(comb);
 		}
 		
+		/* Register Buckets */
+		Collection<RegistryObject<Item>> buckets = ItemInit.getBucketItems();
+		for(RegistryObject<Item> bucket: buckets) {
+			simpleBucket(bucket);
+		}
+		
 	}
 	
 	private ItemModelBuilder simpleComb(RegistryObject<Item> item) {
@@ -45,6 +51,12 @@ public class BeenomeyItemModelProvider extends ItemModelProvider{
 		return withExistingParent(item.getId().getPath(),
 				new ResourceLocation("item/generated")).texture("layer0", 
 						new ResourceLocation(BeenomeY.MODID, "item/structurecombs/" + item.getId().getPath()));
+	}
+	
+	private ItemModelBuilder simpleBucket(RegistryObject<Item> item) {
+		return withExistingParent(item.getId().getPath(),
+				new ResourceLocation("item/generated")).texture("layer0", 
+						new ResourceLocation(BeenomeY.MODID, "item/bucket/" + item.getId().getPath()));
 	}
 	
 	@SuppressWarnings("unused")

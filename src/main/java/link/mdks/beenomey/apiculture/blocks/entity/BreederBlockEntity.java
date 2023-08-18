@@ -3,6 +3,7 @@ package link.mdks.beenomey.apiculture.blocks.entity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.BreederBlock;
 import link.mdks.beenomey.apiculture.screen.BreederBlockMenu;
 import link.mdks.beenomey.init.BlockEntityInit;
@@ -168,6 +169,7 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 		itemHandler.deserializeNBT(nbt.getCompound("inventory"));
 		progress = nbt.getInt("breeder_block.progress");
 		ENERGY_STORAGE.setEnergy(nbt.getInt("breeder_block.energy"));
+		BeenomeY.LOGGER.debug("LOADED: " + nbt.getInt("breeder_block.energy"));
 	}
 	
 	public void drops() {
@@ -210,7 +212,10 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 			NetworkMessages.sendToClients(new EnergySyncS2CPacket(this.energy, getBlockPos()));
 			
 		}
+
 	};
+	
+	/* Helper Functions */
 	
 	private static final int ENERGY_REQ = 32;
 

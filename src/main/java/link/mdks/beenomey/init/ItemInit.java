@@ -11,7 +11,9 @@ import link.mdks.beenomey.apiculture.items.ItemHoneycomb;
 import link.mdks.beenomey.apiculture.items.ItemScoop;
 import link.mdks.beenomey.apiculture.items.ItemStructurecomb;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -24,6 +26,8 @@ public class ItemInit {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, BeenomeY.MODID);
 	public static final DeferredRegister<Item> HONEYCOMBS = DeferredRegister.create(ForgeRegistries.ITEMS, BeenomeY.MODID);
 	public static final DeferredRegister<Item> STRUCTURECOMBS = DeferredRegister.create(ForgeRegistries.ITEMS, BeenomeY.MODID);
+
+	public static final DeferredRegister<Item> BUCKETS = DeferredRegister.create(ForgeRegistries.ITEMS, BeenomeY.MODID);
 
 	/* Util Items*/
 	public static final RegistryObject<Item> WOODEN_SCOOP = ITEMS.register("wooden_scoop",
@@ -68,6 +72,12 @@ public class ItemInit {
 	public static final RegistryObject<Item> STRUCTURECOMB = STRUCTURECOMBS.register("structurecomb",
 			() -> new ItemStructurecomb(new Item.Properties()));
 	
+	/* Buckets */
+
+    public static final RegistryObject<Item> HONEY_BUCKET = BUCKETS.register("honey_bucket", 
+    		() -> new BucketItem(FluidInit.SOURCE_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+
+	
 	/* BlockItems */
 	public static final RegistryObject<BlockItem> APIARY_MOD_BLOCK = ITEMS.register("apiary_mod_block",
 			() -> new BlockItem(BlockInit.APIARY_MOD_BLOCK.get(),
@@ -75,12 +85,13 @@ public class ItemInit {
 	
 	public static final RegistryObject<BlockItem> BREEDER_BLOCK = ITEMS.register("breeder_block",
 			() -> new BlockItem(BlockInit.BREEDER_BLOCK.get(),
-					new Item.Properties()));
+					new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 	
     public static void register(IEventBus eventBus) {
     	ITEMS.register(eventBus);
     	HONEYCOMBS.register(eventBus);
     	STRUCTURECOMBS.register(eventBus);
+    	BUCKETS.register(eventBus);
     }
     
     public static Collection<RegistryObject<Item>> getHoneycombItems() {
@@ -89,6 +100,10 @@ public class ItemInit {
     
     public static Collection<RegistryObject<Item>> getStructurecombItems() {
     	return STRUCTURECOMBS.getEntries();
+    }
+    
+    public static Collection<RegistryObject<Item>> getBucketItems() {
+    	return BUCKETS.getEntries();
     }
 	
 }

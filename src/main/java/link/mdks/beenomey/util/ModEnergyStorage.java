@@ -24,9 +24,10 @@ public abstract class ModEnergyStorage extends EnergyStorage{
 	@Override
 	public int receiveEnergy(int maxReceive, boolean simulate) {
 		int receiveEnergy = super.receiveEnergy(maxReceive, simulate);
-		if(receiveEnergy != 0) {
+		// Interface is not updated after reload of map when energy is full,
+		//if(receiveEnergy != 0) {
 			onEnergyChanged();
-		}
+		//}
 		return receiveEnergy;
 	}
 	
@@ -36,5 +37,5 @@ public abstract class ModEnergyStorage extends EnergyStorage{
 	}
 	
 	public abstract void onEnergyChanged();
-	
+
 }

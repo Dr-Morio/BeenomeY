@@ -56,6 +56,7 @@ public class BreederBlockScreen extends AbstractContainerScreen<BreederBlockMenu
 		renderProgressBar(pPoseStack, x, y);
 		// Energy
 		energyInfoArea.draw(pPoseStack);
+		
 	}
 	
 	private void renderProgressBar(PoseStack pPoseStack, int x, int y) {

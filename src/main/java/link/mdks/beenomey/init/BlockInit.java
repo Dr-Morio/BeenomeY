@@ -6,11 +6,15 @@ import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.ApiaryModBlock;
 import link.mdks.beenomey.apiculture.blocks.BeehiveBlock;
 import link.mdks.beenomey.apiculture.blocks.BreederBlock;
+import link.mdks.beenomey.apiculture.fluids.HoneyFluid;
 import link.mdks.beenomey.apiculture.util.BeeType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -62,6 +66,27 @@ public class BlockInit {
 	public static final RegistryObject<BreederBlock> BREEDER_BLOCK = BLOCKS.register("breeder_block", 
 			() -> new BreederBlock());
 			
+	/* Liquid Blocks*/
+
+    public static final RegistryObject<LiquidBlock> HONEY_FLUID_BLOCK = BLOCKS.register("honey_fluid_block",
+            () -> new LiquidBlock(FluidInit.SOURCE_HONEY, BlockBehaviour.Properties.copy(Blocks.WATER)));
+
+	
+//    public static final RegistryObject<LiquidBlock> HONEY = BLOCKS.register("honey",
+//            () -> new LiquidBlock(FluidInit.HONEY, BlockBehaviour.Properties.copy(Blocks.WATER)
+//                    .noCollission()
+//                    .strength(100.0F)
+//                    .noLootTable()
+//                    //.color(FluidInit.MATERIAL_HONEY.getColor())
+//                    //.color(HoneyFluid.getTintColor())
+//                    .speedFactor(0.3F)
+//                    .jumpFactor(0.3F)
+//                    .friction(1.0f)
+//            		));
+
+
+	
+	
 	
 	private static <T extends Block> RegistryObject<T> registerHiveBlock(String name, Supplier<T> block) {
 		RegistryObject<T> toReturn = HIVE_BLOCKS.register(name, block);

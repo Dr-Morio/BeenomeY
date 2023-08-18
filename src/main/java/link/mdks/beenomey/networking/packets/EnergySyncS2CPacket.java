@@ -38,7 +38,7 @@ public class EnergySyncS2CPacket {
 				blockEntity.setEnergyLevel(energy);
 				
 				if(Minecraft.getInstance().player.containerMenu instanceof BreederBlockMenu menu &&
-						menu.getBlockEntity().getBlockPos().equals(pos)) {
+					menu.getBlockEntity().getBlockPos().equals(pos)) {
 					blockEntity.setEnergyLevel(energy);
 				}
 			}

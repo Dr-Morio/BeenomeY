@@ -1,5 +1,6 @@
 package link.mdks.beenomey.apiculture.screen;
 
+import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.entity.BreederBlockEntity;
 import link.mdks.beenomey.apiculture.screen.slots.BeeSlot;
 import link.mdks.beenomey.init.BlockInit;
@@ -43,7 +44,6 @@ public class BreederBlockMenu extends AbstractContainerMenu{
 		blockEntity = (BreederBlockEntity) entity;
 		this.level = inv.player.level;
 		this.data = data;
-		
 		addPlayerInventory(inv);
 		addPlayerHotbar(inv);
 		

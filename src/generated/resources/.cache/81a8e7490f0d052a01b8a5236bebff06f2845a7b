@@ -1,10 +1,11 @@
-// 1.19.4	2023-08-14T16:07:07.7216648	Item Models: beenomey
+// 1.19.4	2023-08-18T11:47:06.9792541	Item Models: beenomey
 170ea93069c16761d6928b5caad5be1012debbe1 assets/beenomey/models/item/copper_honeycomb.json
 6582bf5cc03d823a1d9b4b44d7f532bf4ba76af4 assets/beenomey/models/item/desert_honeycomb.json
 a069c04878efdfbff4e7f5b1c1a4610636dcdb97 assets/beenomey/models/item/diamond_honeycomb.json
 e23e52e84d4df0fec9616eeb161a956dfba6c30a assets/beenomey/models/item/frozen_honeycomb.json
 6ca2ca68210f9a9576bc38b1fd8fb4d8a89da577 assets/beenomey/models/item/gold_honeycomb.json
 9d6ef5c524983872f19b6908be3e1ead031a948c assets/beenomey/models/item/honeycomb.json
+e79ceaa0f075be766f331dbfdd6d46c5588f920a assets/beenomey/models/item/honey_bucket.json
 4827b85e04d25ec8b0b53ad5810f5d0aeb16ecc2 assets/beenomey/models/item/inferno_honeycomb.json
 c696eb91d80c1a49bcdc57c47e964d5de37c5c0e assets/beenomey/models/item/iron_honeycomb.json
 59541695d035bc4d560dcb9152fe9144cef40639 assets/beenomey/models/item/lapis_honeycomb.json

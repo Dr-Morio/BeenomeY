@@ -32,5 +32,5 @@ public class BeenomeyBlockstateProvider extends BlockStateProvider{
 		simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
 		
 	}
-
+	
 }
