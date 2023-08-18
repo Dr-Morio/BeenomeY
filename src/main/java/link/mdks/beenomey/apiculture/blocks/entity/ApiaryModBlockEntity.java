@@ -28,6 +28,7 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -94,8 +95,12 @@ public class ApiaryModBlockEntity extends BlockEntity implements  GeoBlockEntity
 	public void registerControllers(ControllerRegistrar controllers) {
 			
 		controllers.add(new AnimationController<>(this, state -> {
-			if (((ApiaryModBlock) state.getAnimatable().getBlockState().getBlock()).isInteractedBlock(worldPosition) ) {
-				return state.setAndContinue(OPEN);
+			if(state.getAnimatable().getLevel().getBlockState(state.getAnimatable().getBlockPos().above()).getBlock() == Blocks.AIR) {
+				if (((ApiaryModBlock) state.getAnimatable().getBlockState().getBlock()).isInteractedBlock(worldPosition) ) {
+					return state.setAndContinue(OPEN);
+				} else {
+					return state.setAndContinue(CLOSE);
+				}
 			} else {
 				return state.setAndContinue(CLOSE);
 			}
