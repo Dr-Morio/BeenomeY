@@ -1,0 +1,1 @@
+gradlew clean cleaneclipse build eclipse --refresh-dependencies

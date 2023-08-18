@@ -5,9 +5,9 @@ import org.jetbrains.annotations.Nullable;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import link.mdks.beenomey.apiculture.util.BeeManager;
+import link.mdks.beenomey.apiculture.util.BeeType;
 import link.mdks.beenomey.init.BeeInit;
-import link.mdks.beenomey.util.BeeManager;
-import link.mdks.beenomey.util.BeeType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;

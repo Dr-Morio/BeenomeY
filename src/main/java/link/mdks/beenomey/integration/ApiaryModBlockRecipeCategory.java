@@ -4,8 +4,8 @@ import com.mojang.blaze3d.vertex.PoseStack;
 
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockRecipe;
+import link.mdks.beenomey.apiculture.util.BeeType;
 import link.mdks.beenomey.init.BlockInit;
-import link.mdks.beenomey.util.BeeType;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;

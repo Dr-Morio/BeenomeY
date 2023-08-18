@@ -144,7 +144,6 @@ repositories {
     	name = "ModMaven"
     	url = "https://modmaven.dev"
 	}
-    
 }
 
 dependencies {
@@ -161,6 +160,9 @@ dependencies {
 	// at runtime, use the full JEI jar for Forge
 	runtimeOnly(fg.deobf("mezz.jei:jei-${jei_mc_version}-forge:${jei_version}"))
 
+	//Mekanism
+	//compileOnly "mekanism:Mekanism:${mekanism_version}:api"
+	//runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}")// core
 
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // implementation fg.deobf("com.tterrag.registrate:Registrate:MC${mc_version}-${registrate_version}") // Adds registrate as a dependency

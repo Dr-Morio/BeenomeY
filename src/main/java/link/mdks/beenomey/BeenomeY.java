@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 
 import link.mdks.beenomey.apiculture.screen.ApiaryModBlockScreen;
 import link.mdks.beenomey.apiculture.screen.BreederBlockScreen;
+import link.mdks.beenomey.apiculture.util.ItemBeeTextureProperties;
 import link.mdks.beenomey.core.BeenomeYTabs;
 import link.mdks.beenomey.init.BeeInit;
 import link.mdks.beenomey.init.BlockEntityInit;
@@ -11,7 +12,7 @@ import link.mdks.beenomey.init.BlockInit;
 import link.mdks.beenomey.init.ItemInit;
 import link.mdks.beenomey.init.MenuTypeInit;
 import link.mdks.beenomey.init.RecipeInit;
-import link.mdks.beenomey.util.ItemBeeTextureProperties;
+import link.mdks.beenomey.networking.NetworkMessages;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
@@ -66,6 +67,9 @@ public class BeenomeY
         
         // Register Creative Tab Items
         modEventBus.addListener(this::addCreative);
+        
+        // Common Setup with Networking
+        modEventBus.addListener(this::commonSetup);
                 
         GeckoLib.initialize();
         
@@ -73,9 +77,8 @@ public class BeenomeY
     
     
     
-    @SuppressWarnings("unused")
 	private void commonSetup(final FMLCommonSetupEvent event) {
-    	
+    	NetworkMessages.register();
     }
     
 	private void addCreative(CreativeModeTabEvent.BuildContents event) {

@@ -7,9 +7,9 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 import link.mdks.beenomey.BeenomeY;
+import link.mdks.beenomey.apiculture.util.BeeManager;
+import link.mdks.beenomey.apiculture.util.BeeType;
 import link.mdks.beenomey.init.BeeInit;
-import link.mdks.beenomey.util.BeeManager;
-import link.mdks.beenomey.util.BeeType;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;

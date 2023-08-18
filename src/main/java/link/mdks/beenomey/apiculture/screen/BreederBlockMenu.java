@@ -157,4 +157,9 @@ public class BreederBlockMenu extends AbstractContainerMenu{
 		}
 	}
 
+	/* used for Energy System*/
+	public BreederBlockEntity getBlockEntity() {
+		return this.blockEntity;
+	}
+
 }

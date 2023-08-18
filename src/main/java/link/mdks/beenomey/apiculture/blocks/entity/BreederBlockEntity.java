@@ -6,6 +6,9 @@ import org.jetbrains.annotations.Nullable;
 import link.mdks.beenomey.apiculture.blocks.BreederBlock;
 import link.mdks.beenomey.apiculture.screen.BreederBlockMenu;
 import link.mdks.beenomey.init.BlockEntityInit;
+import link.mdks.beenomey.networking.NetworkMessages;
+import link.mdks.beenomey.networking.packets.EnergySyncS2CPacket;
+import link.mdks.beenomey.util.ModEnergyStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -18,11 +21,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
@@ -124,6 +129,10 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 	@Override
 	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
 		
+		if(cap == ForgeCapabilities.ENERGY) {
+			return lazyEnergyHandler.cast();
+		}
+		
 		if (cap == ForgeCapabilities.ITEM_HANDLER) {
 			return lazyItemHandler.cast();
 		}
@@ -135,24 +144,30 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 	public void onLoad() {
 		super.onLoad();
 		lazyItemHandler = LazyOptional.of(() -> itemHandler);
+		lazyEnergyHandler = LazyOptional.of(() -> ENERGY_STORAGE);
 	}
 	
 	@Override
 	public void invalidateCaps() {
 		super.invalidateCaps();
 		lazyItemHandler.invalidate();
+		lazyEnergyHandler.invalidate();
 	}
 	
 	@Override
 	protected void saveAdditional(CompoundTag nbt) {
 		nbt.put("inventory", itemHandler.serializeNBT());
+		nbt.putInt("breeder_block.progress", this.progress);
+		nbt.putInt("breeder_block.energy", ENERGY_STORAGE.getEnergyStored());
 		super.saveAdditional(nbt);
 	}
 	
 	@Override
 	public void load(CompoundTag nbt) {
-		itemHandler.deserializeNBT(nbt.getCompound("inventory"));
 		super.load(nbt);
+		itemHandler.deserializeNBT(nbt.getCompound("inventory"));
+		progress = nbt.getInt("breeder_block.progress");
+		ENERGY_STORAGE.setEnergy(nbt.getInt("breeder_block.energy"));
 	}
 	
 	public void drops() {
@@ -177,5 +192,36 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 			((BreederBlock) blockState.getBlock()).checkCurrentInteractions(); // updates BlockAnimation based on Interactions
 			return;
 		}
+		// ENERGY INPUT FOR DEVELOPMENT
+		if(level.getBlockState(blockPos.above()).getBlock() == Blocks.DIRT) {
+			pEntity.ENERGY_STORAGE.receiveEnergy(100, false);
+		}
+		
 	}
+	
+	/* Energy System */
+	
+	private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
+	private final ModEnergyStorage ENERGY_STORAGE = new ModEnergyStorage(60000, 256) {
+		
+		@Override
+		public void onEnergyChanged() {
+			setChanged();
+			NetworkMessages.sendToClients(new EnergySyncS2CPacket(this.energy, getBlockPos()));
+			
+		}
+	};
+	
+	private static final int ENERGY_REQ = 32;
+
+	public IEnergyStorage getEnergyStorage() {
+		return ENERGY_STORAGE;
+	}
+
+
+	public void setEnergyLevel(int energy) {
+		this.ENERGY_STORAGE.setEnergy(energy);
+	}
+	
+	
 }

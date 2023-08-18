@@ -1,4 +1,4 @@
-package link.mdks.beenomey.util;
+package link.mdks.beenomey.apiculture.util;
 
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.init.BeeInit;

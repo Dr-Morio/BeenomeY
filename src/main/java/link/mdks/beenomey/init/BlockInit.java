@@ -6,7 +6,7 @@ import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.ApiaryModBlock;
 import link.mdks.beenomey.apiculture.blocks.BeehiveBlock;
 import link.mdks.beenomey.apiculture.blocks.BreederBlock;
-import link.mdks.beenomey.util.BeeType;
+import link.mdks.beenomey.apiculture.util.BeeType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;

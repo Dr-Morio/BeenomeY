@@ -1,4 +1,4 @@
-package link.mdks.beenomey.util;
+package link.mdks.beenomey.apiculture.util;
 
 import net.minecraft.ChatFormatting;
 
