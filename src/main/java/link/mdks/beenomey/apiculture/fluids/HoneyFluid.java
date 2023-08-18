@@ -14,8 +14,8 @@ public class HoneyFluid {
     public static final ResourceLocation STILL = new ResourceLocation("block/water_still");
     public static final ResourceLocation FLOWING = new ResourceLocation("block/water_flow");
     public static final ResourceLocation OVERLAY = new ResourceLocation(BeenomeY.MODID, "block/honey/honey_overlay");
-	private static Vector3f fogColor = new Vector3f(217f / 255f, 182f / 255f, 16f / 255f);
-    private static int tintColor = 0x1AF3CE1E;
+	private static Vector3f fogColor = new Vector3f(223f / 255f, 136f / 255f, 3f / 255f);
+    private static int tintColor = 0xFFdf8803;
 
     
     public static int getTintColor() {

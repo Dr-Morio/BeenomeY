@@ -39,5 +39,10 @@
 	"block.beenomey.apiary_mod_block": "Apiary",
 	"block.beenomey.breeder_block": "Breeder",
 	
+	"beenomey.tooltip.liquid.amount.with.capacity": "%s / %s mB",
+	"beenomey.tooltip.liquid.amount": "%s mB",
+	
+	"fluid_type.beenomey.honey_fluid": "Honey",
+	
 	"creativemodetab.beenomey_tab": "Beenome Y"
 }

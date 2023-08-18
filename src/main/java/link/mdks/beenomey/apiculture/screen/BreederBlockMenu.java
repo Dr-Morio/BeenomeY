@@ -17,6 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class BreederBlockMenu extends AbstractContainerMenu{
@@ -27,6 +28,9 @@ public class BreederBlockMenu extends AbstractContainerMenu{
 	private final Level level;
 	private final ContainerData data;
 	private final static int breederSlots = 6;
+	
+	// Fluid System
+	private FluidStack fluidStack;
 	
 	@SuppressWarnings("unused")
 	private int screenHightOffset = BreederBlockScreen.getHightOffset();
@@ -44,6 +48,8 @@ public class BreederBlockMenu extends AbstractContainerMenu{
 		blockEntity = (BreederBlockEntity) entity;
 		this.level = inv.player.level;
 		this.data = data;
+		this.fluidStack = blockEntity.getFluidStack();
+		
 		addPlayerInventory(inv);
 		addPlayerHotbar(inv);
 		
@@ -157,9 +163,19 @@ public class BreederBlockMenu extends AbstractContainerMenu{
 		}
 	}
 
-	/* used for Energy System*/
+	/* used for Energy System */
 	public BreederBlockEntity getBlockEntity() {
 		return this.blockEntity;
+	}
+
+	/* used for Fluid System */
+	
+	public void setFluid(FluidStack fluidStack) {
+		this.fluidStack = fluidStack;
+	}
+	
+	public FluidStack getFluidStack() {
+		return fluidStack;
 	}
 
 }

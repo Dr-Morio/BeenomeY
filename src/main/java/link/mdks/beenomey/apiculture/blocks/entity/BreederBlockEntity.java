@@ -5,10 +5,13 @@ import org.jetbrains.annotations.Nullable;
 
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.BreederBlock;
+import link.mdks.beenomey.apiculture.fluids.BaseFluidType;
 import link.mdks.beenomey.apiculture.screen.BreederBlockMenu;
 import link.mdks.beenomey.init.BlockEntityInit;
+import link.mdks.beenomey.init.FluidInit;
 import link.mdks.beenomey.networking.NetworkMessages;
 import link.mdks.beenomey.networking.packets.EnergySyncS2CPacket;
+import link.mdks.beenomey.networking.packets.FluidSyncS2CPacket;
 import link.mdks.beenomey.util.ModEnergyStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -29,6 +32,10 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
@@ -118,6 +125,9 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 	
 	@Override
 	public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
+		//Updates/Syncs Energy and Fluid on menu load
+		NetworkMessages.sendToClients(new EnergySyncS2CPacket(this.ENERGY_STORAGE.getEnergyStored(), getBlockPos()));
+		NetworkMessages.sendToClients(new FluidSyncS2CPacket(this.getFluidStack(), getBlockPos()));
 		return new BreederBlockMenu(id, inventory, this, this.data);
 	}
 
@@ -134,6 +144,11 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 			return lazyEnergyHandler.cast();
 		}
 		
+		if(cap == ForgeCapabilities.FLUID_HANDLER) {
+			return lazyFluidHandler.cast();
+		}
+		
+		
 		if (cap == ForgeCapabilities.ITEM_HANDLER) {
 			return lazyItemHandler.cast();
 		}
@@ -146,6 +161,7 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 		super.onLoad();
 		lazyItemHandler = LazyOptional.of(() -> itemHandler);
 		lazyEnergyHandler = LazyOptional.of(() -> ENERGY_STORAGE);
+		lazyFluidHandler = LazyOptional.of(() -> FLUID_TANK);
 	}
 	
 	@Override
@@ -153,6 +169,7 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 		super.invalidateCaps();
 		lazyItemHandler.invalidate();
 		lazyEnergyHandler.invalidate();
+		lazyFluidHandler.invalidate();
 	}
 	
 	@Override
@@ -160,6 +177,7 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 		nbt.put("inventory", itemHandler.serializeNBT());
 		nbt.putInt("breeder_block.progress", this.progress);
 		nbt.putInt("breeder_block.energy", ENERGY_STORAGE.getEnergyStored());
+		nbt = FLUID_TANK.writeToNBT(nbt);
 		super.saveAdditional(nbt);
 	}
 	
@@ -169,7 +187,7 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 		itemHandler.deserializeNBT(nbt.getCompound("inventory"));
 		progress = nbt.getInt("breeder_block.progress");
 		ENERGY_STORAGE.setEnergy(nbt.getInt("breeder_block.energy"));
-		BeenomeY.LOGGER.debug("LOADED: " + nbt.getInt("breeder_block.energy"));
+		FLUID_TANK.readFromNBT(nbt);
 	}
 	
 	public void drops() {
@@ -197,6 +215,11 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 		// ENERGY INPUT FOR DEVELOPMENT
 		if(level.getBlockState(blockPos.above()).getBlock() == Blocks.DIRT) {
 			pEntity.ENERGY_STORAGE.receiveEnergy(100, false);
+		}
+		
+		// FLUID INPUT FOR DEVELOPMENT
+		if(level.getBlockState(blockPos.above()).getBlock() == Blocks.STONE) {
+			pEntity.FLUID_TANK.fill(new FluidStack(FluidInit.SOURCE_HONEY.get(), 100), FluidAction.EXECUTE);
 		}
 		
 	}
@@ -228,5 +251,35 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 		this.ENERGY_STORAGE.setEnergy(energy);
 	}
 	
+	/* Fliud System */
+	
+	private LazyOptional<IFluidHandler> lazyFluidHandler = LazyOptional.empty();
+	
+	private final FluidTank FLUID_TANK = new FluidTank(64000) {
+		
+		@Override
+		protected void onContentsChanged() {
+			setChanged();
+			if(!level.isClientSide) {
+				NetworkMessages.sendToClients(new FluidSyncS2CPacket(this.fluid, worldPosition));
+			}
+		};
+		
+		@Override
+		public boolean isFluidValid(FluidStack stack) {
+			return stack.getFluid() == FluidInit.SOURCE_HONEY.get();
+		};
+	};
+	
+	/* Helper Functions */
+	
+	public void setFluid(FluidStack stack) {
+		this.FLUID_TANK.setFluid(stack);
+	}
+	
+	public FluidStack getFluidStack() {
+		return this.FLUID_TANK.getFluid();
+	}
 	
 }
+

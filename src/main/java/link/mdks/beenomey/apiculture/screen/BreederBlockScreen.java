@@ -7,18 +7,22 @@ import com.mojang.blaze3d.vertex.PoseStack;
 
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.screen.renderer.EnergyInfoArea;
+import link.mdks.beenomey.apiculture.screen.renderer.FluidTankRenderer;
 import link.mdks.beenomey.util.MouseUtil;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.TooltipFlag;
 
 public class BreederBlockScreen extends AbstractContainerScreen<BreederBlockMenu>{
 	
 	/* Fields */
 	
 	public static final ResourceLocation TEXTURE = new ResourceLocation(BeenomeY.MODID, "textures/gui/breeder_block_menu_dark.png");
+	
+	private FluidTankRenderer fluidTankRenderer;
 	
 	private static int hightOffset = 42; // 42 Pixel higher than default
 	
@@ -57,6 +61,9 @@ public class BreederBlockScreen extends AbstractContainerScreen<BreederBlockMenu
 		// Energy
 		energyInfoArea.draw(pPoseStack);
 		
+		//Fluid
+		fluidTankRenderer.render(pPoseStack, x + 70, y + 99, menu.getFluidStack());
+		
 	}
 	
 	private void renderProgressBar(PoseStack pPoseStack, int x, int y) {
@@ -81,15 +88,17 @@ public class BreederBlockScreen extends AbstractContainerScreen<BreederBlockMenu
 	
 		int x = (width - imageWidth) / 2;
 		int y = (height - imageHeight) / 2;
-		renderEnergyAreaTooltips(pPoseStack, pMouseX, pMouseY, x, y);	
+		renderEnergyAreaTooltips(pPoseStack, pMouseX, pMouseY, x, y);
+		renderFluidTankTooltips(pPoseStack, pMouseX, pMouseY, x, y);
 	}
-
 
 	@Override
 	protected void init() {
 		super.init();
 		assignEnergyInfoArea();
+		assignFluidRenderer();
 	}
+
 
 	/* Energy Sytstem*/
 	
@@ -102,7 +111,6 @@ public class BreederBlockScreen extends AbstractContainerScreen<BreederBlockMenu
 	}
 	
 	private void renderEnergyAreaTooltips(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y) {
-		//if(isMouseAboveArea(pMouseX, pMouseY, x, y, 156,13,8,64)) {
 		if(isMouseAboveArea(pMouseX, pMouseY, x, y, 8,99,49,5)) {
 			renderTooltip(pPoseStack, energyInfoArea.getTooltips(), Optional.empty(), pMouseX - x, pMouseY - y);
 		}
@@ -110,5 +118,22 @@ public class BreederBlockScreen extends AbstractContainerScreen<BreederBlockMenu
 
 	private boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
 		return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, width, height);
+	}
+	
+	/* Fluid System */
+	
+	private void assignFluidRenderer() {
+		fluidTankRenderer = new FluidTankRenderer(64000, true, 74, 12);
+	}
+	
+	private void renderFluidTankTooltips(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y) {
+		if(isMouseAboveArea(pMouseX, pMouseY, x, y,70, 99)) {
+			renderTooltip(pPoseStack, fluidTankRenderer.getTooltip(menu.getFluidStack(), TooltipFlag.NORMAL),
+					Optional.empty(), pMouseX - x, pMouseY - y);
+		}
+	}
+
+	private boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY) {
+		return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, fluidTankRenderer.getWidth(), fluidTankRenderer.getHeight());
 	}
 }
