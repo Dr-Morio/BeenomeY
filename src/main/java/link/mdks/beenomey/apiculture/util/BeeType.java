@@ -1,6 +1,14 @@
 package link.mdks.beenomey.apiculture.util;
 
+import java.util.HashMap;
+
+import link.mdks.beenomey.init.FluidInit;
 import net.minecraft.ChatFormatting;
+import net.minecraft.world.level.material.FlowingFluid;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraftforge.fluids.ForgeFlowingFluid;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public enum BeeType {
     EMPTY(1.0f, 1,1.0f, 0, 1, 1.0f, ChatFormatting.GRAY),
@@ -42,4 +50,23 @@ public enum BeeType {
         this.compDropMultiplier = compDropMultiplier;
         this.textColor = textColor;
     }
+    
+    @SuppressWarnings("serial")
+	private static final HashMap<String, BeeType> fluidToTypeMap = new HashMap<String, BeeType>(){{
+    	put(FluidInit.SOURCE_HONEY.getId().toString(), FOREST);
+    	put(FluidInit.SOURCE_FROZEN_HONEY.getId().toString(), FROZEN);
+    	put(FluidInit.SOURCE_INFERNO_HONEY.getId().toString(), INFERNO);
+    }};
+    
+    private static BeeType getBeeType(String string) {
+    	return fluidToTypeMap.get(string);
+    }
+
+	public static BeeType getBeeType(Fluid fluid) {
+		return getBeeType(ForgeRegistries.FLUIDS.getKey(fluid).toString());
+	}
+	
+    
+    
+    
 }

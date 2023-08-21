@@ -8,7 +8,6 @@ import com.google.gson.JsonObject;
 import link.mdks.beenomey.apiculture.util.BeeManager;
 import link.mdks.beenomey.apiculture.util.BeeType;
 import link.mdks.beenomey.init.BeeInit;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
@@ -20,33 +19,32 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.ForgeRegistry;
 
-public class ApiaryModBlockRecipe implements Recipe<SimpleContainer>{
+public class BreederBlockRecipe implements Recipe<SimpleContainer>{
 	
 	private final ResourceLocation id;
+	private final NonNullList<ItemStack> inputBees;
+	private final FluidStack catalysator;
 	private final ItemStack output;
-	private final NonNullList<ItemStack> inputs;
+	private final int chance;
 	
-
-	public ApiaryModBlockRecipe(ResourceLocation id, ItemStack output, NonNullList<ItemStack> inputs) {
+	public BreederBlockRecipe(ResourceLocation id, NonNullList<ItemStack> inputBees, FluidStack catalysator, ItemStack output, int chance) {
 		this.id = id;
+		this.inputBees = inputBees;
+		this.catalysator = catalysator;
 		this.output = output;
-		this.inputs = inputs;
+		this.chance = chance;
 	}
 
 	@Override
 	public boolean matches(SimpleContainer pContainer, Level pLevel) {
-		
-		// Proceed crafting by matching
-		
 		if(pLevel.isClientSide) {
 			return false;
 		}
-		return false; //TODO: FIX? - Maybe i dont need that because of my own RecipeManager class
-		//BeenomeY.LOGGER.debug("MATCHES GOAT-FINDER: " + recipeItems.get(0) + " matching " + pContainer.getItem(0));
-		//return recipeItems.get(0).test(pContainer.getItem(1)); //compares to slot one(1)
-		//return recipeItems.get(0).test(pContainer.getItem(0));
+		return false;
 	}
 
 	@Override
@@ -60,7 +58,7 @@ public class ApiaryModBlockRecipe implements Recipe<SimpleContainer>{
 	}
 
 	@Override
-	public ItemStack getResultItem(RegistryAccess p_267052_) {
+	public ItemStack getResultItem(@Nullable RegistryAccess p_267052_) {
 		return output.copy();
 	}
 
@@ -81,85 +79,113 @@ public class ApiaryModBlockRecipe implements Recipe<SimpleContainer>{
 
 
 	public NonNullList<ItemStack> getIngredientsAsItemStacks() {
-		return inputs;
+		return inputBees;
 	}
 	
 	@Override
 	public NonNullList<Ingredient> getIngredients() {
-		NonNullList<Ingredient> ingredients = NonNullList.withSize(2, Ingredient.EMPTY); // Hardcoded... that will cause problems
-		for (int i = 0; i < inputs.size(); i++) {
-		    ingredients.set(i, Ingredient.of(inputs.get(i)));
+		
+		NonNullList<Ingredient> ingredients = NonNullList.withSize(inputBees.size(), Ingredient.EMPTY);
+		for (int i = 0; i < inputBees.size(); i++) {
+			ingredients.set(i, Ingredient.of(inputBees.get(i)));
 		}
 		return ingredients;
 	}
 	
-	public static class Type implements RecipeType<ApiaryModBlockRecipe> {
-		private Type() {}
-		public static final Type INSTANCE = new  Type();
-		public static final String ID = "apiary_recipe";
+	public FluidStack getFluidStack() {
+		return catalysator;
 	}
 	
-	public static class Serializer implements RecipeSerializer<ApiaryModBlockRecipe> {
+	public int getChance() {
+		return chance;
+	}
+	
+	public static class Type implements RecipeType<BreederBlockRecipe> {
+		private Type() {}
+		public static final Type INSTANCE = new  Type();
+		public static final String ID = "breeder_recipe";
+	}
+	
+	public static class Serializer implements RecipeSerializer<BreederBlockRecipe> {
+	
 		public static final Serializer INSTANCE = new Serializer();
 		
-		
 		@Override
-		public ApiaryModBlockRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {
-
+		public BreederBlockRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {
+		
+			/* Output */
 			JsonObject outputObject = pSerializedRecipe.getAsJsonObject("output");
-			//String outputItem = outputObject.get("item").getAsString();
 			String outputMainType = outputObject.get("mainType").getAsString();
 			String outputSecondType = outputObject.get("secondType").getAsString();
+			int outputChance = outputObject.get("chance").getAsInt();
             ItemStack output = BeeManager.getBee(BeeType.valueOf(outputMainType), BeeType.valueOf(outputSecondType), new ItemStack(BeeInit.getCommonBee()));
             
+            
+            /* Ingredient Bees */
             JsonArray ingredientsArray = pSerializedRecipe.getAsJsonArray("ingredients");
             NonNullList<ItemStack> inputs = NonNullList.withSize(ingredientsArray.size(), ItemStack.EMPTY);
             
 			for (int i = 0; i < ingredientsArray.size(); i++) {
 				JsonObject ingredientObject = ingredientsArray.get(i).getAsJsonObject();
-				//Ingredient jItem = Ingredient.fromJson(ingredientObject.get("item").getAsJsonObject());
 
 				String jItem = ingredientObject.get("item").getAsString();
 				String mainType = ingredientObject.get("mainType").getAsString();
 				String secondType = ingredientObject.get("secondType").getAsString();
 				
+				
 				/* Item to ItemStack to attach Types*/
 				ItemStack input = BeeManager.getBee(BeeType.valueOf(mainType), BeeType.valueOf(secondType),
 						new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(jItem))));
 				inputs.set(i, input);
-				
-		
 			}
+			
+			/* Fluid -> Catalysator */
+			JsonObject fluidObject = pSerializedRecipe.getAsJsonObject("fluid");
+			FluidStack catalysator = new FluidStack(ForgeRegistries.FLUIDS.getValue(new ResourceLocation(fluidObject.get("FluidName").getAsString())), fluidObject.get("Amount").getAsInt());
+
+			return new BreederBlockRecipe(pRecipeId, inputs, catalysator, output, outputChance);
+			
             
-            return new ApiaryModBlockRecipe(pRecipeId, output, inputs);
+            
 			
 		}
-		
+
 		@Override
-		public @Nullable ApiaryModBlockRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
-	           NonNullList<ItemStack> inputs = NonNullList.withSize(buf.readInt(), ItemStack.EMPTY);
+		public @Nullable BreederBlockRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
 
-	            for (int i = 0; i < inputs.size(); i++) {
-	                inputs.set(i, buf.readItem());
-	            }
-
-	            ItemStack output = buf.readItem();
-	            return new ApiaryModBlockRecipe(id, output, inputs);
-			
-		}
-		
-		@SuppressWarnings("resource")
-		@Override
-		public void toNetwork(FriendlyByteBuf buf, ApiaryModBlockRecipe recipe) {
-			
-            buf.writeInt(recipe.getIngredients().size());
-
-            for (ItemStack is : recipe.getIngredientsAsItemStacks()) {
-                buf.writeItemStack(is, false);
+			NonNullList<ItemStack> inputs = NonNullList.withSize(pBuffer.readInt(), ItemStack.EMPTY);
+			FluidStack catalysator;
+			ItemStack output;
+			int chance;
+			 
+            for (int i = 0; i < inputs.size(); i++) {
+                inputs.set(i, pBuffer.readItem());
             }
-            buf.writeItemStack(recipe.getResultItem(Minecraft.getInstance().level.registryAccess()), false);
+            
+            catalysator = pBuffer.readFluidStack();
+            output = pBuffer.readItem();
+            chance = pBuffer.readInt();
+            
+            return new BreederBlockRecipe(pRecipeId, inputs, catalysator, output, chance);
+		}
+
+		@Override
+		public void toNetwork(FriendlyByteBuf pBuffer, BreederBlockRecipe pRecipe) {
+			
+			pBuffer.writeInt(pRecipe.getIngredients().size());
+			
+			for (ItemStack is : pRecipe.getIngredientsAsItemStacks()) {
+				pBuffer.writeItemStack(is, false);
+			}
+			
+			pBuffer.writeFluidStack(pRecipe.getFluidStack());
+			
+			pBuffer.writeItemStack(pRecipe.getResultItem(null), false);
+			
+			pBuffer.writeInt(pRecipe.getChance());
 			
 		}
+		
 	}
-	
+
 }

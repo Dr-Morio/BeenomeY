@@ -2,6 +2,7 @@ package link.mdks.beenomey.init;
 
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockRecipe;
+import link.mdks.beenomey.apiculture.recipe.BreederBlockRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -14,6 +15,9 @@ public class RecipeInit {
 
     public static final RegistryObject<RecipeSerializer<ApiaryModBlockRecipe>> APIARY_RECIPE_SERIALIZER =
             SERIALIZERS.register("apiary_recipe", () -> ApiaryModBlockRecipe.Serializer.INSTANCE);
+    
+    public static final RegistryObject<RecipeSerializer<BreederBlockRecipe>> BREEDER_RECIPE_SERIALIZER =
+            SERIALIZERS.register("breeder_recipe", () -> BreederBlockRecipe.Serializer.INSTANCE);
 
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);

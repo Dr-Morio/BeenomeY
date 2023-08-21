@@ -1,4 +1,4 @@
-package link.mdks.beenomey.datagen;
+package link.mdks.beenomey.datagen.machines;
 
 
 import java.util.function.Consumer;
@@ -8,7 +8,6 @@ import com.google.gson.JsonObject;
 
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockRecipe;
-import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockRecipe.Serializer;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.CriterionTriggerInstance;
@@ -20,7 +19,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ApiaryRecipeBuilder implements RecipeBuilder{
