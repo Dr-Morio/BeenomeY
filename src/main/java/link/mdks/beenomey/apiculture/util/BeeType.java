@@ -11,8 +11,9 @@ public enum BeeType {
     ROCK(6.0f, 9, 1.6f, 0, 1, 1.0f, ChatFormatting.GRAY),
     INFERNO(7.0f, 3, 1.5f, 35, 2, 3.0f, ChatFormatting.DARK_RED),
     VOID(8.0f, 1, 1.3f, 50, 3, 4.0f, ChatFormatting.DARK_BLUE),
+
     MAGMA(9.0f, 4, 1f, 30, 2, 2.0f, ChatFormatting.RED),
-    PAPER(10f, 4, 1f, 10, 2, 1.8f, ChatFormatting.WHITE),
+    SUGAR(10f, 4, 1f, 10, 2, 1.8f, ChatFormatting.WHITE),
     LAPIS_LAZULI(11F, 5, 1.2f, 10, 1, 1.5f, ChatFormatting.DARK_BLUE),
     REDSTONE(12F, 4, 1.8f, 20, 2, 1.7f, ChatFormatting.RED),
     IRON(13F, 5, 1.9f, -5, 1, 1.5f,ChatFormatting.GRAY),

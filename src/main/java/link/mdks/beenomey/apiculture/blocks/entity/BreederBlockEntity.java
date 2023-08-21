@@ -1,5 +1,6 @@
 package link.mdks.beenomey.apiculture.blocks.entity;
 
+import org.apache.commons.compress.archivers.zip.X000A_NTFS;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -28,6 +29,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
@@ -38,6 +40,7 @@ import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.registries.RegistryObject;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimationController;
@@ -105,15 +108,20 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 	public void registerControllers(ControllerRegistrar controllers) {
 		controllers.add(new AnimationController<>(this, state -> {
 			
-			if(state.getAnimatable().getLevel().getBlockState(state.getAnimatable().getBlockPos().above()).getBlock() == Blocks.AIR) {
-				if (((BreederBlock) state.getAnimatable().getBlockState().getBlock()).isInteractedBlock(worldPosition)) {
-					return state.setAndContinue(OPEN);
-				} else {
-					return state.setAndContinue(CLOSE);
-				}
-			} else {
-				return state.setAndContinue(CLOSE);
-			}
+			return state.setAndContinue(
+				    state.getAnimatable().getLevel().getBlockState(state.getAnimatable().getBlockPos().above()).isAir() &&
+				    ((BreederBlock) state.getAnimatable().getBlockState().getBlock()).isInteractedBlock(worldPosition) ? OPEN : CLOSE
+				);
+			
+//			if(state.getAnimatable().getLevel().getBlockState(state.getAnimatable().getBlockPos().above()).getBlock() == Blocks.AIR) {
+//				if (((BreederBlock) state.getAnimatable().getBlockState().getBlock()).isInteractedBlock(worldPosition)) {
+//					return state.setAndContinue(OPEN);
+//				} else {
+//					return state.setAndContinue(CLOSE);
+//				}
+//			} else {
+//				return state.setAndContinue(CLOSE);
+//			}
 		}));	
 	}
 	
@@ -224,7 +232,11 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 		
 		// FLUID INPUT FOR DEVELOPMENT
 		if(level.getBlockState(blockPos.above()).getBlock() == Blocks.STONE) {
-			pEntity.FLUID_TANK.fill(new FluidStack(FluidInit.SOURCE_HONEY.get(), 100), FluidAction.EXECUTE);
+			pEntity.FLUID_TANK.fill(new FluidStack(FluidInit.SOURCE_INFERNO_HONEY.get(), 100), FluidAction.EXECUTE);
+		}
+		
+		if(level.getBlockState(blockPos.above()).getBlock() == Blocks.COBBLESTONE) {
+			pEntity.FLUID_TANK.fill(new FluidStack(FluidInit.SOURCE_FROZEN_HONEY.get(), 100), FluidAction.EXECUTE);
 		}
 		
 	}
@@ -260,7 +272,7 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 	
 	private LazyOptional<IFluidHandler> lazyFluidHandler = LazyOptional.empty();
 	
-	private final FluidTank FLUID_TANK = new FluidTank(64000) {
+	private final FluidTank FLUID_TANK = new FluidTank(8000) {
 		
 		@Override
 		protected void onContentsChanged() {
@@ -272,7 +284,7 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 		
 		@Override
 		public boolean isFluidValid(FluidStack stack) {
-			return stack.getFluid() == FluidInit.SOURCE_HONEY.get();
+			return FluidInit.FLUIDS.getEntries().stream().map(RegistryObject::get).anyMatch(fluid -> fluid == stack.getFluid());
 		};
 	};
 	

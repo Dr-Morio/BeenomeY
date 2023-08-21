@@ -125,7 +125,7 @@ public class ApiaryModBlockEntity extends BlockEntity implements  GeoBlockEntity
 		@Override
 		public boolean isItemValid(int slot, ItemStack stack) {
 			return switch(slot) {
-			case 0 -> false;
+			case 0 -> stack.getItem().getClass() == ItemInit.HONEYCOMB.get().getClass();
 			case 1 -> stack.getItem().getClass() == ItemInit.HONEYCOMB.get().getClass();
 			case 2 -> stack.getItem().getClass() == ItemInit.HONEYCOMB.get().getClass();
 			case 3 -> stack.getItem().getClass() == ItemInit.HONEYCOMB.get().getClass();

@@ -38,6 +38,10 @@ import org.slf4j.Logger;
 * A big thanks to him for providing such an amazing video series!
 */
 
+
+// Infused Honey with different burn properties
+// Electric Bees
+
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(BeenomeY.MODID)
 public class BeenomeY

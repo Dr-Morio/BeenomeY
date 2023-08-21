@@ -25,6 +25,9 @@
 	"item.beenomey.structurecomb": "Structurecomb",
 	
 	"item.beenomey.honey_bucket": "Honey Bucket",
+	"item.beenomey.inferno_honey_bucket": "Hot Honey Bucket",
+	"item.beenomey.ocean_honey_bucket": "Watery Honey Bucket",
+	"item.beenomey.frozen_honey_bucket": "Icy Honey Bucket",
 	
 	"block.beenomey.oakwood_beehive_block": "Oakwood Beehive",
 	"block.beenomey.birchwood_beehive_block": "Birchwood Beehive",
@@ -42,7 +45,10 @@
 	"beenomey.tooltip.liquid.amount.with.capacity": "%s / %s mB",
 	"beenomey.tooltip.liquid.amount": "%s mB",
 	
-	"fluid_type.beenomey.honey_fluid": "Honey",
+	"fluid_type.beenomey.honey_fluid": "Liquid Honey",
+	"fluid_type.beenomey.inferno_honey_fluid": "Liquid Hot Honey",
+	"fluid_type.beenomey.ocean_honey_fluid": "Liquid Watery Honey",
+	"fluid_type.beenomey.frozen_honey_fluid": "Liquid Icy Honey",
 	
 	"creativemodetab.beenomey_tab": "Beenome Y"
 }

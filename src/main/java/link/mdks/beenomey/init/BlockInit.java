@@ -6,7 +6,7 @@ import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.ApiaryModBlock;
 import link.mdks.beenomey.apiculture.blocks.BeehiveBlock;
 import link.mdks.beenomey.apiculture.blocks.BreederBlock;
-import link.mdks.beenomey.apiculture.fluids.HoneyFluid;
+import link.mdks.beenomey.apiculture.fluids.FluidResourceProvider;
 import link.mdks.beenomey.apiculture.util.BeeType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -68,8 +68,12 @@ public class BlockInit {
 			
 	/* Liquid Blocks*/
 
-    public static final RegistryObject<LiquidBlock> HONEY_FLUID_BLOCK = BLOCKS.register("honey_fluid_block",
-            () -> new LiquidBlock(FluidInit.SOURCE_HONEY, BlockBehaviour.Properties.copy(Blocks.WATER)));
+//    public static final RegistryObject<LiquidBlock> HONEY_FLUID_BLOCK = BLOCKS.register("honey_fluid_block",
+//            () -> new LiquidBlock(FluidInit.SOURCE_HONEY, BlockBehaviour.Properties.of(Material.WATER).jumpFactor(0.3F).noCollission().speedFactor(0.3F).friction(1.0f).strength(100.0F)));
+//    public static final RegistryObject<LiquidBlock> FROZEN_HONEY_FLUID_BLOCK = BLOCKS.register("frozen_honey_fluid_block",
+//            () -> new LiquidBlock(FluidInit.SOURCE_FROZEN_HONEY, BlockBehaviour.Properties.of(Material.WATER).jumpFactor(0.3F).noCollission().speedFactor(0.3F).friction(1.0f).strength(100.0F)));
+//    public static final RegistryObject<LiquidBlock> INFERNO_HONEY_FLUID_BLOCK = BLOCKS.register("inferno_honey_fluid_block",
+//            () -> new LiquidBlock(FluidInit.SOURCE_INFERNO_HONEY, BlockBehaviour.Properties.of(Material.LAVA).jumpFactor(0.3F).noCollission().speedFactor(0.3F).friction(1.0f).strength(100.0F)));
 
 	
 //    public static final RegistryObject<LiquidBlock> HONEY = BLOCKS.register("honey",

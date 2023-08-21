@@ -76,6 +76,16 @@ public class ItemInit {
 
     public static final RegistryObject<Item> HONEY_BUCKET = BUCKETS.register("honey_bucket", 
     		() -> new BucketItem(FluidInit.SOURCE_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+    
+    public static final RegistryObject<Item> FROZEN_HONEY_BUCKET = BUCKETS.register("frozen_honey_bucket", 
+    		() -> new BucketItem(FluidInit.SOURCE_FROZEN_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+    
+    public static final RegistryObject<Item> OCEAN_HONEY_BUCKET = BUCKETS.register("ocean_honey_bucket", 
+    		() -> new BucketItem(FluidInit.SOURCE_OCEAN_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+    
+    public static final RegistryObject<Item> INFERNO_HONEY_BUCKET = BUCKETS.register("inferno_honey_bucket", 
+    		() -> new BucketItem(FluidInit.SOURCE_INFERNO_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+    
 
 	
 	/* BlockItems */

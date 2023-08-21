@@ -65,7 +65,7 @@ public class BeeManager {
     		case INFERNO -> new ItemStack(ItemInit.INFERNO_HONEYCOMB.get(), count);
     		case VOID -> new ItemStack(ItemInit.VOID_HONEYCOMB.get(), count);
     		case MAGMA -> new ItemStack(ItemInit.MAGMA_HONEYCOMB.get(), count);
-    		case PAPER -> new ItemStack(ItemInit.PAPER_HONEYCOMB.get(), count);
+    		case SUGAR -> new ItemStack(ItemInit.PAPER_HONEYCOMB.get(), count);
     		case LAPIS_LAZULI -> new ItemStack(ItemInit.LAPIS_HONEYCOMB.get(), count);
     		case REDSTONE -> new ItemStack(ItemInit.REDSTONE_HONEYCOMB.get(), count);
     		case IRON -> new ItemStack(ItemInit.IRON_HONEYCOMB.get(), count);
