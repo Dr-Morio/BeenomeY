@@ -2,7 +2,7 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "beenomey:item/bee/body/bee_base_0",
-    "layer1": "beenomey:item/bee/body/bee_body_color_0",
+    "layer1": "beenomey:item/bee/body/bee_body_color_2",
     "layer2": "beenomey:item/bee/type_frame/lapis_lazuli"
   }
 }
