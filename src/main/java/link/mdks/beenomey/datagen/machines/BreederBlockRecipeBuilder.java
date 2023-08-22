@@ -37,7 +37,6 @@ public class BreederBlockRecipeBuilder implements RecipeBuilder{
 		this.catalysator = catalysator;
 		this.result = result;
 		this.chance = chance;
-		BeenomeY.LOGGER.debug("FLUID: " + catalysator.getTranslationKey());
 	}
 	
 	@Override

@@ -78,6 +78,7 @@ public class BeenomeY
         
         // Register FluidTypes
         FluidTypeInit.register(modEventBus);
+        
         // Register Fluids
         FluidInit.register(modEventBus);
        

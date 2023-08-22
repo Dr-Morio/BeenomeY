@@ -78,16 +78,16 @@ public class BeenomeyRecipeProvider extends RecipeProvider implements ICondition
 		
 		// Hardcoded Dummy Recipe set for Breeder
 		new BreederBlockRecipeBuilder(
-				dummyBeeIngredientBreederRecipeBuilder(BeeType.FOREST,  BeeType.FOREST, 3),
-				new FluidStack(FluidInit.SOURCE_INFERNO_HONEY.get(), 3000),
+				dummyBeeIngredientBreederRecipeBuilder(BeeType.FOREST,  BeeType.FOREST, 4),
+				new FluidStack(FluidInit.SOURCE_INFERNO_HONEY.get(), 4000),
 				BeeManager.getBee(BeeType.FOREST, BeeType.INFERNO, new ItemStack(BeeInit.getCommonBee())),
 				5)
 		.unlockedBy("has_bees", inventoryTrigger(ItemPredicate.Builder.item().of(BeeInit.getCommonBee()).build()))
 		.save(consumer);
 		
 		new BreederBlockRecipeBuilder(
-				dummyBeeIngredientBreederRecipeBuilder(BeeType.FROZEN,  BeeType.INFERNO, 5),
-				new FluidStack(FluidInit.SOURCE_FROZEN_HONEY.get(), 5000),
+				dummyBeeIngredientBreederRecipeBuilder(BeeType.FROZEN,  BeeType.INFERNO, 4),
+				new FluidStack(FluidInit.SOURCE_FROZEN_HONEY.get(), 4000),
 				BeeManager.getBee(BeeType.FROZEN, BeeType.FROZEN, new ItemStack(BeeInit.getCommonBee())),
 				5)
 		.unlockedBy("has_bees", inventoryTrigger(ItemPredicate.Builder.item().of(BeeInit.getCommonBee()).build()))

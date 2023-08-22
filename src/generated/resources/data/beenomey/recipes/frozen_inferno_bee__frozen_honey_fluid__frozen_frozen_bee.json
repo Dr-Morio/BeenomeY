@@ -1,15 +1,10 @@
 {
   "type": "beenomey:breeder_recipe",
   "fluid": {
-    "Amount": 5000,
+    "Amount": 4000,
     "FluidName": "beenomey:frozen_honey_fluid"
   },
   "ingredients": [
-    {
-      "item": "beenomey:common_bee",
-      "mainType": "FROZEN",
-      "secondType": "INFERNO"
-    },
     {
       "item": "beenomey:common_bee",
       "mainType": "FROZEN",

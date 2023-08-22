@@ -123,7 +123,7 @@ public class BreederBlockScreen extends AbstractContainerScreen<BreederBlockMenu
 	/* Fluid System */
 	
 	private void assignFluidRenderer() {
-		fluidTankRenderer = new FluidTankRenderer(64000, true, 74, 12);
+		fluidTankRenderer = new FluidTankRenderer(16000, true, 74, 12);
 	}
 	
 	private void renderFluidTankTooltips(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y) {

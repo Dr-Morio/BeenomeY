@@ -331,7 +331,7 @@ public class ApiaryModBlockEntity extends BlockEntity implements  GeoBlockEntity
 		int referenceNegativeTickChance = referencePositiveTickChance * -1;
 		BeenomeY.LOGGER.debug("RANDOM TICK: " + referencePositiveTickChance + " / " + randomTickChance);
 		
-		if(randomTickChance > 0) {
+		if(randomTickChance >= 0) {
 			if (randomTickChance >= referencePositiveTickChance) {
 				pEntity.progress++;//Positive Progress by Chance
 				BeenomeY.LOGGER.debug("RANDOM TICK: TICK");

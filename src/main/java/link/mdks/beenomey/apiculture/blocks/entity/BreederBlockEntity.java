@@ -272,7 +272,7 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 	
 	private LazyOptional<IFluidHandler> lazyFluidHandler = LazyOptional.empty();
 	
-	private final FluidTank FLUID_TANK = new FluidTank(8000) {
+	private final FluidTank FLUID_TANK = new FluidTank(16000) {
 		
 		@Override
 		protected void onContentsChanged() {
