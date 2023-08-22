@@ -57,61 +57,181 @@
       "predicate": {
         "beenomey:texture_variant": 9
       },
-      "model": "beenomey:item/bee/magma_bee"
+      "model": "beenomey:item/bee/coal_bee"
     },
     {
       "predicate": {
         "beenomey:texture_variant": 10
       },
-      "model": "beenomey:item/bee/paper_bee"
+      "model": "beenomey:item/bee/gunpowder_bee"
     },
         {
       "predicate": {
         "beenomey:texture_variant": 11
       },
-      "model": "beenomey:item/bee/lapis_bee"
+      "model": "beenomey:item/bee/flint_bee"
     },
         {
       "predicate": {
         "beenomey:texture_variant": 12
       },
-      "model": "beenomey:item/bee/redstone_bee"
+      "model": "beenomey:item/bee/slime_bee"
     },
         {
       "predicate": {
         "beenomey:texture_variant": 13
       },
-      "model": "beenomey:item/bee/iron_bee"
+      "model": "beenomey:item/bee/sugar_bee"
     },
         {
       "predicate": {
         "beenomey:texture_variant": 14
       },
-      "model": "beenomey:item/bee/gold_bee"
+      "model": "beenomey:item/bee/glass_bee"
     },
         {
       "predicate": {
         "beenomey:texture_variant": 15
       },
-      "model": "beenomey:item/bee/copper_bee"
+      "model": "beenomey:item/bee/clay_bee"
     },
         {
       "predicate": {
         "beenomey:texture_variant": 16
       },
-      "model": "beenomey:item/bee/diamond_bee"
+      "model": "beenomey:item/bee/string_bee"
     },
         {
       "predicate": {
         "beenomey:texture_variant": 17
       },
-      "model": "beenomey:item/bee/obsidian_bee"
+      "model": "beenomey:item/bee/nether_wart_bee"
     },
         {
       "predicate": {
         "beenomey:texture_variant": 18
       },
-      "model": "beenomey:item/bee/modified_bee"
-    }
+      "model": "beenomey:item/bee/soul_sand_bee"
+    },
+            {
+      "predicate": {
+        "beenomey:texture_variant": 19
+      },
+      "model": "beenomey:item/bee/mushroom_bee"
+    },
+            {
+      "predicate": {
+        "beenomey:texture_variant": 20
+      },
+      "model": "beenomey:item/bee/lava_bee"
+    },
+            {
+      "predicate": {
+        "beenomey:texture_variant": 21
+      },
+      "model": "beenomey:item/bee/lapis_lazuli_bee"
+    },
+            {
+      "predicate": {
+        "beenomey:texture_variant": 22
+      },
+      "model": "beenomey:item/bee/redstone_bee"
+    },
+            {
+      "predicate": {
+        "beenomey:texture_variant": 23
+      },
+      "model": "beenomey:item/bee/iron_bee"
+    },
+            {
+      "predicate": {
+        "beenomey:texture_variant": 24
+      },
+      "model": "beenomey:item/bee/gold_bee"
+    },
+            {
+      "predicate": {
+        "beenomey:texture_variant": 25
+      },
+      "model": "beenomey:item/bee/copper_bee"
+    },
+            {
+      "predicate": {
+        "beenomey:texture_variant": 26
+      },
+      "model": "beenomey:item/bee/diamond_bee"
+    },
+            {
+      "predicate": {
+        "beenomey:texture_variant": 27
+      },
+      "model": "beenomey:item/bee/obsidian_bee"
+    },
+            {
+      "predicate": {
+        "beenomey:texture_variant": 28
+      },
+      "model": "beenomey:item/bee/glowstone_bee"
+    },
+            {
+      "predicate": {
+        "beenomey:texture_variant": 29
+      },
+      "model": "beenomey:item/bee/blaze_bee"
+    },
+            {
+      "predicate": {
+        "beenomey:texture_variant": 30
+      },
+      "model": "beenomey:item/bee/emerald_bee"
+    },
+            {
+      "predicate": {
+        "beenomey:texture_variant": 31
+      },
+      "model": "beenomey:item/bee/nether_star_bee"
+    },
+            {
+      "predicate": {
+        "beenomey:texture_variant": 32
+      },
+      "model": "beenomey:item/bee/nether_quarz_bee"
+    },
+            {
+      "predicate": {
+        "beenomey:texture_variant": 33
+      },
+      "model": "beenomey:item/bee/prismarine_bee"
+    },
+            {
+      "predicate": {
+        "beenomey:texture_variant": 34
+      },
+      "model": "beenomey:item/bee/chorius_bee"
+    },
+            {
+      "predicate": {
+        "beenomey:texture_variant": 35
+      },
+      "model": "beenomey:item/bee/netherite_bee"
+    },
+            {
+      "predicate": {
+        "beenomey:texture_variant": 36
+      },
+      "model": "beenomey:item/bee/exp_bee"
+    },
+            {
+      "predicate": {
+        "beenomey:texture_variant": 37
+      },
+      "model": "beenomey:item/bee/ender_pearl_bee"
+    },
+            {
+      "predicate": {
+        "beenomey:texture_variant": 38
+      },
+      "model": "beenomey:item/bee/amethyst_bee"
+    }    
   ]
 }

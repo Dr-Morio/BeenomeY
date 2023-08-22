@@ -1,9 +1,0 @@
-{
-	"parent": "item/generated",
-	"textures": {
-		"layer0": "beenomey:item/bee/body/bee_base_0",
-		"layer1": "beenomey:item/bee/body/bee_body_color_3",
-		"layer2": "beenomey:item/bee/type_frame_princess/void",
-		"layer3": "beenomey:item/bee/crown/princess"
-	}
-}

@@ -11,25 +11,60 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public enum BeeType {
-    EMPTY(1.0f, 1,1.0f, 0, 1, 1.0f, ChatFormatting.GRAY),
-    FOREST(2.0f, 7, 1.0f, 0, 1, 1.0f, ChatFormatting.DARK_GREEN),
-    FROZEN(3.0f, 8, 1.4f, -20, 1, 0.4f, ChatFormatting.AQUA),
-    OCEAN(4.0f, 5, 0.6f, 10, 1, 1.6f, ChatFormatting.DARK_AQUA),
-    DESERT(5.0f, 6, 0.8f, 30, 1, 3f, ChatFormatting.GOLD),
-    ROCK(6.0f, 9, 1.6f, 0, 1, 1.0f, ChatFormatting.GRAY),
-    INFERNO(7.0f, 3, 1.5f, 35, 2, 3.0f, ChatFormatting.DARK_RED),
-    VOID(8.0f, 1, 1.3f, 50, 3, 4.0f, ChatFormatting.DARK_BLUE),
+	/**Lifecycle value is provided by Main Type 
+	 * LifecycleMultiplayer is provided by Second Type
+	 * RandomTickChance is provided by Main Type
+	 * CompDrop only occurs in Apiary and is provided by chance of 50% of Main- or SecondType
+	 * CompDropMultiplayer is provided by SecondType
+	*/
+	
+	/* Default -> Just for initialization */
+	EMPTY(			1f,		5,	1.0f,	0,		1,		1.0f,	ChatFormatting.GRAY),
 
-    MAGMA(9.0f, 4, 1f, 30, 2, 2.0f, ChatFormatting.RED),
-    SUGAR(10f, 4, 1f, 10, 2, 1.8f, ChatFormatting.WHITE),
-    LAPIS_LAZULI(11F, 5, 1.2f, 10, 1, 1.5f, ChatFormatting.DARK_BLUE),
-    REDSTONE(12F, 4, 1.8f, 20, 2, 1.7f, ChatFormatting.RED),
-    IRON(13F, 5, 1.9f, -5, 1, 1.5f,ChatFormatting.GRAY),
-    GOLD(14F, 2, 1.1f, -10, 2, 1.4f,ChatFormatting.GOLD),
-    COPPER(15F, 1, 2.2f, 5, 2, 1.8f, ChatFormatting.DARK_RED),
-    DIAMOND(16F, 10, 2.4f, -30, 1, 0.5f, ChatFormatting.AQUA),
-    OBSIDIAN(17F, 15, 3.5f, -50, 1, 0.5f, ChatFormatting.OBFUSCATED);
+	/* World Spawnable */
+	/* Default Live of 5 */
+	FOREST(			2f,		5, 	1.0f,	0,		1,		1.0f,	ChatFormatting.DARK_GREEN),
+    FROZEN(			3f,		1, 	5.0f,	-20,	2,		0.4f,	ChatFormatting.AQUA),
+    OCEAN(			4f,		5, 	1.0f,	5,		1,		2.0f,	ChatFormatting.DARK_AQUA),
+    DESERT(			5f,		6, 	0.9f,	30,		1,		3.0f,	ChatFormatting.GOLD),
+    ROCK(			6f,		9, 	0.6f,	-10,	3,		1.0f,	ChatFormatting.GRAY),
+    INFERNO(		7f,		1,	5.0f,	35,		2,		2.0f,	ChatFormatting.DARK_RED),
+	/* Special Default Live */	
+    VOID(			8f,		2,	1.3f,	50,		10,		0.1f,	ChatFormatting.DARK_BLUE),
 
+	/* Breeding Types */
+	/* Default Live of 5 */
+	COAL(			9f,		5,	1.0f,	12,		1,		1.0f,	ChatFormatting.BLACK),
+	GUNPOWDER(		10f,	5,	1.0f,	28,		2,		0.5f,	ChatFormatting.DARK_GRAY),
+	FLINT(			11f,	5,	1.0f,	6,		1,		1.0f,	ChatFormatting.DARK_GRAY),
+	SLIME(			12f,	5,	1.0f,	-11,	1,		1.9f,	ChatFormatting.GREEN),
+    SUGAR(			13f,	5, 	1.0f,	3,		1,		1.8f,	ChatFormatting.WHITE),
+	GLASS(			14f,	3,	1.0f,	0,		3,		0.6f,	ChatFormatting.LIGHT_PURPLE),
+	CLAY(			15f,	5,	1.0f,	0,		2,		2.2f,	ChatFormatting.GRAY),
+	STRING(			16f,	5,	1.0f,	2,		5,		0.1f,	ChatFormatting.WHITE),
+	NETHER_WART(	17f,	5,	1.0f,	-4,		1,		3.0f,	ChatFormatting.RED),
+	SOUL_SAND(		18f,	5,	1.0f,	-11,	1,		10.0f,	ChatFormatting.DARK_RED),
+	MUSHROOM(		19f,	5,	1.0f,	4,		10,		0.1f,	ChatFormatting.RED),
+	/* Special Default Live */
+    LAVA(			20f,	4, 	1.0f,	30,		2,		2.0f,	ChatFormatting.RED),
+    LAPIS_LAZULI(	21f, 	4, 	1.2f,	5,		1,		1.5f,	ChatFormatting.DARK_BLUE),
+    REDSTONE(		22f, 	4, 	1.8f,	15,		2,		1.7f,	ChatFormatting.RED),
+    IRON(			23f, 	6, 	1.9f,	-5,		1,		1.5f,	ChatFormatting.GRAY),
+    GOLD(			24f, 	3, 	1.1f,	-10,	1,		1.4f,	ChatFormatting.GOLD),
+    COPPER(			25f, 	3, 	2.0f,	5,		1,		1.8f,	ChatFormatting.DARK_RED),
+    DIAMOND(		26f, 	10,	1.0f,	-30,	14,		0.1f,	ChatFormatting.AQUA),
+    OBSIDIAN(		27f, 	15,	1.2f,	-50,	1,		0.5f,	ChatFormatting.OBFUSCATED),
+	GLOWSTONE(		28f,	4,	2.2f,	33,		64,		0.05f,	ChatFormatting.YELLOW),
+	BLAZE(			29f,	1,	4.0f,	55,		32,		0.05f,	ChatFormatting.YELLOW),
+	EMERALD(		30f,	3,	1.3f,	-5,		1,		1.0f,	ChatFormatting.GREEN),
+	NETEHR_STAR(	31f,	2,	2.2f,	-22,	1,		1.0f,	ChatFormatting.WHITE),
+	NETHER_QUARTZ(	32f,	3,	1.1f,	-3,		1,		1.2f,	ChatFormatting.WHITE),
+	PRISMARINE(		33f,	3,	1.0f,	-17,	1,		1.0f,	ChatFormatting.WHITE),
+	CHORIUS(		34f,	3,	1.1f,	-28,	1,		1.0f,	ChatFormatting.WHITE),
+	NETHERITE(		35f,	3,	0.5f,	-53,	100,	0.01f,	ChatFormatting.DARK_RED),
+	EXP(			36f,	1,	1.0f,	-38,	128,	0.01f,	ChatFormatting.GREEN),
+	ENDER_PEARL(	37f,	2,	1.1f,	80,		13,		0.15f,	ChatFormatting.DARK_BLUE),
+	AMETHYST(		38f,	3,	1.1f,	-22,	22,		0.02f,	ChatFormatting.WHITE);
 
     public float textureTypeValue;
     public int lifecycle;

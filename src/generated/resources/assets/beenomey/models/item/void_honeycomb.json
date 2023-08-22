@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "beenomey:item/combs/void_honeycomb"
+    "layer0": "beenomey:item/comb/void_honeycomb"
   }
 }

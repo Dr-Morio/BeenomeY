@@ -9,7 +9,6 @@ import org.stringtemplate.v4.ST;
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.items.ItemHoneycomb;
 import link.mdks.beenomey.apiculture.items.ItemScoop;
-import link.mdks.beenomey.apiculture.items.ItemStructurecomb;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
@@ -67,10 +66,6 @@ public class ItemInit {
 	public static final RegistryObject<Item> OBSIDIAN_HONEYCOMB = HONEYCOMBS.register("obsidian_honeycomb",
 			() -> new ItemHoneycomb(new Item.Properties()));
 	
-	/* Stricturecombs */
-	
-	public static final RegistryObject<Item> STRUCTURECOMB = STRUCTURECOMBS.register("structurecomb",
-			() -> new ItemStructurecomb(new Item.Properties()));
 	
 	/* Buckets */
 
