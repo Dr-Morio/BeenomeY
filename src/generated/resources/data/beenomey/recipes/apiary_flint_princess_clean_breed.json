@@ -1,0 +1,40 @@
+{
+  "type": "beenomey:apiary_recipe_princess",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "FLINT",
+      "secondType": "FLINT"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "FLINT",
+      "secondType": "FLINT"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "FLINT",
+      "secondType": "FLINT"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "FLINT",
+      "secondType": "FLINT"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "FLINT",
+      "secondType": "FLINT"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "FLINT",
+      "secondType": "FLINT"
+    }
+  ],
+  "output": {
+    "item": "beenomey:princess_bee",
+    "mainType": "FLINT",
+    "secondType": "FLINT"
+  }
+}

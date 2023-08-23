@@ -1,0 +1,40 @@
+{
+  "type": "beenomey:apiary_recipe_princess",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "COAL",
+      "secondType": "COAL"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "COAL",
+      "secondType": "COAL"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "COAL",
+      "secondType": "COAL"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "COAL",
+      "secondType": "COAL"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "COAL",
+      "secondType": "COAL"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "COAL",
+      "secondType": "COAL"
+    }
+  ],
+  "output": {
+    "item": "beenomey:princess_bee",
+    "mainType": "COAL",
+    "secondType": "COAL"
+  }
+}

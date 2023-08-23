@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_bee_of_type_amethyst": {
+    "has_bee": {
       "conditions": {
         "items": [
           {
@@ -13,7 +13,7 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_the_recipe": {
+    "has_bee_recipe": {
       "conditions": {
         "recipe": "beenomey:common_bee"
       },
@@ -22,8 +22,8 @@
   },
   "requirements": [
     [
-      "has_bee_of_type_amethyst",
-      "has_the_recipe"
+      "has_bee",
+      "has_bee_recipe"
     ]
   ],
   "rewards": {

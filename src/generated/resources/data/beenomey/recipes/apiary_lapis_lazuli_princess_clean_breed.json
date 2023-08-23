@@ -1,0 +1,40 @@
+{
+  "type": "beenomey:apiary_recipe_princess",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "LAPIS_LAZULI",
+      "secondType": "LAPIS_LAZULI"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "LAPIS_LAZULI",
+      "secondType": "LAPIS_LAZULI"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "LAPIS_LAZULI",
+      "secondType": "LAPIS_LAZULI"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "LAPIS_LAZULI",
+      "secondType": "LAPIS_LAZULI"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "LAPIS_LAZULI",
+      "secondType": "LAPIS_LAZULI"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "LAPIS_LAZULI",
+      "secondType": "LAPIS_LAZULI"
+    }
+  ],
+  "output": {
+    "item": "beenomey:princess_bee",
+    "mainType": "LAPIS_LAZULI",
+    "secondType": "LAPIS_LAZULI"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "type": "beenomey:apiary_recipe_princess",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "ENDER_PEARL",
+      "secondType": "ENDER_PEARL"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "ENDER_PEARL",
+      "secondType": "ENDER_PEARL"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "ENDER_PEARL",
+      "secondType": "ENDER_PEARL"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "ENDER_PEARL",
+      "secondType": "ENDER_PEARL"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "ENDER_PEARL",
+      "secondType": "ENDER_PEARL"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "ENDER_PEARL",
+      "secondType": "ENDER_PEARL"
+    }
+  ],
+  "output": {
+    "item": "beenomey:princess_bee",
+    "mainType": "ENDER_PEARL",
+    "secondType": "ENDER_PEARL"
+  }
+}

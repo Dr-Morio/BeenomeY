@@ -5,7 +5,8 @@ import java.util.Objects;
 
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.items.ItemBee;
-import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockRecipe;
+import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockBeeRecipeReader;
+import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockPrincessRecipeReader;
 import link.mdks.beenomey.apiculture.recipe.BreederBlockRecipe;
 import link.mdks.beenomey.apiculture.util.BeeManager;
 import link.mdks.beenomey.apiculture.util.BeeType;
@@ -26,13 +27,19 @@ import mezz.jei.api.recipe.RecipeType;
 
 @JeiPlugin
 public class JEIBeenomeYModPlugin implements IModPlugin{
-
-    public static RecipeType<ApiaryModBlockRecipe> APIARY_TYPE =
-            new RecipeType<>(ApiaryModBlockRecipeCategory.UID, ApiaryModBlockRecipe.class);
+	
+	/* Fields */
+    public static RecipeType<ApiaryModBlockBeeRecipeReader> APIARY_BEE_TYPE =
+            new RecipeType<>(ApiaryModBlockRecipeCategoryBee.UID, ApiaryModBlockBeeRecipeReader.class);
+    
+    public static RecipeType<ApiaryModBlockPrincessRecipeReader> APIARY_PRINCESS_TYPE =
+            new RecipeType<>(ApiaryModBlockRecipeCategoryPrincess.UID, ApiaryModBlockPrincessRecipeReader.class);
     
     public static RecipeType<BreederBlockRecipe> BREEDER_TYPE =
             new RecipeType<>(BreederBlockRecipeCategory.UID, BreederBlockRecipe.class);
 	
+    
+    /* Methods */
 	@Override
 	public ResourceLocation getPluginUid() {
 		return new ResourceLocation(BeenomeY.MODID, "jei_plugin");
@@ -40,7 +47,8 @@ public class JEIBeenomeYModPlugin implements IModPlugin{
 	
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
-        registration.addRecipeCategories(new ApiaryModBlockRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new ApiaryModBlockRecipeCategoryBee(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new ApiaryModBlockRecipeCategoryPrincess(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new BreederBlockRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
@@ -60,8 +68,11 @@ public class JEIBeenomeYModPlugin implements IModPlugin{
         @SuppressWarnings("resource")
 		RecipeManager rm = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
 
-        List<ApiaryModBlockRecipe> apiaryRecipes = rm.getAllRecipesFor(ApiaryModBlockRecipe.Type.INSTANCE);
-        registration.addRecipes(APIARY_TYPE, apiaryRecipes);
+        List<ApiaryModBlockBeeRecipeReader> apiaryBeeRecipes = rm.getAllRecipesFor(ApiaryModBlockBeeRecipeReader.Type.INSTANCE);
+        registration.addRecipes(APIARY_BEE_TYPE, apiaryBeeRecipes);
+        
+        List<ApiaryModBlockPrincessRecipeReader> apiaryPrincessRecipes = rm.getAllRecipesFor(ApiaryModBlockPrincessRecipeReader.Type.INSTANCE);
+        registration.addRecipes(APIARY_PRINCESS_TYPE, apiaryPrincessRecipes);
         
         List<BreederBlockRecipe> breederRecipes = rm.getAllRecipesFor(BreederBlockRecipe.Type.INSTANCE);
         registration.addRecipes(BREEDER_TYPE, breederRecipes);

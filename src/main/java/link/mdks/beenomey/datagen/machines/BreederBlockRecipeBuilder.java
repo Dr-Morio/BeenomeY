@@ -7,7 +7,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import link.mdks.beenomey.BeenomeY;
-import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockRecipe;
+import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockBeeRecipeReader;
 import link.mdks.beenomey.apiculture.recipe.BreederBlockRecipe;
 import link.mdks.beenomey.apiculture.util.BeeType;
 import net.minecraft.advancements.Advancement;

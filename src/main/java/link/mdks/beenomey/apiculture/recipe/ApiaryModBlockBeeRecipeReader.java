@@ -23,14 +23,14 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class ApiaryModBlockRecipe implements Recipe<SimpleContainer>{
+public class ApiaryModBlockBeeRecipeReader implements Recipe<SimpleContainer>{
 	
 	private final ResourceLocation id;
 	private final ItemStack output;
 	private final NonNullList<ItemStack> inputs;
 	
 
-	public ApiaryModBlockRecipe(ResourceLocation id, ItemStack output, NonNullList<ItemStack> inputs) {
+	public ApiaryModBlockBeeRecipeReader(ResourceLocation id, ItemStack output, NonNullList<ItemStack> inputs) {
 		this.id = id;
 		this.output = output;
 		this.inputs = inputs;
@@ -89,23 +89,23 @@ public class ApiaryModBlockRecipe implements Recipe<SimpleContainer>{
 		NonNullList<Ingredient> ingredients = NonNullList.withSize(4, Ingredient.EMPTY); // Hardcoded... that will cause problems
 		for (int i = 0; i < inputs.size(); i++) {
 		    ingredients.set(i, Ingredient.of(inputs.get(i)));
-		    BeenomeY.LOGGER.debug("Item: " + inputs.get(i));
 		}
 		return ingredients;
 	}
 	
-	public static class Type implements RecipeType<ApiaryModBlockRecipe> {
+	public static class Type implements RecipeType<ApiaryModBlockBeeRecipeReader> {
 		private Type() {}
 		public static final Type INSTANCE = new  Type();
-		public static final String ID = "apiary_recipe";
+		public static final String ID = "apiary_recipe_bee";
 	}
 	
-	public static class Serializer implements RecipeSerializer<ApiaryModBlockRecipe> {
+	public static class Serializer implements RecipeSerializer<ApiaryModBlockBeeRecipeReader> {
 		public static final Serializer INSTANCE = new Serializer();
+		public static final ResourceLocation ID = new ResourceLocation(BeenomeY.MODID, "apiary_recipe_bee");
 		
 		
 		@Override
-		public ApiaryModBlockRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {
+		public ApiaryModBlockBeeRecipeReader fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {
 
 			JsonObject outputObject = pSerializedRecipe.getAsJsonObject("output");
 			//String outputItem = outputObject.get("item").getAsString();
@@ -132,12 +132,12 @@ public class ApiaryModBlockRecipe implements Recipe<SimpleContainer>{
 		
 			}
             
-            return new ApiaryModBlockRecipe(pRecipeId, output, inputs);
+            return new ApiaryModBlockBeeRecipeReader(pRecipeId, output, inputs);
 			
 		}
 		
 		@Override
-		public @Nullable ApiaryModBlockRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
+		public @Nullable ApiaryModBlockBeeRecipeReader fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
 	           NonNullList<ItemStack> inputs = NonNullList.withSize(buf.readInt(), ItemStack.EMPTY);
 
 	            for (int i = 0; i < inputs.size(); i++) {
@@ -145,20 +145,19 @@ public class ApiaryModBlockRecipe implements Recipe<SimpleContainer>{
 	            }
 
 	            ItemStack output = buf.readItem();
-	            return new ApiaryModBlockRecipe(id, output, inputs);
+	            return new ApiaryModBlockBeeRecipeReader(id, output, inputs);
 			
 		}
 		
-		@SuppressWarnings("resource")
 		@Override
-		public void toNetwork(FriendlyByteBuf buf, ApiaryModBlockRecipe recipe) {
+		public void toNetwork(FriendlyByteBuf buf, ApiaryModBlockBeeRecipeReader recipe) {
 			
             buf.writeInt(recipe.getIngredients().size());
 
             for (ItemStack is : recipe.getIngredientsAsItemStacks()) {
                 buf.writeItemStack(is, false);
             }
-            buf.writeItemStack(recipe.getResultItem(Minecraft.getInstance().level.registryAccess()), false);
+            buf.writeItemStack(recipe.getResultItem(null), false);
 			
 		}
 	}

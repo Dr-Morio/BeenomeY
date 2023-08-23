@@ -1,0 +1,40 @@
+{
+  "type": "beenomey:apiary_recipe_princess",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "SLIME",
+      "secondType": "SLIME"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "SLIME",
+      "secondType": "SLIME"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "SLIME",
+      "secondType": "SLIME"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "SLIME",
+      "secondType": "SLIME"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "SLIME",
+      "secondType": "SLIME"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "SLIME",
+      "secondType": "SLIME"
+    }
+  ],
+  "output": {
+    "item": "beenomey:princess_bee",
+    "mainType": "SLIME",
+    "secondType": "SLIME"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "type": "beenomey:apiary_recipe_princess",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "EXP",
+      "secondType": "EXP"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "EXP",
+      "secondType": "EXP"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "EXP",
+      "secondType": "EXP"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "EXP",
+      "secondType": "EXP"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "EXP",
+      "secondType": "EXP"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "EXP",
+      "secondType": "EXP"
+    }
+  ],
+  "output": {
+    "item": "beenomey:princess_bee",
+    "mainType": "EXP",
+    "secondType": "EXP"
+  }
+}

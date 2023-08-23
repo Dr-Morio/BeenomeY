@@ -1,5 +1,5 @@
 {
-  "type": "beenomey:apiary_recipe",
+  "type": "beenomey:apiary_recipe_bee",
   "ingredients": [
     {
       "item": "beenomey:common_bee",

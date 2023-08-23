@@ -7,7 +7,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import link.mdks.beenomey.BeenomeY;
-import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockRecipe;
+import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockBeeRecipeReader;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.CriterionTriggerInstance;
@@ -21,21 +21,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class ApiaryRecipeBuilder implements RecipeBuilder{
+public class ApiaryBeeRecipeBuilder implements RecipeBuilder{
 	
-
-	//private final Ingredient ingredient;
 	private final ItemStack result;
 	private final ItemStack ingredientBee;
 	private final ItemStack ingredientPrincess;
 	private final Advancement.Builder advancement = Advancement.Builder.advancement();
-	
-//	public ApiaryRecipeBuilder(ItemLike ingredient, ItemLike result, int count) {
-//		this.ingredient = Ingredient.of(ingredient);
-//		this.result = result.asItem();
-//		this.count = count;
-//	}
-	public ApiaryRecipeBuilder(ItemStack ingredientBee, ItemStack ingredientPrincess, ItemStack result) {
+
+	public ApiaryBeeRecipeBuilder(ItemStack ingredientBee, ItemStack ingredientPrincess, ItemStack result) {
 		this.ingredientBee = ingredientBee;
 		this.ingredientPrincess = ingredientPrincess;
 		this.result = result;
@@ -62,23 +55,20 @@ public class ApiaryRecipeBuilder implements RecipeBuilder{
 	@Override
 	public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ResourceLocation pRecipeId) {
 		this.advancement.parent(new ResourceLocation("recipes/root"))
-		.addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(pRecipeId))
+		.addCriterion("has_bee_recipe", RecipeUnlockedTrigger.unlocked(pRecipeId))
 		.rewards(AdvancementRewards.Builder.recipe(pRecipeId)).requirements(RequirementsStrategy.OR);
+;
 		
-//		pFinishedRecipeConsumer.accept(new ApiaryRecipeBuilder.Result(pRecipeId, this.result, this.count, this.ingredient, 
-//				this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/" + 
-//		this.result + "/" + pRecipeId.getPath())));
-		
-		pFinishedRecipeConsumer.accept(new ApiaryRecipeBuilder.Result(pRecipeId, this.result, ingredientBee, ingredientPrincess, 
+		pFinishedRecipeConsumer.accept(new ApiaryBeeRecipeBuilder.Result(pRecipeId, this.result, ingredientBee, ingredientPrincess, 
 				this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/" + 
 		this.result.getItem() + "/" + pRecipeId.getPath())));
 		
 	}
 	
 	public static class Result implements FinishedRecipe {
+		
 		private final ResourceLocation id;
 		private final ItemStack result;
-		//private final Ingredient ingredient;
 		private final ItemStack ingredientBee;
 		private final ItemStack ingredientPrincess;
 		private final Advancement.Builder advancement;
@@ -98,7 +88,6 @@ public class ApiaryRecipeBuilder implements RecipeBuilder{
 		@Override
 		public void serializeRecipeData(JsonObject pJson) {
 			//JsonArray jsonarray = new JsonArray();
-			
 			JsonArray ingredientsArray = new JsonArray();
 			JsonArray outputArray = new JsonArray();
 			JsonObject ingredientPrincessObject = new JsonObject();
@@ -136,39 +125,14 @@ public class ApiaryRecipeBuilder implements RecipeBuilder{
 			outputOject.addProperty("item", ForgeRegistries.ITEMS.getKey(result.getItem()).toString());
 			//outputArray.add(outputOject);
 			pJson.add("output", outputOject);
-			
-			
-			
-			
-			
-			
-			
-//			jsonarray.add(ingredient.toJson());
-//			ArrayLiteralNode ingredientsArray = recipeNode.putArray("ingredients");
-//			pJson.add("ingredients", jsonarray);
-//			JsonObject jsonobject = new JsonObject();
-//			
-//			BeenomeY.LOGGER.debug("ARR: " + jsonarray + " ing: " + ingredient.toJson());
-//			
-//			//jsonobject.addProperty("item", this.result.asItem().toString());
-//			jsonobject.addProperty("item", ForgeRegistries.ITEMS.getKey(this.result).toString());
-//			jsonobject.addProperty("TEST", "MY TEST");
-//			// Here belongs count.... but its not used at the moment
-//			
-//			
-//			pJson.add("output", jsonobject);
-			
+	
 		}
 	
 		@Override
 		public ResourceLocation getId() {
 			
 			String mTypeBee = ingredientBee.getTag().get("MainType").getAsString();
-			
-//			String path = (mTypeBee + "_" + sTypeBee + "_bee__" + 
-//					mTypePrincess + "_" + sTypePrincess + "_princess__" +
-//					mTypeResult + "_" + sTypeResult).toLowerCase() + "_bee";
-			
+					
 			String path = ("apiary_" + mTypeBee.toLowerCase() + "_bee_" + "clean_breed");
 			
 
@@ -180,7 +144,7 @@ public class ApiaryRecipeBuilder implements RecipeBuilder{
 	
 		@Override
 		public RecipeSerializer<?> getType() {
-			return ApiaryModBlockRecipe.Serializer.INSTANCE;
+			return ApiaryModBlockBeeRecipeReader.Serializer.INSTANCE;
 		}
 	
 		@Override

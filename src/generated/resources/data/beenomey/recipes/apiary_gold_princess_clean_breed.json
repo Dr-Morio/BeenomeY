@@ -1,0 +1,40 @@
+{
+  "type": "beenomey:apiary_recipe_princess",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "GOLD",
+      "secondType": "GOLD"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "GOLD",
+      "secondType": "GOLD"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "GOLD",
+      "secondType": "GOLD"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "GOLD",
+      "secondType": "GOLD"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "GOLD",
+      "secondType": "GOLD"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "GOLD",
+      "secondType": "GOLD"
+    }
+  ],
+  "output": {
+    "item": "beenomey:princess_bee",
+    "mainType": "GOLD",
+    "secondType": "GOLD"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "type": "beenomey:apiary_recipe_princess",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "SOUL_SAND",
+      "secondType": "SOUL_SAND"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "SOUL_SAND",
+      "secondType": "SOUL_SAND"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "SOUL_SAND",
+      "secondType": "SOUL_SAND"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "SOUL_SAND",
+      "secondType": "SOUL_SAND"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "SOUL_SAND",
+      "secondType": "SOUL_SAND"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "SOUL_SAND",
+      "secondType": "SOUL_SAND"
+    }
+  ],
+  "output": {
+    "item": "beenomey:princess_bee",
+    "mainType": "SOUL_SAND",
+    "secondType": "SOUL_SAND"
+  }
+}
