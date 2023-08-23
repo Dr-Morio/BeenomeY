@@ -30,13 +30,13 @@ public class BeenomeyRecipeProvider extends RecipeProvider implements ICondition
 	}
 
 	
-	private List<ItemStack> dummyApiaryRecipeBuilder(BeeType bT1, BeeType bT2, BeeType pT1, BeeType pT2, BeeType oT1, BeeType oT2) {
-		List<ItemStack> ingredients = new ArrayList<ItemStack>();
-		ingredients.add(BeeManager.getBee(bT1, bT2, new ItemStack(BeeInit.getCommonBee())));
-		ingredients.add(BeeManager.getBee(pT1, pT2, new ItemStack(BeeInit.getPrincessBee())));
-		ingredients.add(BeeManager.getBee(oT1, oT2, new ItemStack(BeeInit.getCommonBee())));
-		return ingredients;
-	}
+//	private List<ItemStack> dummyApiaryRecipeBuilder(BeeType bT1, BeeType bT2, BeeType pT1, BeeType pT2, BeeType oT1, BeeType oT2) {
+//		List<ItemStack> ingredients = new ArrayList<ItemStack>();
+//		ingredients.add(BeeManager.getBee(bT1, bT2, new ItemStack(BeeInit.getCommonBee())));
+//		ingredients.add(BeeManager.getBee(pT1, pT2, new ItemStack(BeeInit.getPrincessBee())));
+//		ingredients.add(BeeManager.getBee(oT1, oT2, new ItemStack(BeeInit.getCommonBee())));
+//		return ingredients;
+//	}
 	
 	private List<ItemStack> dummyBeeIngredientBreederRecipeBuilder(BeeType bT1, BeeType bT2, int beeAmount) {
 		List<ItemStack> ingredients = new ArrayList<ItemStack>();
@@ -47,33 +47,50 @@ public class BeenomeyRecipeProvider extends RecipeProvider implements ICondition
 		return ingredients;
 	}
 	
+	
+	
 	@Override
 	protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
 		
+		//TODO: Add recipes for JEI... the right ones
+		
 		// Hardcoded Dummy Recipe set for Apiary
-		List<ItemStack> cleanDummyRecipe_1 = dummyApiaryRecipeBuilder(BeeType.FOREST,BeeType.FOREST,BeeType.FOREST,BeeType.FOREST,BeeType.FOREST,BeeType.FOREST); //Holds 3 Item Stacks // Input + Input = Output
-		List<ItemStack> cleanDummyRecipe_2 = dummyApiaryRecipeBuilder(BeeType.INFERNO,BeeType.INFERNO,BeeType.INFERNO,BeeType.INFERNO,BeeType.INFERNO,BeeType.INFERNO);
 		
-		List<ItemStack> crossDummyRecipe_1 = dummyApiaryRecipeBuilder(BeeType.FOREST,BeeType.FOREST,BeeType.OCEAN,BeeType.OCEAN,BeeType.OCEAN,BeeType.FOREST);
-		List<ItemStack> crossDummyRecipe_2 = dummyApiaryRecipeBuilder(BeeType.INFERNO,BeeType.INFERNO,BeeType.OCEAN,BeeType.OCEAN,BeeType.OCEAN,BeeType.INFERNO);
 		
-		List<ItemStack> crossDummyRecipe_3v1 = dummyApiaryRecipeBuilder(BeeType.FOREST,BeeType.INFERNO,BeeType.OCEAN,BeeType.OCEAN,BeeType.OCEAN,BeeType.FOREST);
-		List<ItemStack> crossDummyRecipe_3v2 = dummyApiaryRecipeBuilder(BeeType.FOREST,BeeType.INFERNO,BeeType.OCEAN,BeeType.OCEAN,BeeType.OCEAN,BeeType.INFERNO);
-		
-		List<List<ItemStack>> recipes = new ArrayList<List<ItemStack>>();
-		recipes.add(cleanDummyRecipe_1);
-		recipes.add(cleanDummyRecipe_2);
-		recipes.add(crossDummyRecipe_1);
-		recipes.add(crossDummyRecipe_2);
-		recipes.add(crossDummyRecipe_3v1);
-		recipes.add(crossDummyRecipe_3v2);
-		
-		for(List<ItemStack> recipe : recipes) {
-			new ApiaryRecipeBuilder(recipe.get(0), recipe.get(1), recipe.get(2), 50)
-			.unlockedBy("has_bees", inventoryTrigger(ItemPredicate.Builder.item()
-					.of(Items.DIRT).build()))
+		for (BeeType type : BeeType.values()) {
+			new ApiaryRecipeBuilder(
+					BeeManager.getBee(type, type, new ItemStack(BeeInit.getCommonBee())),
+					BeeManager.getBee(type, type, new ItemStack(BeeInit.getPrincessBee())),
+					BeeManager.getBee(type, type, new ItemStack(BeeInit.getCommonBee())))
+			.unlockedBy("has_bee", inventoryTrigger(ItemPredicate.Builder.item()
+					.of(BeeManager.getBee(type, type, new ItemStack(BeeInit.getCommonBee())).getItem()).build()))
 			.save(consumer);
 		}
+		
+		
+//		List<ItemStack> cleanDummyRecipe_1 = dummyApiaryRecipeBuilder(BeeType.FOREST,BeeType.FOREST,BeeType.FOREST,BeeType.FOREST,BeeType.FOREST,BeeType.FOREST); //Holds 3 Item Stacks // Input + Input = Output
+//		List<ItemStack> cleanDummyRecipe_2 = dummyApiaryRecipeBuilder(BeeType.INFERNO,BeeType.INFERNO,BeeType.INFERNO,BeeType.INFERNO,BeeType.INFERNO,BeeType.INFERNO);
+//		
+//		List<ItemStack> crossDummyRecipe_1 = dummyApiaryRecipeBuilder(BeeType.FOREST,BeeType.FOREST,BeeType.OCEAN,BeeType.OCEAN,BeeType.OCEAN,BeeType.FOREST);
+//		List<ItemStack> crossDummyRecipe_2 = dummyApiaryRecipeBuilder(BeeType.INFERNO,BeeType.INFERNO,BeeType.OCEAN,BeeType.OCEAN,BeeType.OCEAN,BeeType.INFERNO);
+//		
+//		List<ItemStack> crossDummyRecipe_3v1 = dummyApiaryRecipeBuilder(BeeType.FOREST,BeeType.INFERNO,BeeType.OCEAN,BeeType.OCEAN,BeeType.OCEAN,BeeType.FOREST);
+//		List<ItemStack> crossDummyRecipe_3v2 = dummyApiaryRecipeBuilder(BeeType.FOREST,BeeType.INFERNO,BeeType.OCEAN,BeeType.OCEAN,BeeType.OCEAN,BeeType.INFERNO);
+//		
+//		List<List<ItemStack>> recipes = new ArrayList<List<ItemStack>>();
+//		recipes.add(cleanDummyRecipe_1);
+//		recipes.add(cleanDummyRecipe_2);
+//		recipes.add(crossDummyRecipe_1);
+//		recipes.add(crossDummyRecipe_2);
+//		recipes.add(crossDummyRecipe_3v1);
+//		recipes.add(crossDummyRecipe_3v2);
+//		
+//		for(List<ItemStack> recipe : recipes) {
+//			new ApiaryRecipeBuilder(recipe.get(0), recipe.get(1), recipe.get(2), 50)
+//			.unlockedBy("has_bees", inventoryTrigger(ItemPredicate.Builder.item()
+//					.of(Items.DIRT).build()))
+//			.save(consumer);
+//		}
 		
 		
 		// Hardcoded Dummy Recipe set for Breeder

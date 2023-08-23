@@ -1,0 +1,30 @@
+{
+  "type": "beenomey:apiary_recipe",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "LAVA",
+      "secondType": "LAVA"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "LAVA",
+      "secondType": "LAVA"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "LAVA",
+      "secondType": "LAVA"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "LAVA",
+      "secondType": "LAVA"
+    }
+  ],
+  "output": {
+    "item": "beenomey:common_bee",
+    "mainType": "LAVA",
+    "secondType": "LAVA"
+  }
+}

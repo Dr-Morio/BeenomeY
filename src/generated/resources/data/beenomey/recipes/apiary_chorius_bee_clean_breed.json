@@ -1,0 +1,30 @@
+{
+  "type": "beenomey:apiary_recipe",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "CHORIUS",
+      "secondType": "CHORIUS"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "CHORIUS",
+      "secondType": "CHORIUS"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "CHORIUS",
+      "secondType": "CHORIUS"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "CHORIUS",
+      "secondType": "CHORIUS"
+    }
+  ],
+  "output": {
+    "item": "beenomey:common_bee",
+    "mainType": "CHORIUS",
+    "secondType": "CHORIUS"
+  }
+}

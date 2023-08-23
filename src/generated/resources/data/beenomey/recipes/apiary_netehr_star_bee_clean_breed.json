@@ -1,0 +1,30 @@
+{
+  "type": "beenomey:apiary_recipe",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "NETEHR_STAR",
+      "secondType": "NETEHR_STAR"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "NETEHR_STAR",
+      "secondType": "NETEHR_STAR"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "NETEHR_STAR",
+      "secondType": "NETEHR_STAR"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "NETEHR_STAR",
+      "secondType": "NETEHR_STAR"
+    }
+  ],
+  "output": {
+    "item": "beenomey:common_bee",
+    "mainType": "NETEHR_STAR",
+    "secondType": "NETEHR_STAR"
+  }
+}

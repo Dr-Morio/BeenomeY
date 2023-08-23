@@ -4,6 +4,8 @@ import com.mojang.logging.LogUtils;
 
 import link.mdks.beenomey.apiculture.screen.ApiaryModBlockScreen;
 import link.mdks.beenomey.apiculture.screen.BreederBlockScreen;
+import link.mdks.beenomey.apiculture.util.BeeManager;
+import link.mdks.beenomey.apiculture.util.BeeType;
 import link.mdks.beenomey.apiculture.util.ItemBeeTextureProperties;
 import link.mdks.beenomey.core.BeenomeYTabs;
 import link.mdks.beenomey.init.BeeInit;
@@ -17,6 +19,7 @@ import link.mdks.beenomey.init.RecipeInit;
 import link.mdks.beenomey.networking.NetworkMessages;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.CreativeModeTabEvent;
@@ -118,10 +121,19 @@ public class BeenomeY
     		for(RegistryObject<Item> bucket : ItemInit.getBucketItems()) {
     			event.accept(bucket);
     		}
+
+    		/* Register every clean Bee*/
+    		for(BeeType type : BeeType.values()) {
+    			event.accept(BeeManager.getBee(type, type, new ItemStack(BeeInit.getCommonBee())));
+    		}
+    		
+    		/* Register every clean Princess*/
+    		for(BeeType type : BeeType.values()) {
+    			event.accept(BeeManager.getBee(type, type, new ItemStack(BeeInit.getPrincessBee())));
+    		}
+    		
     		
     		event.accept(ItemInit.WOODEN_SCOOP);
-    		event.accept(BeeInit.COMMON_BEE);
-    		event.accept(BeeInit.PRINCESS_BEE);
     		event.accept(BlockInit.OAKWOOD_BEEHIVE_BLOCK);
     		event.accept(BlockInit.BIRCHWOOD_BEEHIVE_BLOCK);
     		event.accept(BlockInit.DESERT_BEEHIVE_BLOCK);

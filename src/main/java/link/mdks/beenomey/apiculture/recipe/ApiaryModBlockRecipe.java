@@ -5,6 +5,7 @@ import org.jetbrains.annotations.Nullable;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.util.BeeManager;
 import link.mdks.beenomey.apiculture.util.BeeType;
 import link.mdks.beenomey.init.BeeInit;
@@ -58,9 +59,8 @@ public class ApiaryModBlockRecipe implements Recipe<SimpleContainer>{
 	public boolean canCraftInDimensions(int pWidth, int pHeight) {
 		return true;
 	}
-
-	@Override
-	public ItemStack getResultItem(RegistryAccess p_267052_) {
+	
+	public ItemStack getResultItem(@Nullable RegistryAccess p_267052) {
 		return output.copy();
 	}
 
@@ -86,9 +86,10 @@ public class ApiaryModBlockRecipe implements Recipe<SimpleContainer>{
 	
 	@Override
 	public NonNullList<Ingredient> getIngredients() {
-		NonNullList<Ingredient> ingredients = NonNullList.withSize(2, Ingredient.EMPTY); // Hardcoded... that will cause problems
+		NonNullList<Ingredient> ingredients = NonNullList.withSize(4, Ingredient.EMPTY); // Hardcoded... that will cause problems
 		for (int i = 0; i < inputs.size(); i++) {
 		    ingredients.set(i, Ingredient.of(inputs.get(i)));
+		    BeenomeY.LOGGER.debug("Item: " + inputs.get(i));
 		}
 		return ingredients;
 	}

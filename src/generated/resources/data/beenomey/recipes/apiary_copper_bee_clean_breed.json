@@ -1,0 +1,30 @@
+{
+  "type": "beenomey:apiary_recipe",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "COPPER",
+      "secondType": "COPPER"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "COPPER",
+      "secondType": "COPPER"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "COPPER",
+      "secondType": "COPPER"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "COPPER",
+      "secondType": "COPPER"
+    }
+  ],
+  "output": {
+    "item": "beenomey:common_bee",
+    "mainType": "COPPER",
+    "secondType": "COPPER"
+  }
+}

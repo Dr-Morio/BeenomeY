@@ -1,0 +1,30 @@
+{
+  "type": "beenomey:apiary_recipe",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "BLAZE",
+      "secondType": "BLAZE"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "BLAZE",
+      "secondType": "BLAZE"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "BLAZE",
+      "secondType": "BLAZE"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "BLAZE",
+      "secondType": "BLAZE"
+    }
+  ],
+  "output": {
+    "item": "beenomey:common_bee",
+    "mainType": "BLAZE",
+    "secondType": "BLAZE"
+  }
+}

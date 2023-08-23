@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_bees": {
+    "has_bee_of_type_amethyst": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:dirt"
+              "beenomey:common_bee"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_bees",
+      "has_bee_of_type_amethyst",
       "has_the_recipe"
     ]
   ],

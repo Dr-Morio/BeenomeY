@@ -1,0 +1,30 @@
+{
+  "type": "beenomey:apiary_recipe",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "DESERT",
+      "secondType": "DESERT"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "DESERT",
+      "secondType": "DESERT"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "DESERT",
+      "secondType": "DESERT"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "DESERT",
+      "secondType": "DESERT"
+    }
+  ],
+  "output": {
+    "item": "beenomey:common_bee",
+    "mainType": "DESERT",
+    "secondType": "DESERT"
+  }
+}

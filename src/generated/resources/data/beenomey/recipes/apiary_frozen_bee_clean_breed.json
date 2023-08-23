@@ -1,0 +1,30 @@
+{
+  "type": "beenomey:apiary_recipe",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "FROZEN",
+      "secondType": "FROZEN"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "FROZEN",
+      "secondType": "FROZEN"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "FROZEN",
+      "secondType": "FROZEN"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "FROZEN",
+      "secondType": "FROZEN"
+    }
+  ],
+  "output": {
+    "item": "beenomey:common_bee",
+    "mainType": "FROZEN",
+    "secondType": "FROZEN"
+  }
+}

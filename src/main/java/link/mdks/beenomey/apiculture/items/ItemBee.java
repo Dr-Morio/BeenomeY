@@ -20,13 +20,23 @@ import net.minecraftforge.common.extensions.IForgeItem;
 public class ItemBee extends Item implements IForgeItem{
 
 	public ItemBee(Properties properties) {
-		super(new Item.Properties().durability(2).rarity(Rarity.COMMON));
+		super(new Item.Properties().durability(2).rarity(Rarity.UNCOMMON));
 	}
 	
 
 	@Override
 	public boolean isEnchantable(ItemStack pStack) {
 		return false;
+	}
+	
+	@Override
+	public boolean isFoil(ItemStack pStack) {
+		if (pStack.getTag().getBoolean("isFoil") == true) {
+			return true;
+		} else {
+			return false;
+		}
+
 	}
 	
 	@Override
@@ -50,7 +60,7 @@ public class ItemBee extends Item implements IForgeItem{
 		components.add(Component.literal("Second Type: " + itemStack.getTag().getString("SecondType")).withStyle(secondColor));
 
 		if (Screen.hasShiftDown()) {
-			components.add(Component.literal("Life: " + itemStack.getTag().getInt("EffectiveLifecycleAD")).withStyle(ChatFormatting.RED)); //After Damage
+			components.add(Component.literal("Life: " + itemStack.getTag().getInt("EffectiveLifecycleAD")).withStyle(ChatFormatting.GREEN)); //After Damage
 			components.add(Component.literal("Comp Drop : " + itemStack.getTag().getInt("EffectiveCompDrop") + "%"));
 			if (Screen.hasAltDown()) {
 				components.add(Component.literal("------------").withStyle(ChatFormatting.AQUA));

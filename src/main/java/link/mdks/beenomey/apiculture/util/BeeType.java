@@ -53,7 +53,7 @@ public enum BeeType {
     GOLD(			24f, 	3, 	1.1f,	-10,	1,		1.4f,	ChatFormatting.GOLD),
     COPPER(			25f, 	3, 	2.0f,	5,		1,		1.8f,	ChatFormatting.DARK_RED),
     DIAMOND(		26f, 	10,	1.0f,	-30,	14,		0.1f,	ChatFormatting.AQUA),
-    OBSIDIAN(		27f, 	15,	1.2f,	-50,	1,		0.5f,	ChatFormatting.OBFUSCATED),
+    OBSIDIAN(		27f, 	15,	1.2f,	-50,	1,		0.5f,	ChatFormatting.BLACK),
 	GLOWSTONE(		28f,	4,	2.2f,	33,		64,		0.05f,	ChatFormatting.YELLOW),
 	BLAZE(			29f,	1,	4.0f,	55,		32,		0.05f,	ChatFormatting.YELLOW),
 	EMERALD(		30f,	3,	1.3f,	-5,		1,		1.0f,	ChatFormatting.GREEN),

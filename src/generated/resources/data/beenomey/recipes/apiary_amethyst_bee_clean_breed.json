@@ -1,0 +1,30 @@
+{
+  "type": "beenomey:apiary_recipe",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "AMETHYST",
+      "secondType": "AMETHYST"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "AMETHYST",
+      "secondType": "AMETHYST"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "AMETHYST",
+      "secondType": "AMETHYST"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "AMETHYST",
+      "secondType": "AMETHYST"
+    }
+  ],
+  "output": {
+    "item": "beenomey:common_bee",
+    "mainType": "AMETHYST",
+    "secondType": "AMETHYST"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "type": "beenomey:apiary_recipe",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "OCEAN",
+      "secondType": "OCEAN"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "OCEAN",
+      "secondType": "OCEAN"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "OCEAN",
+      "secondType": "OCEAN"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "OCEAN",
+      "secondType": "OCEAN"
+    }
+  ],
+  "output": {
+    "item": "beenomey:common_bee",
+    "mainType": "OCEAN",
+    "secondType": "OCEAN"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "type": "beenomey:apiary_recipe",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "GLOWSTONE",
+      "secondType": "GLOWSTONE"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "GLOWSTONE",
+      "secondType": "GLOWSTONE"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "GLOWSTONE",
+      "secondType": "GLOWSTONE"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "GLOWSTONE",
+      "secondType": "GLOWSTONE"
+    }
+  ],
+  "output": {
+    "item": "beenomey:common_bee",
+    "mainType": "GLOWSTONE",
+    "secondType": "GLOWSTONE"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "type": "beenomey:breeder_recipe",
+  "fluid": {
+    "Amount": 4000,
+    "FluidName": "beenomey:inferno_honey_fluid"
+  },
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "FOREST",
+      "secondType": "FOREST"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "FOREST",
+      "secondType": "FOREST"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "FOREST",
+      "secondType": "FOREST"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "FOREST",
+      "secondType": "FOREST"
+    }
+  ],
+  "output": {
+    "chance": 5,
+    "item": "beenomey:common_bee",
+    "mainType": "FOREST",
+    "secondType": "INFERNO"
+  }
+}

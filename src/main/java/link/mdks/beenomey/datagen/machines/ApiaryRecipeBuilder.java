@@ -28,7 +28,6 @@ public class ApiaryRecipeBuilder implements RecipeBuilder{
 	private final ItemStack result;
 	private final ItemStack ingredientBee;
 	private final ItemStack ingredientPrincess;
-	private final int chance;
 	private final Advancement.Builder advancement = Advancement.Builder.advancement();
 	
 //	public ApiaryRecipeBuilder(ItemLike ingredient, ItemLike result, int count) {
@@ -36,11 +35,10 @@ public class ApiaryRecipeBuilder implements RecipeBuilder{
 //		this.result = result.asItem();
 //		this.count = count;
 //	}
-	public ApiaryRecipeBuilder(ItemStack ingredientBee, ItemStack ingredientPrincess, ItemStack result, int chance) {
+	public ApiaryRecipeBuilder(ItemStack ingredientBee, ItemStack ingredientPrincess, ItemStack result) {
 		this.ingredientBee = ingredientBee;
 		this.ingredientPrincess = ingredientPrincess;
 		this.result = result;
-		this.chance = chance;
 	}
 	
 	
@@ -71,7 +69,7 @@ public class ApiaryRecipeBuilder implements RecipeBuilder{
 //				this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/" + 
 //		this.result + "/" + pRecipeId.getPath())));
 		
-		pFinishedRecipeConsumer.accept(new ApiaryRecipeBuilder.Result(pRecipeId, this.result, this.chance, ingredientBee, ingredientPrincess, 
+		pFinishedRecipeConsumer.accept(new ApiaryRecipeBuilder.Result(pRecipeId, this.result, ingredientBee, ingredientPrincess, 
 				this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/" + 
 		this.result.getItem() + "/" + pRecipeId.getPath())));
 		
@@ -83,17 +81,15 @@ public class ApiaryRecipeBuilder implements RecipeBuilder{
 		//private final Ingredient ingredient;
 		private final ItemStack ingredientBee;
 		private final ItemStack ingredientPrincess;
-		private final int chance;
 		private final Advancement.Builder advancement;
 		private final ResourceLocation advancementId;
 		
-		public Result(ResourceLocation id, ItemStack pResult, int pChance, ItemStack ingredientBee, ItemStack ingredientPrincess, Advancement.Builder pAdvancement, ResourceLocation pAdvancementId) {
+		public Result(ResourceLocation id, ItemStack pResult, ItemStack ingredientBee, ItemStack ingredientPrincess, Advancement.Builder pAdvancement, ResourceLocation pAdvancementId) {
 		
 			this.id = id;
 			this.result = pResult;
 			this.ingredientBee = ingredientBee;
 			this.ingredientPrincess = ingredientPrincess;
-			this.chance = pChance;
 			this.advancement = pAdvancement;
 			this.advancementId = pAdvancementId;
 			
@@ -111,7 +107,17 @@ public class ApiaryRecipeBuilder implements RecipeBuilder{
 			
 			// Add properties of Item in Reverse Order
 
-			// add Bee
+			// add 1. Bee
+			ingredientBeeObject.addProperty("secondType", ingredientBee.getTag().getString("SecondType").toString());
+			ingredientBeeObject.addProperty("mainType", ingredientBee.getTag().getString("MainType").toString());
+			ingredientBeeObject.addProperty("item", ForgeRegistries.ITEMS.getKey(ingredientBee.getItem()).toString());
+			ingredientsArray.add(ingredientBeeObject);
+			// add 2. Bee
+			ingredientBeeObject.addProperty("secondType", ingredientBee.getTag().getString("SecondType").toString());
+			ingredientBeeObject.addProperty("mainType", ingredientBee.getTag().getString("MainType").toString());
+			ingredientBeeObject.addProperty("item", ForgeRegistries.ITEMS.getKey(ingredientBee.getItem()).toString());
+			ingredientsArray.add(ingredientBeeObject);
+			// add 3. Bee
 			ingredientBeeObject.addProperty("secondType", ingredientBee.getTag().getString("SecondType").toString());
 			ingredientBeeObject.addProperty("mainType", ingredientBee.getTag().getString("MainType").toString());
 			ingredientBeeObject.addProperty("item", ForgeRegistries.ITEMS.getKey(ingredientBee.getItem()).toString());
@@ -158,15 +164,12 @@ public class ApiaryRecipeBuilder implements RecipeBuilder{
 		public ResourceLocation getId() {
 			
 			String mTypeBee = ingredientBee.getTag().get("MainType").getAsString();
-			String sTypeBee = ingredientBee.getTag().get("SecondType").getAsString();
-			String mTypePrincess = ingredientPrincess.getTag().get("MainType").getAsString();
-			String sTypePrincess = ingredientPrincess.getTag().get("SecondType").getAsString();
-			String mTypeResult = result.getTag().get("MainType").getAsString();
-			String sTypeResult = result.getTag().get("SecondType").getAsString();
 			
-			String path = (mTypeBee + "_" + sTypeBee + "_bee__" + 
-					mTypePrincess + "_" + sTypePrincess + "_princess__" +
-					mTypeResult + "_" + sTypeResult).toLowerCase() + "_bee";
+//			String path = (mTypeBee + "_" + sTypeBee + "_bee__" + 
+//					mTypePrincess + "_" + sTypePrincess + "_princess__" +
+//					mTypeResult + "_" + sTypeResult).toLowerCase() + "_bee";
+			
+			String path = ("apiary_" + mTypeBee.toLowerCase() + "_bee_" + "clean_breed");
 			
 
 			ResourceLocation name = new ResourceLocation(BeenomeY.MODID, path);

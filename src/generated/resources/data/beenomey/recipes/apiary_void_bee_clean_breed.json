@@ -1,0 +1,30 @@
+{
+  "type": "beenomey:apiary_recipe",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "VOID",
+      "secondType": "VOID"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "VOID",
+      "secondType": "VOID"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "VOID",
+      "secondType": "VOID"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "VOID",
+      "secondType": "VOID"
+    }
+  ],
+  "output": {
+    "item": "beenomey:common_bee",
+    "mainType": "VOID",
+    "secondType": "VOID"
+  }
+}

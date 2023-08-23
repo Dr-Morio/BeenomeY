@@ -1,0 +1,30 @@
+{
+  "type": "beenomey:apiary_recipe",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "NETHER_QUARTZ",
+      "secondType": "NETHER_QUARTZ"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "NETHER_QUARTZ",
+      "secondType": "NETHER_QUARTZ"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "NETHER_QUARTZ",
+      "secondType": "NETHER_QUARTZ"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "NETHER_QUARTZ",
+      "secondType": "NETHER_QUARTZ"
+    }
+  ],
+  "output": {
+    "item": "beenomey:common_bee",
+    "mainType": "NETHER_QUARTZ",
+    "secondType": "NETHER_QUARTZ"
+  }
+}

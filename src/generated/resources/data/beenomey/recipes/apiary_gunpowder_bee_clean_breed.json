@@ -1,0 +1,30 @@
+{
+  "type": "beenomey:apiary_recipe",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "GUNPOWDER",
+      "secondType": "GUNPOWDER"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "GUNPOWDER",
+      "secondType": "GUNPOWDER"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "GUNPOWDER",
+      "secondType": "GUNPOWDER"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "GUNPOWDER",
+      "secondType": "GUNPOWDER"
+    }
+  ],
+  "output": {
+    "item": "beenomey:common_bee",
+    "mainType": "GUNPOWDER",
+    "secondType": "GUNPOWDER"
+  }
+}
