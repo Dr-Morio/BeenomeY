@@ -34,7 +34,7 @@ public enum BeeType {
 
 	/* Breeding Types */
 	/* Default Live of 5 */
-	COAL(			9f,		5,	1.0f,	12,		1,		1.0f,	ChatFormatting.BLACK),
+	COAL(			9f,		5,	1.0f,	12,		1,		1.0f,	ChatFormatting.DARK_GRAY),
 	GUNPOWDER(		10f,	5,	1.0f,	28,		2,		0.5f,	ChatFormatting.DARK_GRAY),
 	FLINT(			11f,	5,	1.0f,	6,		1,		1.0f,	ChatFormatting.DARK_GRAY),
 	SLIME(			12f,	5,	1.0f,	-11,	1,		1.9f,	ChatFormatting.GREEN),
@@ -53,19 +53,21 @@ public enum BeeType {
     GOLD(			24f, 	3, 	1.1f,	-10,	1,		1.4f,	ChatFormatting.GOLD),
     COPPER(			25f, 	3, 	2.0f,	5,		1,		1.8f,	ChatFormatting.DARK_RED),
     DIAMOND(		26f, 	10,	1.0f,	-30,	14,		0.1f,	ChatFormatting.AQUA),
-    OBSIDIAN(		27f, 	15,	1.2f,	-50,	1,		0.5f,	ChatFormatting.BLACK),
+    OBSIDIAN(		27f, 	15,	1.2f,	-50,	1,		0.5f,	ChatFormatting.DARK_GRAY),
 	GLOWSTONE(		28f,	4,	2.2f,	33,		64,		0.05f,	ChatFormatting.YELLOW),
 	BLAZE(			29f,	1,	4.0f,	55,		32,		0.05f,	ChatFormatting.YELLOW),
 	EMERALD(		30f,	3,	1.3f,	-5,		1,		1.0f,	ChatFormatting.GREEN),
 	NETEHR_STAR(	31f,	2,	2.2f,	-22,	1,		1.0f,	ChatFormatting.WHITE),
-	NETHER_QUARTZ(	32f,	3,	1.1f,	-3,		1,		1.2f,	ChatFormatting.WHITE),
+	NETHER_QUARZ(	32f,	3,	1.1f,	-3,		1,		1.2f,	ChatFormatting.WHITE),
 	PRISMARINE(		33f,	3,	1.0f,	-17,	1,		1.0f,	ChatFormatting.WHITE),
-	CHORIUS(		34f,	3,	1.1f,	-28,	1,		1.0f,	ChatFormatting.WHITE),
+	CHORUS(			34f,	3,	1.1f,	-28,	1,		1.0f,	ChatFormatting.WHITE),
 	NETHERITE(		35f,	3,	0.5f,	-53,	100,	0.01f,	ChatFormatting.DARK_RED),
 	EXP(			36f,	1,	1.0f,	-38,	128,	0.01f,	ChatFormatting.GREEN),
 	ENDER_PEARL(	37f,	2,	1.1f,	80,		13,		0.15f,	ChatFormatting.DARK_BLUE),
 	AMETHYST(		38f,	3,	1.1f,	-22,	22,		0.02f,	ChatFormatting.WHITE);
 
+	//kakao
+	
     public float textureTypeValue;
     public int lifecycle;
     public float lifecycleMultiplier;

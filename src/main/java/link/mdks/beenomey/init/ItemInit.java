@@ -47,11 +47,31 @@ public class ItemInit {
 			() -> new ItemHoneycomb(new Item.Properties()));
 	public static final RegistryObject<Item> VOID_HONEYCOMB = HONEYCOMBS.register("void_honeycomb",
 			() -> new ItemHoneycomb(new Item.Properties()));
-	public static final RegistryObject<Item> MAGMA_HONEYCOMB = HONEYCOMBS.register("magma_honeycomb",
+	public static final RegistryObject<Item> COAL_HONEYCOMB = HONEYCOMBS.register("coal_honeycomb",
 			() -> new ItemHoneycomb(new Item.Properties()));
-	public static final RegistryObject<Item> PAPER_HONEYCOMB = HONEYCOMBS.register("paper_honeycomb",
+	public static final RegistryObject<Item> GUNPOWDER_HONEYCOMB = HONEYCOMBS.register("gunpowder_honeycomb",
 			() -> new ItemHoneycomb(new Item.Properties()));
-	public static final RegistryObject<Item> LAPIS_HONEYCOMB = HONEYCOMBS.register("lapis_honeycomb",
+	public static final RegistryObject<Item> FLINT_HONEYCOMB = HONEYCOMBS.register("flint_honeycomb",
+			() -> new ItemHoneycomb(new Item.Properties()));
+	public static final RegistryObject<Item> SLIME_HONEYCOMB = HONEYCOMBS.register("slime_honeycomb",
+			() -> new ItemHoneycomb(new Item.Properties()));
+	public static final RegistryObject<Item> SUGAR_HONEYCOMB = HONEYCOMBS.register("sugar_honeycomb",
+			() -> new ItemHoneycomb(new Item.Properties()));
+	public static final RegistryObject<Item> GLASS_HONEYCOMB = HONEYCOMBS.register("glass_honeycomb",
+			() -> new ItemHoneycomb(new Item.Properties()));
+	public static final RegistryObject<Item> CLAY_HONEYCOMB = HONEYCOMBS.register("clay_honeycomb",
+			() -> new ItemHoneycomb(new Item.Properties()));
+	public static final RegistryObject<Item> STRING_HONEYCOMB = HONEYCOMBS.register("string_honeycomb",
+			() -> new ItemHoneycomb(new Item.Properties()));
+	public static final RegistryObject<Item> NETHER_WART_HONEYCOMB = HONEYCOMBS.register("nether_wart_honeycomb",
+			() -> new ItemHoneycomb(new Item.Properties()));
+	public static final RegistryObject<Item> SOUL_SAND_HONEYCOMB = HONEYCOMBS.register("soul_sand_honeycomb",
+			() -> new ItemHoneycomb(new Item.Properties()));
+	public static final RegistryObject<Item> MUSHROOM_HONEYCOMB = HONEYCOMBS.register("mushroom_honeycomb",
+			() -> new ItemHoneycomb(new Item.Properties()));
+	public static final RegistryObject<Item> LAVA_HONEYCOMB = HONEYCOMBS.register("lava_honeycomb",
+			() -> new ItemHoneycomb(new Item.Properties()));
+	public static final RegistryObject<Item> LAPIS_LAZULI_HONEYCOMB = HONEYCOMBS.register("lapis_lazuli_honeycomb",
 			() -> new ItemHoneycomb(new Item.Properties()));
 	public static final RegistryObject<Item> REDSTONE_HONEYCOMB = HONEYCOMBS.register("redstone_honeycomb",
 			() -> new ItemHoneycomb(new Item.Properties()));
@@ -64,6 +84,28 @@ public class ItemInit {
 	public static final RegistryObject<Item> DIAMOND_HONEYCOMB = HONEYCOMBS.register("diamond_honeycomb",
 			() -> new ItemHoneycomb(new Item.Properties()));
 	public static final RegistryObject<Item> OBSIDIAN_HONEYCOMB = HONEYCOMBS.register("obsidian_honeycomb",
+			() -> new ItemHoneycomb(new Item.Properties()));
+	public static final RegistryObject<Item> GLOWSTONE_HONEYCOMB = HONEYCOMBS.register("glowstone_honeycomb",
+			() -> new ItemHoneycomb(new Item.Properties()));
+	public static final RegistryObject<Item> BLAZE_HONEYCOMB = HONEYCOMBS.register("blaze_honeycomb",
+			() -> new ItemHoneycomb(new Item.Properties()));
+	public static final RegistryObject<Item> EMERALD_HONEYCOMB = HONEYCOMBS.register("emerald_honeycomb",
+			() -> new ItemHoneycomb(new Item.Properties()));
+	public static final RegistryObject<Item> NETHER_STAR_HONEYCOMB = HONEYCOMBS.register("nether_star_honeycomb",
+			() -> new ItemHoneycomb(new Item.Properties()));
+	public static final RegistryObject<Item> NETHER_QUARZ_HONEYCOMB = HONEYCOMBS.register("nether_quarz_honeycomb",
+			() -> new ItemHoneycomb(new Item.Properties()));
+	public static final RegistryObject<Item> PRISMARINE_HONEYCOMB = HONEYCOMBS.register("prismarine_honeycomb",
+			() -> new ItemHoneycomb(new Item.Properties()));
+	public static final RegistryObject<Item> CHORUS_HONEYCOMB = HONEYCOMBS.register("chorus_honeycomb",
+			() -> new ItemHoneycomb(new Item.Properties()));
+	public static final RegistryObject<Item> NETHERITE_HONEYCOMB = HONEYCOMBS.register("netherite_honeycomb",
+			() -> new ItemHoneycomb(new Item.Properties()));
+	public static final RegistryObject<Item> EXP_HONEYCOMB = HONEYCOMBS.register("exp_honeycomb",
+			() -> new ItemHoneycomb(new Item.Properties()));
+	public static final RegistryObject<Item> ENDER_PEARL_HONEYCOMB = HONEYCOMBS.register("ender_pearl_honeycomb",
+			() -> new ItemHoneycomb(new Item.Properties()));
+	public static final RegistryObject<Item> AMETHYST_HONEYCOMB = HONEYCOMBS.register("amethyst_honeycomb",
 			() -> new ItemHoneycomb(new Item.Properties()));
 	
 	

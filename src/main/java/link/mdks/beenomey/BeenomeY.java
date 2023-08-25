@@ -121,12 +121,23 @@ public class BeenomeY
     			event.accept(bucket);
     		}
 
-    		/* Register every clean Bee*/
+    		/* Register every clean breed Bee*/
     		for(BeeType type : BeeType.values()) {
     			event.accept(BeeManager.getBee(type, type, new ItemStack(BeeInit.getCommonBee())));
     		}
     		
-    		/* Register every clean Princess*/
+//    		/* Register every cross breed Bee*/
+//    		for(BeeType type : BeeType.values()) {
+//    			if(type != BeeType.EMPTY) {
+//        			for (BeeType type2 : BeeType.values()) {
+//        				if(type2 != BeeType.EMPTY) {
+//        					event.accept(BeeManager.getBee(type, type2, new ItemStack(BeeInit.getCommonBee())));
+//        				}
+//        			}
+//    			}
+//   		}
+    		
+    		/* Register every clean breed Princess*/
     		for(BeeType type : BeeType.values()) {
     			event.accept(BeeManager.getBee(type, type, new ItemStack(BeeInit.getPrincessBee())));
     		}

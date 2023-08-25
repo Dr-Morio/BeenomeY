@@ -64,15 +64,15 @@ public class BeeManager {
     		case ROCK -> new ItemStack(ItemInit.ROCK_HONEYCOMB.get(), count);
     		case INFERNO -> new ItemStack(ItemInit.INFERNO_HONEYCOMB.get(), count);
     		case VOID -> new ItemStack(ItemInit.VOID_HONEYCOMB.get(), count);
-    		case LAVA -> new ItemStack(ItemInit.MAGMA_HONEYCOMB.get(), count);
-    		case SUGAR -> new ItemStack(ItemInit.PAPER_HONEYCOMB.get(), count);
-    		case LAPIS_LAZULI -> new ItemStack(ItemInit.LAPIS_HONEYCOMB.get(), count);
-    		case REDSTONE -> new ItemStack(ItemInit.REDSTONE_HONEYCOMB.get(), count);
-    		case IRON -> new ItemStack(ItemInit.IRON_HONEYCOMB.get(), count);
-    		case GOLD -> new ItemStack(ItemInit.GOLD_HONEYCOMB.get(), count);
-    		case COPPER -> new ItemStack(ItemInit.COPPER_HONEYCOMB.get(), count);
-    		case DIAMOND -> new ItemStack(ItemInit.DIAMOND_HONEYCOMB.get(), count);
-    		case OBSIDIAN -> new ItemStack(ItemInit.OBSIDIAN_HONEYCOMB.get(), count);
+//    		case LAVA -> new ItemStack(ItemInit.LAVA_HONEYCOMB.get(), count);
+//    		case SUGAR -> new ItemStack(ItemInit.SUGAR_HONEYCOMB.get(), count);
+//    		case LAPIS_LAZULI -> new ItemStack(ItemInit.LAPIS_LAZULI_HONEYCOMB.get(), count);
+//    		case REDSTONE -> new ItemStack(ItemInit.REDSTONE_HONEYCOMB.get(), count);
+//    		case IRON -> new ItemStack(ItemInit.IRON_HONEYCOMB.get(), count);
+//    		case GOLD -> new ItemStack(ItemInit.GOLD_HONEYCOMB.get(), count);
+//    		case COPPER -> new ItemStack(ItemInit.COPPER_HONEYCOMB.get(), count);
+//    		case DIAMOND -> new ItemStack(ItemInit.DIAMOND_HONEYCOMB.get(), count);
+//    		case OBSIDIAN -> new ItemStack(ItemInit.OBSIDIAN_HONEYCOMB.get(), count);
     		default -> new ItemStack(ItemInit.HONEYCOMB.get(), count);
     	};
     	

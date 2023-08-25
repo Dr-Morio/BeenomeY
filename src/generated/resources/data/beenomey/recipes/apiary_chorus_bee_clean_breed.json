@@ -3,28 +3,28 @@
   "ingredients": [
     {
       "item": "beenomey:common_bee",
-      "mainType": "CHORIUS",
-      "secondType": "CHORIUS"
+      "mainType": "CHORUS",
+      "secondType": "CHORUS"
     },
     {
       "item": "beenomey:common_bee",
-      "mainType": "CHORIUS",
-      "secondType": "CHORIUS"
+      "mainType": "CHORUS",
+      "secondType": "CHORUS"
     },
     {
       "item": "beenomey:common_bee",
-      "mainType": "CHORIUS",
-      "secondType": "CHORIUS"
+      "mainType": "CHORUS",
+      "secondType": "CHORUS"
     },
     {
       "item": "beenomey:princess_bee",
-      "mainType": "CHORIUS",
-      "secondType": "CHORIUS"
+      "mainType": "CHORUS",
+      "secondType": "CHORUS"
     }
   ],
   "output": {
     "item": "beenomey:common_bee",
-    "mainType": "CHORIUS",
-    "secondType": "CHORIUS"
+    "mainType": "CHORUS",
+    "secondType": "CHORUS"
   }
 }

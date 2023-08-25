@@ -70,8 +70,8 @@ public class BeenomeyItemModelProvider extends ItemModelProvider{
 		simpleBee(BeeInit.COMMON_BEE, "nether_star",	"bee_base_0", "bee_body_color_1");
 		simpleBee(BeeInit.COMMON_BEE, "nether_quarz",	"bee_base_0", "bee_body_color_1");
 		simpleBee(BeeInit.COMMON_BEE, "prismarine",		"bee_base_0", "bee_body_color_0");
-		simpleBee(BeeInit.COMMON_BEE, "chorius",		"bee_base_0", "bee_body_color_0");
-		simpleBee(BeeInit.COMMON_BEE, "netherite",		"bee_base_0", "bee_body_color_2");
+		simpleBee(BeeInit.COMMON_BEE, "chorus",		"bee_base_0", "bee_body_color_0");
+		simpleBee(BeeInit.COMMON_BEE, "netherite",		"bee_base_0", "bee_body_color_1");
 		simpleBee(BeeInit.COMMON_BEE, "exp",		    "bee_base_0", "bee_body_color_0");
 		simpleBee(BeeInit.COMMON_BEE, "ender_pearl",	"bee_base_0", "bee_body_color_3");
 		simpleBee(BeeInit.COMMON_BEE, "amethyst",		"bee_base_0", "bee_body_color_0");
@@ -106,12 +106,12 @@ public class BeenomeyItemModelProvider extends ItemModelProvider{
 		simplePrincess(BeeInit.COMMON_BEE, "diamond",		"bee_base_0", "bee_body_color_2", "princess");
 		simplePrincess(BeeInit.COMMON_BEE, "obsidian",		"bee_base_0", "bee_body_color_0", "princess");
 		simplePrincess(BeeInit.COMMON_BEE, "glowstone",		"bee_base_0", "bee_body_color_1", "princess_inferno");
-		simplePrincess(BeeInit.COMMON_BEE, "blaze",		    "bee_base_0", "bee_body_color_2", "princess");
+		simplePrincess(BeeInit.COMMON_BEE, "blaze",		    "bee_base_0", "bee_body_color_1", "princess_inferno");
 		simplePrincess(BeeInit.COMMON_BEE, "emerald",		"bee_base_0", "bee_body_color_2", "princess");
 		simplePrincess(BeeInit.COMMON_BEE, "nether_star",	"bee_base_0", "bee_body_color_1", "princess_inferno");
 		simplePrincess(BeeInit.COMMON_BEE, "nether_quarz",	"bee_base_0", "bee_body_color_1", "princess_inferno");
 		simplePrincess(BeeInit.COMMON_BEE, "prismarine",	"bee_base_0", "bee_body_color_0", "princess");
-		simplePrincess(BeeInit.COMMON_BEE, "chorius",		"bee_base_0", "bee_body_color_0", "princess");
+		simplePrincess(BeeInit.COMMON_BEE, "chorus",		"bee_base_0", "bee_body_color_0", "princess");
 		simplePrincess(BeeInit.COMMON_BEE, "netherite",		"bee_base_0", "bee_body_color_1", "princess_inferno");
 		simplePrincess(BeeInit.COMMON_BEE, "exp",		    "bee_base_0", "bee_body_color_0", "princess");
 		simplePrincess(BeeInit.COMMON_BEE, "ender_pearl",	"bee_base_0", "bee_body_color_3", "princess");
