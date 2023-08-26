@@ -65,10 +65,15 @@ public class ApiaryModBlockBeeRecipeReader implements Recipe<SimpleContainer>{
 	}
 
 	@Override
+	public boolean isSpecial() {
+		return true;
+	}
+	
+	@Override
 	public ResourceLocation getId() {
 		return id;
 	}
-
+	
 	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return Serializer.INSTANCE;

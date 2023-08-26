@@ -6,6 +6,7 @@ import java.util.Objects;
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.items.ItemBee;
 import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockBeeRecipeReader;
+import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockCombRecipeReader;
 import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockPrincessRecipeReader;
 import link.mdks.beenomey.apiculture.recipe.BreederBlockRecipe;
 import link.mdks.beenomey.apiculture.util.BeeManager;
@@ -35,6 +36,9 @@ public class JEIBeenomeYModPlugin implements IModPlugin{
     public static RecipeType<ApiaryModBlockPrincessRecipeReader> APIARY_PRINCESS_TYPE =
             new RecipeType<>(ApiaryModBlockRecipeCategoryPrincess.UID, ApiaryModBlockPrincessRecipeReader.class);
     
+    public static RecipeType<ApiaryModBlockCombRecipeReader> APIARY_COMB_TYPE =
+            new RecipeType<>(ApiaryModBlockRecipeCategoryComb.UID, ApiaryModBlockCombRecipeReader.class);
+    
     public static RecipeType<BreederBlockRecipe> BREEDER_TYPE =
             new RecipeType<>(BreederBlockRecipeCategory.UID, BreederBlockRecipe.class);
 	
@@ -49,6 +53,7 @@ public class JEIBeenomeYModPlugin implements IModPlugin{
     public void registerCategories(IRecipeCategoryRegistration registration) {
         registration.addRecipeCategories(new ApiaryModBlockRecipeCategoryBee(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new ApiaryModBlockRecipeCategoryPrincess(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new ApiaryModBlockRecipeCategoryComb(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new BreederBlockRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
@@ -73,6 +78,9 @@ public class JEIBeenomeYModPlugin implements IModPlugin{
         
         List<ApiaryModBlockPrincessRecipeReader> apiaryPrincessRecipes = rm.getAllRecipesFor(ApiaryModBlockPrincessRecipeReader.Type.INSTANCE);
         registration.addRecipes(APIARY_PRINCESS_TYPE, apiaryPrincessRecipes);
+        
+        List<ApiaryModBlockCombRecipeReader> apiaryCombRecipes = rm.getAllRecipesFor(ApiaryModBlockCombRecipeReader.Type.INSTANCE);
+        registration.addRecipes(APIARY_COMB_TYPE, apiaryCombRecipes);
         
         List<BreederBlockRecipe> breederRecipes = rm.getAllRecipesFor(BreederBlockRecipe.Type.INSTANCE);
         registration.addRecipes(BREEDER_TYPE, breederRecipes);

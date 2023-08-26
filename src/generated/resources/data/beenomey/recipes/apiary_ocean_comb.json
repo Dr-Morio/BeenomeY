@@ -1,0 +1,28 @@
+{
+  "type": "beenomey:apiary_recipe_comb",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "OCEAN",
+      "secondType": "OCEAN"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "OCEAN",
+      "secondType": "OCEAN"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "OCEAN",
+      "secondType": "OCEAN"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "OCEAN",
+      "secondType": "OCEAN"
+    }
+  ],
+  "output": {
+    "item": "beenomey:ocean_honeycomb"
+  }
+}

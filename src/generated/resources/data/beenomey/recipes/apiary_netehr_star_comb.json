@@ -1,0 +1,28 @@
+{
+  "type": "beenomey:apiary_recipe_comb",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "NETEHR_STAR",
+      "secondType": "NETEHR_STAR"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "NETEHR_STAR",
+      "secondType": "NETEHR_STAR"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "NETEHR_STAR",
+      "secondType": "NETEHR_STAR"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "NETEHR_STAR",
+      "secondType": "NETEHR_STAR"
+    }
+  ],
+  "output": {
+    "item": "beenomey:nether_star_honeycomb"
+  }
+}

@@ -1,5 +1,7 @@
 package link.mdks.beenomey.apiculture.util;
 
+import java.util.HashMap;
+
 import javax.annotation.Nullable;
 
 import link.mdks.beenomey.init.ItemInit;
@@ -12,7 +14,6 @@ public class BeeManager {
     private static BeeType mainBeeType;
     private static BeeType secondBeeType;
     private static CompoundTag tag;
-
     private static ItemStack itemStack;
     
     public static ItemStack getBee(BeeType MainBeeType, BeeType SecondBeeType, ItemStack ItemStack) {
@@ -55,27 +56,50 @@ public class BeeManager {
         return Math.round(value * multiplier);
     }
     
+    @SuppressWarnings("serial")
+	private static HashMap<BeeType, Item> beeCombs = new HashMap<BeeType, Item>() {{
+    	put(BeeType.EMPTY, ItemInit.HONEYCOMB.get());
+    	put(BeeType.FOREST, ItemInit.HONEYCOMB.get());
+    	put(BeeType.FROZEN, ItemInit.FROZEN_HONEYCOMB.get());
+    	put(BeeType.OCEAN, ItemInit.OCEAN_HONEYCOMB.get());
+    	put(BeeType.DESERT, ItemInit.DESERT_HONEYCOMB.get());
+    	put(BeeType.ROCK, ItemInit.ROCK_HONEYCOMB.get());
+    	put(BeeType.INFERNO, ItemInit.INFERNO_HONEYCOMB.get());
+    	put(BeeType.VOID, ItemInit.VOID_HONEYCOMB.get());
+    	put(BeeType.COAL, ItemInit.COAL_HONEYCOMB.get());
+    	put(BeeType.GUNPOWDER, ItemInit.GUNPOWDER_HONEYCOMB.get());
+    	put(BeeType.FLINT, ItemInit.FLINT_HONEYCOMB.get());
+    	put(BeeType.SLIME, ItemInit.SLIME_HONEYCOMB.get());
+    	put(BeeType.SUGAR, ItemInit.SUGAR_HONEYCOMB.get());
+    	put(BeeType.GLASS, ItemInit.GLASS_HONEYCOMB.get());
+    	put(BeeType.CLAY, ItemInit.CLAY_HONEYCOMB.get());
+    	put(BeeType.STRING, ItemInit.STRING_HONEYCOMB.get());
+    	put(BeeType.NETHER_WART, ItemInit.NETHER_WART_HONEYCOMB.get());
+    	put(BeeType.SOUL_SAND, ItemInit.SOUL_SAND_HONEYCOMB.get());
+    	put(BeeType.MUSHROOM, ItemInit.MUSHROOM_HONEYCOMB.get());
+    	put(BeeType.LAVA, ItemInit.LAVA_HONEYCOMB.get());
+    	put(BeeType.LAPIS_LAZULI, ItemInit.LAPIS_LAZULI_HONEYCOMB.get());
+    	put(BeeType.REDSTONE, ItemInit.REDSTONE_HONEYCOMB.get());
+    	put(BeeType.IRON, ItemInit.IRON_HONEYCOMB.get());
+    	put(BeeType.GOLD, ItemInit.GOLD_HONEYCOMB.get());
+    	put(BeeType.COPPER, ItemInit.COPPER_HONEYCOMB.get());
+    	put(BeeType.DIAMOND, ItemInit.DIAMOND_HONEYCOMB.get());
+    	put(BeeType.OBSIDIAN, ItemInit.OBSIDIAN_HONEYCOMB.get());
+    	put(BeeType.GLOWSTONE, ItemInit.GLOWSTONE_HONEYCOMB.get());
+    	put(BeeType.BLAZE, ItemInit.BLAZE_HONEYCOMB.get());
+    	put(BeeType.EMERALD, ItemInit.EMERALD_HONEYCOMB.get());
+    	put(BeeType.NETEHR_STAR, ItemInit.NETHER_STAR_HONEYCOMB.get());
+    	put(BeeType.NETHER_QUARZ, ItemInit.NETHER_QUARZ_HONEYCOMB.get());
+    	put(BeeType.PRISMARINE, ItemInit.PRISMARINE_HONEYCOMB.get());
+    	put(BeeType.CHORUS, ItemInit.CHORUS_HONEYCOMB.get());
+    	put(BeeType.NETHERITE, ItemInit.NETHERITE_HONEYCOMB.get());
+    	put(BeeType.EXP, ItemInit.EXP_HONEYCOMB.get());
+    	put(BeeType.ENDER_PEARL, ItemInit.ENDER_PEARL_HONEYCOMB.get());
+    	put(BeeType.AMETHYST, ItemInit.AMETHYST_HONEYCOMB.get());
+    }};
+    
     public static ItemStack getComb(BeeType type, @Nullable int count) {
-    	return switch (type) {
-    		case FOREST -> new ItemStack(ItemInit.HONEYCOMB.get(), count);
-    		case FROZEN -> new ItemStack(ItemInit.FROZEN_HONEYCOMB.get(), count);
-    		case OCEAN -> new ItemStack(ItemInit.OCEAN_HONEYCOMB.get(), count);
-    		case DESERT -> new ItemStack(ItemInit.DESERT_HONEYCOMB.get(), count);
-    		case ROCK -> new ItemStack(ItemInit.ROCK_HONEYCOMB.get(), count);
-    		case INFERNO -> new ItemStack(ItemInit.INFERNO_HONEYCOMB.get(), count);
-    		case VOID -> new ItemStack(ItemInit.VOID_HONEYCOMB.get(), count);
-//    		case LAVA -> new ItemStack(ItemInit.LAVA_HONEYCOMB.get(), count);
-//    		case SUGAR -> new ItemStack(ItemInit.SUGAR_HONEYCOMB.get(), count);
-//    		case LAPIS_LAZULI -> new ItemStack(ItemInit.LAPIS_LAZULI_HONEYCOMB.get(), count);
-//    		case REDSTONE -> new ItemStack(ItemInit.REDSTONE_HONEYCOMB.get(), count);
-//    		case IRON -> new ItemStack(ItemInit.IRON_HONEYCOMB.get(), count);
-//    		case GOLD -> new ItemStack(ItemInit.GOLD_HONEYCOMB.get(), count);
-//    		case COPPER -> new ItemStack(ItemInit.COPPER_HONEYCOMB.get(), count);
-//    		case DIAMOND -> new ItemStack(ItemInit.DIAMOND_HONEYCOMB.get(), count);
-//    		case OBSIDIAN -> new ItemStack(ItemInit.OBSIDIAN_HONEYCOMB.get(), count);
-    		default -> new ItemStack(ItemInit.HONEYCOMB.get(), count);
-    	};
-    	
+    	return new ItemStack(beeCombs.get(type), count);
     }
     
     

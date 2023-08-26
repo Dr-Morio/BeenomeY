@@ -1,0 +1,28 @@
+{
+  "type": "beenomey:apiary_recipe_comb",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "SLIME",
+      "secondType": "SLIME"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "SLIME",
+      "secondType": "SLIME"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "SLIME",
+      "secondType": "SLIME"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "SLIME",
+      "secondType": "SLIME"
+    }
+  ],
+  "output": {
+    "item": "beenomey:slime_honeycomb"
+  }
+}

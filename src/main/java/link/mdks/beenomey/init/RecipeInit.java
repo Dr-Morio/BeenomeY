@@ -2,6 +2,7 @@ package link.mdks.beenomey.init;
 
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockBeeRecipeReader;
+import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockCombRecipeReader;
 import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockPrincessRecipeReader;
 import link.mdks.beenomey.apiculture.recipe.BreederBlockRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -19,6 +20,9 @@ public class RecipeInit {
     
     public static final RegistryObject<RecipeSerializer<ApiaryModBlockPrincessRecipeReader>> APIARY_PRINCESS_RECIPE_SERIALIZER =
             SERIALIZERS.register("apiary_recipe_princess", () -> ApiaryModBlockPrincessRecipeReader.Serializer.INSTANCE);
+    
+    public static final RegistryObject<RecipeSerializer<ApiaryModBlockCombRecipeReader>> APIARY_COMB_RECIPE_SERIALIZER =
+            SERIALIZERS.register("apiary_recipe_comb", () -> ApiaryModBlockCombRecipeReader.Serializer.INSTANCE);
     
     public static final RegistryObject<RecipeSerializer<BreederBlockRecipe>> BREEDER_RECIPE_SERIALIZER =
             SERIALIZERS.register("breeder_recipe", () -> BreederBlockRecipe.Serializer.INSTANCE);

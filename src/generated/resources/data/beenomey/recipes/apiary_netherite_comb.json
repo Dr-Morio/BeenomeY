@@ -1,0 +1,28 @@
+{
+  "type": "beenomey:apiary_recipe_comb",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "NETHERITE",
+      "secondType": "NETHERITE"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "NETHERITE",
+      "secondType": "NETHERITE"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "NETHERITE",
+      "secondType": "NETHERITE"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "NETHERITE",
+      "secondType": "NETHERITE"
+    }
+  ],
+  "output": {
+    "item": "beenomey:netherite_honeycomb"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "type": "beenomey:apiary_recipe_comb",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "FROZEN",
+      "secondType": "FROZEN"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "FROZEN",
+      "secondType": "FROZEN"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "FROZEN",
+      "secondType": "FROZEN"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "FROZEN",
+      "secondType": "FROZEN"
+    }
+  ],
+  "output": {
+    "item": "beenomey:frozen_honeycomb"
+  }
+}

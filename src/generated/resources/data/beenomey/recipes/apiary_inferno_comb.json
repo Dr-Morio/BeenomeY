@@ -1,0 +1,28 @@
+{
+  "type": "beenomey:apiary_recipe_comb",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "INFERNO",
+      "secondType": "INFERNO"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "INFERNO",
+      "secondType": "INFERNO"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "INFERNO",
+      "secondType": "INFERNO"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "INFERNO",
+      "secondType": "INFERNO"
+    }
+  ],
+  "output": {
+    "item": "beenomey:inferno_honeycomb"
+  }
+}

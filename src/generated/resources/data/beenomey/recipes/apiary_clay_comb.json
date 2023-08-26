@@ -1,0 +1,28 @@
+{
+  "type": "beenomey:apiary_recipe_comb",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "CLAY",
+      "secondType": "CLAY"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "CLAY",
+      "secondType": "CLAY"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "CLAY",
+      "secondType": "CLAY"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "CLAY",
+      "secondType": "CLAY"
+    }
+  ],
+  "output": {
+    "item": "beenomey:clay_honeycomb"
+  }
+}

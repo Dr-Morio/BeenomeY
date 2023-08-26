@@ -1,0 +1,28 @@
+{
+  "type": "beenomey:apiary_recipe_comb",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "PRISMARINE",
+      "secondType": "PRISMARINE"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "PRISMARINE",
+      "secondType": "PRISMARINE"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "PRISMARINE",
+      "secondType": "PRISMARINE"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "PRISMARINE",
+      "secondType": "PRISMARINE"
+    }
+  ],
+  "output": {
+    "item": "beenomey:prismarine_honeycomb"
+  }
+}

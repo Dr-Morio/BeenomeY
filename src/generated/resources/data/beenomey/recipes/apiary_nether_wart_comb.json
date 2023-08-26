@@ -1,0 +1,28 @@
+{
+  "type": "beenomey:apiary_recipe_comb",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "NETHER_WART",
+      "secondType": "NETHER_WART"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "NETHER_WART",
+      "secondType": "NETHER_WART"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "NETHER_WART",
+      "secondType": "NETHER_WART"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "NETHER_WART",
+      "secondType": "NETHER_WART"
+    }
+  ],
+  "output": {
+    "item": "beenomey:nether_wart_honeycomb"
+  }
+}

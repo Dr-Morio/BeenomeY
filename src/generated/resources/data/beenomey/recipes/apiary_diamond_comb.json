@@ -1,0 +1,28 @@
+{
+  "type": "beenomey:apiary_recipe_comb",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "DIAMOND",
+      "secondType": "DIAMOND"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "DIAMOND",
+      "secondType": "DIAMOND"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "DIAMOND",
+      "secondType": "DIAMOND"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "DIAMOND",
+      "secondType": "DIAMOND"
+    }
+  ],
+  "output": {
+    "item": "beenomey:diamond_honeycomb"
+  }
+}

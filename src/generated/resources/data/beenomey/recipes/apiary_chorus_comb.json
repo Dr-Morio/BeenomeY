@@ -1,0 +1,28 @@
+{
+  "type": "beenomey:apiary_recipe_comb",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "CHORUS",
+      "secondType": "CHORUS"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "CHORUS",
+      "secondType": "CHORUS"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "CHORUS",
+      "secondType": "CHORUS"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "CHORUS",
+      "secondType": "CHORUS"
+    }
+  ],
+  "output": {
+    "item": "beenomey:chorus_honeycomb"
+  }
+}

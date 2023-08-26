@@ -1,0 +1,28 @@
+{
+  "type": "beenomey:apiary_recipe_comb",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "STRING",
+      "secondType": "STRING"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "STRING",
+      "secondType": "STRING"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "STRING",
+      "secondType": "STRING"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "STRING",
+      "secondType": "STRING"
+    }
+  ],
+  "output": {
+    "item": "beenomey:string_honeycomb"
+  }
+}

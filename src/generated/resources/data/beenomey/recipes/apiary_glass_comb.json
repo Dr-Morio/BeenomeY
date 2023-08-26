@@ -1,0 +1,28 @@
+{
+  "type": "beenomey:apiary_recipe_comb",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "GLASS",
+      "secondType": "GLASS"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "GLASS",
+      "secondType": "GLASS"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "GLASS",
+      "secondType": "GLASS"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "GLASS",
+      "secondType": "GLASS"
+    }
+  ],
+  "output": {
+    "item": "beenomey:glass_honeycomb"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "type": "beenomey:apiary_recipe_comb",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "MUSHROOM",
+      "secondType": "MUSHROOM"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "MUSHROOM",
+      "secondType": "MUSHROOM"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "MUSHROOM",
+      "secondType": "MUSHROOM"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "MUSHROOM",
+      "secondType": "MUSHROOM"
+    }
+  ],
+  "output": {
+    "item": "beenomey:mushroom_honeycomb"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "type": "beenomey:apiary_recipe_comb",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "EXP",
+      "secondType": "EXP"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "EXP",
+      "secondType": "EXP"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "EXP",
+      "secondType": "EXP"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "EXP",
+      "secondType": "EXP"
+    }
+  ],
+  "output": {
+    "item": "beenomey:exp_honeycomb"
+  }
+}

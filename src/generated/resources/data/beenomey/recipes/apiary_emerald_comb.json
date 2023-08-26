@@ -1,0 +1,28 @@
+{
+  "type": "beenomey:apiary_recipe_comb",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "EMERALD",
+      "secondType": "EMERALD"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "EMERALD",
+      "secondType": "EMERALD"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "EMERALD",
+      "secondType": "EMERALD"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "EMERALD",
+      "secondType": "EMERALD"
+    }
+  ],
+  "output": {
+    "item": "beenomey:emerald_honeycomb"
+  }
+}

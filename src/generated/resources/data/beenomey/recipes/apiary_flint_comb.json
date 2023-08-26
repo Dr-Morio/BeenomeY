@@ -1,0 +1,28 @@
+{
+  "type": "beenomey:apiary_recipe_comb",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "FLINT",
+      "secondType": "FLINT"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "FLINT",
+      "secondType": "FLINT"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "FLINT",
+      "secondType": "FLINT"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "FLINT",
+      "secondType": "FLINT"
+    }
+  ],
+  "output": {
+    "item": "beenomey:flint_honeycomb"
+  }
+}

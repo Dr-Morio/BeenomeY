@@ -1,0 +1,28 @@
+{
+  "type": "beenomey:apiary_recipe_comb",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "LAPIS_LAZULI",
+      "secondType": "LAPIS_LAZULI"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "LAPIS_LAZULI",
+      "secondType": "LAPIS_LAZULI"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "LAPIS_LAZULI",
+      "secondType": "LAPIS_LAZULI"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "LAPIS_LAZULI",
+      "secondType": "LAPIS_LAZULI"
+    }
+  ],
+  "output": {
+    "item": "beenomey:lapis_lazuli_honeycomb"
+  }
+}

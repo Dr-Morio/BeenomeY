@@ -1,0 +1,28 @@
+{
+  "type": "beenomey:apiary_recipe_comb",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "IRON",
+      "secondType": "IRON"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "IRON",
+      "secondType": "IRON"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "IRON",
+      "secondType": "IRON"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "IRON",
+      "secondType": "IRON"
+    }
+  ],
+  "output": {
+    "item": "beenomey:iron_honeycomb"
+  }
+}

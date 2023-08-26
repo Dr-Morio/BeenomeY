@@ -1,0 +1,28 @@
+{
+  "type": "beenomey:apiary_recipe_comb",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "GOLD",
+      "secondType": "GOLD"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "GOLD",
+      "secondType": "GOLD"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "GOLD",
+      "secondType": "GOLD"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "GOLD",
+      "secondType": "GOLD"
+    }
+  ],
+  "output": {
+    "item": "beenomey:gold_honeycomb"
+  }
+}

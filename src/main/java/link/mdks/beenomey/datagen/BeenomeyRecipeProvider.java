@@ -11,6 +11,7 @@ import link.mdks.beenomey.apiculture.recipe.BreederBlockRecipe;
 import link.mdks.beenomey.apiculture.util.BeeManager;
 import link.mdks.beenomey.apiculture.util.BeeType;
 import link.mdks.beenomey.datagen.machines.ApiaryBeeRecipeBuilder;
+import link.mdks.beenomey.datagen.machines.ApiaryCombRecipeBuilder;
 import link.mdks.beenomey.datagen.machines.ApiaryPrincessRecipeBuilder;
 import link.mdks.beenomey.datagen.machines.BreederBlockRecipeBuilder;
 import link.mdks.beenomey.init.BeeInit;
@@ -43,28 +44,46 @@ public class BeenomeyRecipeProvider extends RecipeProvider implements ICondition
 	@Override
 	protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
 		
-		//TODO: Add recipes for JEI... the right ones
-		
-		// Hardcoded Recipe Set for Clean Breed via Apiary
+		/* Recipe Set for Clean Breed via Apiary */
 		for (BeeType type : BeeType.values()) {
-			new ApiaryBeeRecipeBuilder(
-					BeeManager.getBee(type, type, new ItemStack(BeeInit.getCommonBee())),
-					BeeManager.getBee(type, type, new ItemStack(BeeInit.getPrincessBee())),
-					BeeManager.getBee(type, type, new ItemStack(BeeInit.getCommonBee())))
-			.unlockedBy("has_bee", inventoryTrigger(ItemPredicate.Builder.item()
-					.of(BeeManager.getBee(type, type, new ItemStack(BeeInit.getCommonBee())).getItem()).build()))
-			.save(consumer);
+			if(type != BeeType.EMPTY) {
+				new ApiaryBeeRecipeBuilder(
+						BeeManager.getBee(type, type, new ItemStack(BeeInit.getCommonBee())),
+						BeeManager.getBee(type, type, new ItemStack(BeeInit.getPrincessBee())),
+						BeeManager.getBee(type, type, new ItemStack(BeeInit.getCommonBee())))
+				.unlockedBy("has_bee", inventoryTrigger(ItemPredicate.Builder.item()
+						.of(BeeManager.getBee(type, type, new ItemStack(BeeInit.getCommonBee())).getItem()).build()))
+				.save(consumer);
+			}
 		}
 		
-		// Hardcoded Recipe Set for Princess Breeding via Apiary
+		/* Recipe Set for Princess Breeding via Apiary */
 		for (BeeType type : BeeType.values()) {
-			new ApiaryPrincessRecipeBuilder(
-					BeeManager.getBee(type, type, new ItemStack(BeeInit.getCommonBee())),
-					BeeManager.getBee(type, type, new ItemStack(BeeInit.getPrincessBee())))
-			.unlockedBy("has_princess", inventoryTrigger(ItemPredicate.Builder.item()
-					.of(BeeManager.getBee(type, type, new ItemStack(BeeInit.getPrincessBee())).getItem()).build()))
-			.save(consumer);
+			if(type != BeeType.EMPTY) {
+				new ApiaryPrincessRecipeBuilder(
+						BeeManager.getBee(type, type, new ItemStack(BeeInit.getCommonBee())),
+						BeeManager.getBee(type, type, new ItemStack(BeeInit.getPrincessBee())))
+				.unlockedBy("has_princess", inventoryTrigger(ItemPredicate.Builder.item()
+						.of(BeeManager.getBee(type, type, new ItemStack(BeeInit.getPrincessBee())).getItem()).build()))
+				.save(consumer);
+			}
 		}
+		
+		/* Recipe Set for Honeycombs */
+		for (BeeType type : BeeType.values()) {
+			if(type != BeeType.EMPTY) {
+				new ApiaryCombRecipeBuilder(
+						BeeManager.getBee(type, type, new ItemStack(BeeInit.getCommonBee())),
+						BeeManager.getBee(type, type, new ItemStack(BeeInit.getPrincessBee())),
+						BeeManager.getComb(type, 1))
+				.unlockedBy("has_bee", inventoryTrigger(ItemPredicate.Builder.item()
+						.of(BeeManager.getBee(type, type, new ItemStack(BeeInit.getCommonBee())).getItem()).build()))
+				.save(consumer);
+			}
+		}
+		
+		
+		
 		
 		// Hardcoded Dummy Recipe set for Breeder
 		new BreederBlockRecipeBuilder(

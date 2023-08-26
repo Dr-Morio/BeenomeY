@@ -3,8 +3,6 @@
 		"facing=north": { "model": "beenomey:block/breeder_block" },
 		"facing=east": { "model": "beenomey:block/breeder_block", "y": 90},
 		"facing=south": { "model": "beenomey:block/breeder_block", "y": 180},
-		"facing=west": { "model": "beenomey:block/breeder_block", "y": 270},
-		"facing=up": { "model": "beenomey:block/breeder_block", "y": 0},
-		"facing=down": { "model": "beenomey:block/breeder_block", "y": 0}
+		"facing=west": { "model": "beenomey:block/breeder_block", "y": 270}
 	}
 }

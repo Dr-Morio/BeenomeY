@@ -63,6 +63,11 @@ public class BreederBlockRecipe implements Recipe<SimpleContainer>{
 	}
 
 	@Override
+	public boolean isSpecial() {
+		return true;
+	}
+
+	@Override
 	public ResourceLocation getId() {
 		return id;
 	}

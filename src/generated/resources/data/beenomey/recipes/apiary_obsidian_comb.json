@@ -1,0 +1,28 @@
+{
+  "type": "beenomey:apiary_recipe_comb",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "OBSIDIAN",
+      "secondType": "OBSIDIAN"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "OBSIDIAN",
+      "secondType": "OBSIDIAN"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "OBSIDIAN",
+      "secondType": "OBSIDIAN"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "OBSIDIAN",
+      "secondType": "OBSIDIAN"
+    }
+  ],
+  "output": {
+    "item": "beenomey:obsidian_honeycomb"
+  }
+}

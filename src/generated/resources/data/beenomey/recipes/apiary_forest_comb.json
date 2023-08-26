@@ -1,0 +1,28 @@
+{
+  "type": "beenomey:apiary_recipe_comb",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "FOREST",
+      "secondType": "FOREST"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "FOREST",
+      "secondType": "FOREST"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "FOREST",
+      "secondType": "FOREST"
+    },
+    {
+      "item": "beenomey:princess_bee",
+      "mainType": "FOREST",
+      "secondType": "FOREST"
+    }
+  ],
+  "output": {
+    "item": "beenomey:honeycomb"
+  }
+}
