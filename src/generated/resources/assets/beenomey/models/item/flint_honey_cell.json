@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "beenomey:item/bucket/inferno_honey_bucket"
+    "layer0": "beenomey:item/cell/flint_honey_cell"
   }
 }

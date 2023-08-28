@@ -239,6 +239,14 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 			pEntity.FLUID_TANK.fill(new FluidStack(FluidInit.SOURCE_FROZEN_HONEY.get(), 100), FluidAction.EXECUTE);
 		}
 		
+		if(level.getBlockState(blockPos.above()).getBlock() == Blocks.DIRT) {
+			pEntity.FLUID_TANK.fill(new FluidStack(FluidInit.SOURCE_ENDER_PEARL_HONEY.get(), 100), FluidAction.EXECUTE);
+		}
+		
+		if(level.getBlockState(blockPos.above()).getBlock() == Blocks.OBSIDIAN) {
+			pEntity.FLUID_TANK.fill(new FluidStack(FluidInit.SOURCE_MUSHROOM_HONEY.get(), 100), FluidAction.EXECUTE);
+		}
+		
 	}
 	
 	/* Energy System */

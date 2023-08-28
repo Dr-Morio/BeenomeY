@@ -7,10 +7,10 @@ import java.util.List;
 import org.stringtemplate.v4.ST;
 
 import link.mdks.beenomey.BeenomeY;
+import link.mdks.beenomey.apiculture.items.ItemCell;
 import link.mdks.beenomey.apiculture.items.ItemHoneycomb;
 import link.mdks.beenomey.apiculture.items.ItemScoop;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -26,7 +26,7 @@ public class ItemInit {
 	public static final DeferredRegister<Item> HONEYCOMBS = DeferredRegister.create(ForgeRegistries.ITEMS, BeenomeY.MODID);
 	public static final DeferredRegister<Item> STRUCTURECOMBS = DeferredRegister.create(ForgeRegistries.ITEMS, BeenomeY.MODID);
 
-	public static final DeferredRegister<Item> BUCKETS = DeferredRegister.create(ForgeRegistries.ITEMS, BeenomeY.MODID);
+	public static final DeferredRegister<Item> CELLS = DeferredRegister.create(ForgeRegistries.ITEMS, BeenomeY.MODID);
 
 	/* Util Items*/
 	public static final RegistryObject<Item> WOODEN_SCOOP = ITEMS.register("wooden_scoop",
@@ -110,118 +110,121 @@ public class ItemInit {
 	
 	
 	/* Cells */
-
-    public static final RegistryObject<Item> HONEY_BUCKET = BUCKETS.register("honey_bucket", 
-    		() -> new BucketItem(FluidInit.SOURCE_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> EMPTY_CELL = CELLS.register("empty_honey_cell", 
+			() -> new ItemCell( null, new Item.Properties().stacksTo(1)));
+	
+    public static final RegistryObject<Item> HONEY_CELL = CELLS.register("honey_cell", 
+    		() -> new ItemCell(FluidInit.SOURCE_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
     
-    public static final RegistryObject<Item> FROZEN_HONEY_BUCKET = BUCKETS.register("frozen_honey_bucket", 
-        	() -> new BucketItem(FluidInit.SOURCE_FROZEN_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> OCEAN_HONEY_BUCKET = BUCKETS.register("ocean_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_OCEAN_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> DESERT_HONEY_BUCKET = BUCKETS.register("desert_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_DESERT_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> ROCK_HONEY_BUCKET = BUCKETS.register("rock_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_ROCK_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-    public static final RegistryObject<Item> INFERNO_HONEY_BUCKET = BUCKETS.register("inferno_honey_bucket", 
-        	() -> new BucketItem(FluidInit.SOURCE_INFERNO_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> VOID_HONEY_BUCKET = BUCKETS.register("void_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_VOID_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> COAL_HONEY_BUCKET = BUCKETS.register("coal_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_COAL_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> GUNPOWDER_HONEY_BUCKET = BUCKETS.register("gunpowder_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_GUNPOWDER_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> FLINT_HONEY_BUCKET = BUCKETS.register("flint_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_FLINT_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//
-//    public static final RegistryObject<Item> SLIME_HONEY_BUCKET = BUCKETS.register("slime_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_SLIME_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//
-//    public static final RegistryObject<Item> SUGAR_HONEY_BUCKET = BUCKETS.register("sugar_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_SUGAR_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> GLASS_HONEY_BUCKET = BUCKETS.register("glass_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_GLASS_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> CLAY_HONEY_BUCKET = BUCKETS.register("clay_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_CLAY_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> STRING_HONEY_BUCKET = BUCKETS.register("string_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_STRING_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> NETHER_WART_HONEY_BUCKET = BUCKETS.register("nether_wart_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_NETHER_WART_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> SOUL_SAND_HONEY_BUCKET = BUCKETS.register("soul_sand_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_SOUL_SAND_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> MUSHROOM_HONEY_BUCKET = BUCKETS.register("mushroom_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_MUSHROOM_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> LAVA_HONEY_BUCKET = BUCKETS.register("lava_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_LAVA_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> LAPIS_LAZULI_HONEY_BUCKET = BUCKETS.register("lapis_lazulI_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_LAPIS_LAZULI_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> REDSTONE_HONEY_BUCKET = BUCKETS.register("redstone_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_REDSTONE_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> IRON_HONEY_BUCKET = BUCKETS.register("iron_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_IRON_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> GOLD_HONEY_BUCKET = BUCKETS.register("gold_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_GOLD_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> COPPER_HONEY_BUCKET = BUCKETS.register("copper_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_COPPER_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> DIAMOND_HONEY_BUCKET = BUCKETS.register("diamond_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_DIAMOND_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> OBSIDIAN_HONEY_BUCKET = BUCKETS.register("obsidian_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_OBSIDIAN_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> GLOWSTONE_HONEY_BUCKET = BUCKETS.register("glowstone_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_GLOWSTONE_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> BLAZE_HONEY_BUCKET = BUCKETS.register("blaze_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_BLAZE_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> EMERALD_HONEY_BUCKET = BUCKETS.register("emerald_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_EMERALD_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> NETEHR_STAR_HONEY_BUCKET = BUCKETS.register("netehr_star_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_NETEHR_STAR_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> NETHER_QUARZ_HONEY_BUCKET = BUCKETS.register("nether_quarz_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_NETHER_QUARZ_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> PRISMARINE_HONEY_BUCKET = BUCKETS.register("prismarine_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_PRISMARINE_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> CHORUS_HONEY_BUCKET = BUCKETS.register("chorus_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_CHORUS_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> NETHERITE_HONEY_BUCKET = BUCKETS.register("netherite_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_NETHERITE_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> EXP_HONEY_BUCKET = BUCKETS.register("exp_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_EXP_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> ENDER_PEARL_HONEY_BUCKET = BUCKETS.register("ender_pearl_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_ENDER_PEARL_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//                
-//    public static final RegistryObject<Item> AMETHYST_HONEY_BUCKET = BUCKETS.register("amethyst_honey_bucket", 
-//        	() -> new BucketItem(FluidInit.SOURCE_AMETHYST_HONEY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-//	
+    public static final RegistryObject<Item> FROZEN_HONEY_CELL = CELLS.register("frozen_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_FROZEN_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+//    public static final RegistryObject<Item> OCEAN_HONEY_CELL = CELLSS.register("ocean_honey_cell", 
+//        	() -> new ItemCell(FluidInit.SOURCE_OCEAN_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> DESERT_HONEY_CELL = CELLS.register("desert_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_DESERT_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> ROCK_HONEY_CELL = CELLS.register("rock_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_ROCK_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> INFERNO_HONEY_CELL = CELLS.register("inferno_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_INFERNO_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> VOID_HONEY_CELL = CELLS.register("void_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_VOID_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> COAL_HONEY_CELL = CELLS.register("coal_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_COAL_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> GUNPOWDER_HONEY_CELL = CELLS.register("gunpowder_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_GUNPOWDER_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> FLINT_HONEY_CELL = CELLS.register("flint_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_FLINT_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+
+    public static final RegistryObject<Item> SLIME_HONEY_CELL = CELLS.register("slime_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_SLIME_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+
+    public static final RegistryObject<Item> SUGAR_HONEY_CELL = CELLS.register("sugar_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_SUGAR_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> GLASS_HONEY_CELL = CELLS.register("glass_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_GLASS_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> CLAY_HONEY_CELL = CELLS.register("clay_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_CLAY_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> STRING_HONEY_CELL = CELLS.register("string_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_STRING_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> NETHER_WART_HONEY_CELL = CELLS.register("nether_wart_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_NETHER_WART_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> SOUL_SAND_HONEY_CELL = CELLS.register("soul_sand_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_SOUL_SAND_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> MUSHROOM_HONEY_CELL = CELLS.register("mushroom_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_MUSHROOM_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> LAVA_HONEY_CELL = CELLS.register("lava_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_LAVA_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> LAPIS_LAZULI_HONEY_CELL = CELLS.register("lapis_lazuli_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_LAPIS_LAZULI_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> REDSTONE_HONEY_CELL = CELLS.register("redstone_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_REDSTONE_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> IRON_HONEY_CELL = CELLS.register("iron_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_IRON_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> GOLD_HONEY_CELL = CELLS.register("gold_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_GOLD_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> COPPER_HONEY_CELL = CELLS.register("copper_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_COPPER_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> DIAMOND_HONEY_CELL = CELLS.register("diamond_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_DIAMOND_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> OBSIDIAN_HONEY_CELL = CELLS.register("obsidian_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_OBSIDIAN_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> GLOWSTONE_HONEY_CELL = CELLS.register("glowstone_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_GLOWSTONE_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> BLAZE_HONEY_CELL = CELLS.register("blaze_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_BLAZE_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> EMERALD_HONEY_CELL = CELLS.register("emerald_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_EMERALD_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> NETEHR_STAR_HONEY_CELL = CELLS.register("nether_star_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_NETEHR_STAR_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> NETHER_QUARZ_HONEY_CELL = CELLS.register("nether_quarz_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_NETHER_QUARZ_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> PRISMARINE_HONEY_CELL = CELLS.register("prismarine_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_PRISMARINE_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> CHORUS_HONEY_CELL = CELLS.register("chorus_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_CHORUS_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> NETHERITE_HONEY_CELL = CELLS.register("netherite_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_NETHERITE_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> EXP_HONEY_CELL = CELLS.register("exp_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_EXP_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> ENDER_PEARL_HONEY_CELL = CELLS.register("ender_pearl_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_ENDER_PEARL_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+                
+    public static final RegistryObject<Item> AMETHYST_HONEY_CELL = CELLS.register("amethyst_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_AMETHYST_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+	
+    
 	/* BlockItems */
 	public static final RegistryObject<BlockItem> APIARY_MOD_BLOCK = ITEMS.register("apiary_mod_block",
 			() -> new BlockItem(BlockInit.APIARY_MOD_BLOCK.get(),
@@ -229,13 +232,13 @@ public class ItemInit {
 	
 	public static final RegistryObject<BlockItem> BREEDER_BLOCK = ITEMS.register("breeder_block",
 			() -> new BlockItem(BlockInit.BREEDER_BLOCK.get(),
-					new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+					new Item.Properties()));
 	
     public static void register(IEventBus eventBus) {
     	ITEMS.register(eventBus);
     	HONEYCOMBS.register(eventBus);
     	STRUCTURECOMBS.register(eventBus);
-    	BUCKETS.register(eventBus);
+    	CELLS.register(eventBus);
     }
     
     public static Collection<RegistryObject<Item>> getHoneycombItems() {
@@ -246,8 +249,8 @@ public class ItemInit {
     	return STRUCTURECOMBS.getEntries();
     }
     
-    public static Collection<RegistryObject<Item>> getBucketItems() {
-    	return BUCKETS.getEntries();
+    public static Collection<RegistryObject<Item>> getCellItems() {
+    	return CELLS.getEntries();
     }
 	
 }

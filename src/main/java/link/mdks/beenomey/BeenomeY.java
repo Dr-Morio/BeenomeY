@@ -117,8 +117,8 @@ public class BeenomeY
     		}
     		
     		/* Register all Buckets*/
-    		for(RegistryObject<Item> bucket : ItemInit.getBucketItems()) {
-    			event.accept(bucket);
+    		for(RegistryObject<Item> cell : ItemInit.getCellItems()) {
+    			event.accept(cell);
     		}
 
     		/* Register every clean breed Bee*/

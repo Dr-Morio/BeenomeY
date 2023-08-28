@@ -30,10 +30,10 @@ public class FluidTypeInit {
             FluidType.Properties.create().lightLevel(2).density(15).viscosity(5).sound(SoundAction.get("drink"),
                     SoundEvents.HONEY_DRINK));
     
-    public static final RegistryObject<FluidType> OCEAN_HONEY_FLUID_TYPE = registerNeutral("ocean_honey_fluid",
-    		FluidResourceProvider.OCEAN_HONEY_TINT_COLOR, FluidResourceProvider.OCEAN_HONEY_FOG_COLOR,
-            FluidType.Properties.create().lightLevel(2).density(15).viscosity(5).sound(SoundAction.get("drink"),
-                    SoundEvents.HONEY_DRINK));
+//    public static final RegistryObject<FluidType> OCEAN_HONEY_FLUID_TYPE = registerNeutral("ocean_honey_fluid",
+//    		FluidResourceProvider.OCEAN_HONEY_TINT_COLOR, FluidResourceProvider.OCEAN_HONEY_FOG_COLOR,
+//            FluidType.Properties.create().lightLevel(2).density(15).viscosity(5).sound(SoundAction.get("drink"),
+//                    SoundEvents.HONEY_DRINK));
     
     public static final RegistryObject<FluidType> DESERT_HONEY_FLUID_TYPE = registerNeutral("deserthoney_fluid",
         	FluidResourceProvider.DESERT_HONEY_TINT_COLOR, FluidResourceProvider.DESERT_HONEY_FOG_COLOR,

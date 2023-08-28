@@ -31,10 +31,10 @@ public class BeenomeyItemModelProvider extends ItemModelProvider{
 			simpleComb(comb);
 		}
 		
-		/* Register Buckets */
-		Collection<RegistryObject<Item>> buckets = ItemInit.getBucketItems();
-		for(RegistryObject<Item> bucket: buckets) {
-			simpleBucket(bucket);
+		/* Register Cells */
+		Collection<RegistryObject<Item>> cells = ItemInit.getCellItems();
+		for(RegistryObject<Item> cell: cells) {
+			simpleCell(cell);
 		}
 		
 		/* Register Bees */
@@ -143,10 +143,10 @@ public class BeenomeyItemModelProvider extends ItemModelProvider{
 	}
 
 	
-	private ItemModelBuilder simpleBucket(RegistryObject<Item> item) {
+	private ItemModelBuilder simpleCell(RegistryObject<Item> item) {
 		return withExistingParent(item.getId().getPath(),
 				new ResourceLocation("item/generated")).texture("layer0", 
-						new ResourceLocation(BeenomeY.MODID, "item/bucket/" + item.getId().getPath()));
+						new ResourceLocation(BeenomeY.MODID, "item/cell/" + item.getId().getPath()));
 	}
 	
 	@SuppressWarnings("unused")

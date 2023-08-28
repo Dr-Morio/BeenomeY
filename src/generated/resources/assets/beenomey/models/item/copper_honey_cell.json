@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "beenomey:item/cell/copper_honey_cell"
+  }
+}

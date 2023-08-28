@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "beenomey:item/bucket/ocean_honey_bucket"
+    "layer0": "beenomey:item/cell/void_honey_cell"
   }
 }

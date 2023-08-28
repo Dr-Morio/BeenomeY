@@ -18,8 +18,8 @@ public class FluidResourceProvider {
 	public static Vector3f HONEY_FOG_COLOR = new Vector3f(223f / 255f, 136f / 255f, 3f / 255f);
     public static int HONEY_TINT_COLOR = 0xFFdf8803;
     
-	public static Vector3f FROZEN_HONEY_FOG_COLOR = new Vector3f(14f / 255f, 219f / 255f, 240f / 255f);
-    public static int FROZEN_HONEY_TINT_COLOR = 0xFFEDBF0;
+	public static Vector3f FROZEN_HONEY_FOG_COLOR = new Vector3f(163f / 255f, 203f / 255f, 209f / 255f);
+    public static int FROZEN_HONEY_TINT_COLOR = 0xFFa3cbd1;
     
 	public static Vector3f OCEAN_HONEY_FOG_COLOR = new Vector3f(219f / 255f, 200f / 255f, 172f / 255f);
     public static int OCEAN_HONEY_TINT_COLOR = 0xFFdbc8ac;
