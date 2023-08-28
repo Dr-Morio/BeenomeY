@@ -1,4 +1,4 @@
-package link.mdks.beenomey.apiculture.util;
+package link.mdks.beenomey.apiculture.recipehandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,8 @@ import java.util.Random;
 
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.entity.ApiaryModBlockEntity;
+import link.mdks.beenomey.apiculture.util.BeeManager;
+import link.mdks.beenomey.apiculture.util.BeeType;
 import link.mdks.beenomey.init.BeeInit;
 import link.mdks.beenomey.init.ItemInit;
 import net.minecraft.world.SimpleContainer;

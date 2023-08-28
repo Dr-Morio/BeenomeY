@@ -1,6 +1,8 @@
 package link.mdks.beenomey.apiculture.blocks.entity;
 
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import org.jetbrains.annotations.NotNull;
@@ -8,8 +10,8 @@ import org.jetbrains.annotations.Nullable;
 
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.ApiaryModBlock;
+import link.mdks.beenomey.apiculture.recipehandler.ApiaryModBlockRecipeHandler;
 import link.mdks.beenomey.apiculture.screen.ApiaryModBlockMenu;
-import link.mdks.beenomey.apiculture.util.ApiaryModBlockRecipeHandler;
 import link.mdks.beenomey.init.BeeInit;
 import link.mdks.beenomey.init.BlockEntityInit;
 import link.mdks.beenomey.init.ItemInit;
@@ -61,6 +63,9 @@ public class ApiaryModBlockEntity extends BlockEntity implements  GeoBlockEntity
 	private int progress = 0;
 	private int maxProgress = 58;
 	
+	protected static Map<Integer, ItemStack> lastInventory = new HashMap<Integer, ItemStack>();
+	
+	
 	public ApiaryModBlockEntity(BlockPos pos, BlockState state) {
 		super(BlockEntityInit.APIARY_MOD_BLOCK.get(), pos, state);
 		this.data = new ContainerData() {
@@ -87,6 +92,11 @@ public class ApiaryModBlockEntity extends BlockEntity implements  GeoBlockEntity
 				};
 			}
 		};
+		
+		// Save inventory
+		for (int i = 4; i < 11; i++) { // Only slot 4 - 10 are Bee Slots and relevant
+			lastInventory.put(i, itemHandler.getStackInSlot(i));
+		}
 		
 	}
 
@@ -267,6 +277,31 @@ public class ApiaryModBlockEntity extends BlockEntity implements  GeoBlockEntity
 		Containers.dropContents(this.level, this.worldPosition, inventory);
 	}
 	
+	
+	private static boolean hasInventoryChanged(ApiaryModBlockEntity pEntity) {
+		/* Checks if inventory has changed */
+		Map<Integer, ItemStack> currentInventory = new HashMap<Integer, ItemStack>();
+		for(int i = 4; i < 11; i++) { // Only slot 4 - 10 are Bee Slots and relevant
+			currentInventory.put(i, pEntity.itemHandler.getStackInSlot(i));
+		}
+		
+		if (lastInventory.size() != currentInventory.size()) {
+			lastInventory = currentInventory;
+			return true;
+		}
+		
+		for (int i = 4; i < 11; i ++) {
+			if (currentInventory.get(i) != lastInventory.get(i)) {
+				lastInventory = currentInventory;
+				return true;
+			}
+		}
+		lastInventory = currentInventory;
+		return false;
+		
+	}
+	
+	
 	public static void tick(Level level, BlockPos blockPos, BlockState blockState, ApiaryModBlockEntity pEntity) {
 		if(level.isClientSide()) {
 			((ApiaryModBlock) blockState.getBlock()).checkCurrentInteractions(); // updates BlockAnimation based on Interactions
@@ -275,8 +310,13 @@ public class ApiaryModBlockEntity extends BlockEntity implements  GeoBlockEntity
 
 		//The fllowing should only be called on server side
 		if (Thread.currentThread().getThreadGroup() == SidedThreadGroups.SERVER) {
+			
+		// Check if inventory has changed since last Tick
+		if (hasInventoryChanged(pEntity)) {
+			pEntity.resetProgress();
+		}
+			
 		// Determine Apiary Mode
-		
 		ApiaryModBlockRecipeHandler.ApiaryMode mode = ApiaryModBlockRecipeHandler.determineApiaryMode(pEntity);
 		int bees = ApiaryModBlockRecipeHandler.beeLoad(pEntity);
 
