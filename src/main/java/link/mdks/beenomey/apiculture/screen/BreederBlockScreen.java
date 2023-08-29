@@ -68,8 +68,8 @@ public class BreederBlockScreen extends AbstractContainerScreen<BreederBlockMenu
 	
 	private void renderProgressBar(PoseStack pPoseStack, int x, int y) {
 		if(menu.isCrafting()) {
-			//blit(pPoseStack,x + 164,y + 11,176,0,4,  menu.getScaledProgress());
-			blit(pPoseStack,x + 56,y + 9,176,0,64,  menu.getScaledProgress()); 
+			blit(pPoseStack,x + 46,y + 15,176,0,42,  menu.getScaledProgress());
+			blit(pPoseStack,x + 88,y + 15,176,72,42,  menu.getScaledProgress());  
 		}
 	}
 

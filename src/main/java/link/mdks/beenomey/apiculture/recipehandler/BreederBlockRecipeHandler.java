@@ -4,19 +4,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Random;
 
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.entity.BreederBlockEntity;
 import link.mdks.beenomey.apiculture.items.ItemCell;
-import link.mdks.beenomey.apiculture.recipe.BreederBlockRecipe;
 import link.mdks.beenomey.apiculture.util.BeeManager;
 import link.mdks.beenomey.apiculture.util.BeeType;
 import link.mdks.beenomey.init.BeeInit;
 import link.mdks.beenomey.init.ItemInit;
 import net.minecraft.util.Tuple;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.material.Fluid;
@@ -133,9 +130,9 @@ public class BreederBlockRecipeHandler {
 		pEntity.itemHandler.extractItem(2, 1, false);
 		pEntity.itemHandler.extractItem(3, 1, false);
 		
-		pEntity.getFluidTank().drain(4000, FluidAction.EXECUTE);
+		//pEntity.getFluidTank().drain(4000, FluidAction.EXECUTE);
 		
-		pEntity.getEnergyStorage().extractEnergy(pEntity.getReqEnergy(), false);
+		//pEntity.getEnergyStorage().extractEnergy(pEntity.getReqEnergy(), false);
 		pEntity.setChanged();
 		
 		BeenomeY.LOGGER.debug("Breeder: CONSUMED ALL");
@@ -143,7 +140,7 @@ public class BreederBlockRecipeHandler {
 		Random rnd = new Random();
 		int pick = rnd.nextInt(1,100);
 		BeenomeY.LOGGER.debug("Breeder: CHANCE IS 20 - PICK IS: " + pick);
-		if(pick <= 20) {
+		if(/*pick <= 20*/ true) {
 			pEntity.itemHandler.setStackInSlot(4, 
 					BeeManager.getBee(
 							pEntity.loadedRecipe.getC(), 
@@ -164,14 +161,16 @@ public class BreederBlockRecipeHandler {
 		
 		if (pEntity.lastInventory.size() != currentInventory.size()) {
 			BeenomeY.LOGGER.debug("Breeder: Inventory Size Changed - Before: " + pEntity.lastInventory.size() + " Now: " + currentInventory.size());
-			pEntity.lastInventory = currentInventory;
+			//pEntity.lastInventory = currentInventory;
+			saveInventory(pEntity);
 			return true;
 		}
 		
 		for (int i = 0; i < 5; i ++) {
 			if (currentInventory.get(i) != pEntity.lastInventory.get(i)) {
 				BeenomeY.LOGGER.debug("Breeder: Inventory Slot Changed: " + currentInventory.get(i));
-				pEntity.lastInventory = currentInventory;
+				//pEntity.lastInventory = currentInventory;
+				saveInventory(pEntity);
 				return true;
 			}
 		}
@@ -195,13 +194,21 @@ public class BreederBlockRecipeHandler {
 		return false;
 	}
 	
+	
+	public static boolean hasStillEnoughEnergy(BreederBlockEntity pEntity) {
+		if (pEntity.getEnergyStorage().getEnergyStored() >= (pEntity.getReqEnergy() / pEntity.getMaxProgress()) * (pEntity.getMaxProgress() - pEntity.getProgress())) {
+			return true;
+		}
+		return false;
+	}
+	
 	public static boolean hasEnoughEnergy(BreederBlockEntity pEntity) {
 		if (pEntity.getEnergyStorage().getEnergyStored() >= pEntity.getReqEnergy()) {
 			return true;
 		}
 		return false;
 	}
-
+	
 	private static boolean hasEqualMainType(ItemStack stack1, ItemStack stack2) {
 		BeeType main1 = BeeType.valueOf(stack1.getTag().get("MainType").getAsString());
 		BeeType main2 = BeeType.valueOf(stack2.getTag().get("MainType").getAsString());
@@ -216,6 +223,14 @@ public class BreederBlockRecipeHandler {
 		return recipes;
 	}
 
+	
+	public static boolean hasStillEnoughFluid(BreederBlockEntity pEntity) {
+		if (pEntity.getFluidTank().getFluidAmount() >= (4000 / pEntity.getMaxProgress()) * (pEntity.getMaxProgress() - pEntity.getProgress())) {
+			return true;
+		}
+		return false;
+	}
+	
 	public static boolean hasEnoughFluid(BreederBlockEntity pEntity) {
 		if (pEntity.getFluidTank().getFluidAmount() >= 4000) {
 			return true;
@@ -224,5 +239,25 @@ public class BreederBlockRecipeHandler {
 	}
 
 
+	public static void saveInventory(BreederBlockEntity pEntity) {
+		/* Saves Inventory for next Tick */
+		Map<Integer, ItemStack> currentInventory = new HashMap<Integer, ItemStack>();
+		for (int i = 0; i < pEntity.itemHandler.getSlots(); i++) {
+			currentInventory.put(i, pEntity.itemHandler.getStackInSlot(i));
+		}
+		pEntity.lastInventory = currentInventory;
+	}
+
+	public static void consumePartialEnergy(BreederBlockEntity pEntity) {
+		pEntity.getEnergyStorage().extractEnergy(pEntity.getReqEnergy() / pEntity.getMaxProgress(), false);
+		pEntity.setChanged();
+		BeenomeY.LOGGER.debug("Breeder: CONSUMED PARTIAL ENERGY: " + pEntity.getReqEnergy() / pEntity.getMaxProgress() + " ___ " +  pEntity.getReqEnergy() + " / " + pEntity.getMaxProgress());
+	}
+
+	public static void comsumePartialFluid(BreederBlockEntity pEntity) {
+		pEntity.getFluidTank().drain((4000 / pEntity.getMaxProgress()), FluidAction.EXECUTE);
+		BeenomeY.LOGGER.debug("Breeder: CONSUMED PARTIAL FLUID: " + pEntity.getReqEnergy() / pEntity.getMaxProgress() + " ___ 4000 / " + pEntity.getMaxProgress());
+
+	}
 	
 }

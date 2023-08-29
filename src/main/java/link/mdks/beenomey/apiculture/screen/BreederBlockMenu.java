@@ -3,6 +3,7 @@ package link.mdks.beenomey.apiculture.screen;
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.entity.BreederBlockEntity;
 import link.mdks.beenomey.apiculture.screen.slots.BeeSlot;
+import link.mdks.beenomey.apiculture.screen.slots.BlockedBeeSlot;
 import link.mdks.beenomey.apiculture.screen.slots.CellSlot;
 import link.mdks.beenomey.init.BlockInit;
 import link.mdks.beenomey.init.MenuTypeInit;
@@ -63,10 +64,10 @@ public class BreederBlockMenu extends AbstractContainerMenu{
 			this.addSlot(new BeeSlot(handler, 3, 114, 50)); // Slot yPosition -21 (Half of additional image Size)
 			
 			//Result Slot
-			this.addSlot(new SlotItemHandler(handler, 4, 80, 22)); // Slot yPosition -21 (Half of additional image Size)
+			this.addSlot(new BlockedBeeSlot(handler, 4, 80, 22)); // Slot yPosition -21 (Half of additional image Size)
 			
 			//Fluid Slots
-			this.addSlot(new CellSlot(handler, 5, 67, 76)); // Slot yPosition -21 (Half of additional image Size)
+			this.addSlot(new BlockedBeeSlot(handler, 5, 67, 76)); // Slot yPosition -21 (Half of additional image Size)
 			this.addSlot(new CellSlot(handler, 6, 155, 76)); // Slot yPosition -21 (Half of additional image Size)
 		});
 		
@@ -88,7 +89,7 @@ public class BreederBlockMenu extends AbstractContainerMenu{
 	public int getScaledProgress() {
 		int progress = this.data.get(0);
 		int maxProgress = this.data.get(1);
-		int progressArrowSize = 64; // This is the height in pixels of the loading bar
+		int progressArrowSize = 72; // This is the height in pixels of the loading bar
 		
 		return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
 	}

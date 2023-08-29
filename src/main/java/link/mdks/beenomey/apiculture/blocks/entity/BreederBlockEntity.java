@@ -14,13 +14,16 @@ import link.mdks.beenomey.apiculture.recipe.BreederBlockRecipe;
 import link.mdks.beenomey.apiculture.recipehandler.BreederBlockRecipeHandler;
 import link.mdks.beenomey.apiculture.screen.BreederBlockMenu;
 import link.mdks.beenomey.apiculture.util.BeeType;
+import link.mdks.beenomey.init.BeeInit;
 import link.mdks.beenomey.init.BlockEntityInit;
 import link.mdks.beenomey.init.FluidInit;
 import link.mdks.beenomey.init.FluidTypeInit;
+import link.mdks.beenomey.init.ItemInit;
 import link.mdks.beenomey.networking.NetworkMessages;
 import link.mdks.beenomey.networking.packets.EnergySyncS2CPacket;
 import link.mdks.beenomey.networking.packets.FluidSyncS2CPacket;
 import link.mdks.beenomey.util.ModEnergyStorage;
+import link.mdks.beenomey.util.WrappedItemHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -33,6 +36,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -82,7 +86,7 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 	private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 	private final ContainerData data;
 	private int progress = 0;
-	private int maxProgress = 58;
+	private int maxProgress = 100;
 	
 	/* Constructor */
 	
@@ -155,6 +159,20 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 		protected void onContentsChanged(int slot) {
 			setChanged();
 		};
+		
+		@Override
+		public boolean isItemValid(int slot, ItemStack stack) {
+			return switch(slot) {
+			case 0 -> stack.getItem().getClass() == BeeInit.COMMON_BEE.get().getClass();
+			case 1 -> stack.getItem().getClass() == BeeInit.COMMON_BEE.get().getClass();
+			case 2 -> stack.getItem().getClass() == BeeInit.COMMON_BEE.get().getClass();
+			case 3 -> stack.getItem().getClass() == BeeInit.COMMON_BEE.get().getClass();
+			case 4 -> false;
+			case 5 -> stack.getItem().getClass() == ItemInit.EMPTY_CELL.get().getClass();
+			case 6 -> stack.getItem().getClass() == ItemInit.EMPTY_CELL.get().getClass();
+			default -> false;
+			};
+		};
 	};
 	
 
@@ -186,7 +204,17 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 		
 		
 		if (cap == ForgeCapabilities.ITEM_HANDLER) {
-			return lazyItemHandler.cast();
+			if(side == null) {
+				return lazyItemHandler.cast();
+			} else {
+				return LazyOptional.of(() -> new WrappedItemHandler(itemHandler,
+						(index) -> index == 4,
+						(index, stack) -> 
+						itemHandler.isItemValid(0, stack) || itemHandler.isItemValid(1, stack) ||
+						itemHandler.isItemValid(2, stack) || itemHandler.isItemValid(3, stack)))
+						.cast();
+			}
+			
 		}
 		
 		return super.getCapability(cap, side);
@@ -253,15 +281,16 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 			//Check for fluid updates if slot has change
 			if(pEntity.lastInventory.get(6) != pEntity.itemHandler.getStackInSlot(6) || pEntity.lastInventory.get(5) != pEntity.itemHandler.getStackInSlot(5)) {
 				BreederBlockRecipeHandler.fluidTick(pEntity);
-				saveInventory(pEntity);
+				BreederBlockRecipeHandler.saveInventory(pEntity);
 				setChanged(level, blockPos, blockState);
 			}
-
+			
 			//check for valid recipe if inventory has changed
 			if(BreederBlockRecipeHandler.hasInventoryChanged(pEntity)) {
 				BeenomeY.LOGGER.debug("Breeder: INVENTORY CHANGED -- Try to Load Recipe");
 				pEntity.resetProgress();
 				pEntity.isCrafting = false;
+				BreederBlockRecipeHandler.fluidTick(pEntity);
 				pEntity.setChanged();
 				BreederBlockRecipeHandler.loadRecipe(pEntity);
 			}
@@ -271,6 +300,7 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 				BeenomeY.LOGGER.debug("Breeder: FLUID CHANGED -- Try to load Recipe");
 				pEntity.lastFluidAmount = pEntity.getFluidTank().getFluidAmount();
 				BreederBlockRecipeHandler.loadRecipe(pEntity);
+				BreederBlockRecipeHandler.fluidTick(pEntity);
 			}
 			
 			//check for valid recipe if Energy has changed 
@@ -278,14 +308,18 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 				BeenomeY.LOGGER.debug("Breeder: ENERGY CHANGED -- Try to load recipe");
 				pEntity.lastEnergyAmount = pEntity.getEnergyStorage().getEnergyStored();
 				BreederBlockRecipeHandler.loadRecipe(pEntity);
+				BreederBlockRecipeHandler.fluidTick(pEntity);
 			}
 			
 			//if recipe was valid and energy and fluid is enough add progress
 			if (pEntity.isCrafting) {
-				if(BreederBlockRecipeHandler.hasEnoughEnergy(pEntity) && BreederBlockRecipeHandler.hasEnoughFluid(pEntity)) {
+				if(BreederBlockRecipeHandler.hasStillEnoughEnergy(pEntity) && BreederBlockRecipeHandler.hasStillEnoughFluid(pEntity)) {
 					pEntity.progress++;
+					BreederBlockRecipeHandler.consumePartialEnergy(pEntity);
 					pEntity.setChanged();
-				} else if (!BreederBlockRecipeHandler.hasEnoughEnergy(pEntity) || !BreederBlockRecipeHandler.hasEnoughFluid(pEntity)) {
+					BreederBlockRecipeHandler.comsumePartialFluid(pEntity);
+					pEntity.setChanged();
+				} else if (!BreederBlockRecipeHandler.hasStillEnoughEnergy(pEntity) || !BreederBlockRecipeHandler.hasStillEnoughFluid(pEntity)) {
 					BeenomeY.LOGGER.debug("Breeder: SOMETHING CHANGED - CANCLE CRAFTING " + BreederBlockRecipeHandler.hasEnoughEnergy(pEntity) + " " + !BreederBlockRecipeHandler.hasEnoughFluid(pEntity));
 					pEntity.resetProgress();
 					pEntity.isCrafting = false;
@@ -299,6 +333,7 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 				BreederBlockRecipeHandler.craft(pEntity);
 				pEntity.resetProgress();
 				pEntity.isCrafting = false;
+				BreederBlockRecipeHandler.fluidTick(pEntity);
 				pEntity.setChanged();
 			}
 			
@@ -328,14 +363,6 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 		}
 	}
 	
-	public static void saveInventory(BreederBlockEntity pEntity) {
-		/* Saves Inventory for next Tick */
-		Map<Integer, ItemStack> currentInventory = new HashMap<Integer, ItemStack>();
-		for (int i = 0; i < pEntity.itemHandler.getSlots(); i++) {
-			currentInventory.put(i, pEntity.itemHandler.getStackInSlot(i));
-		}
-		pEntity.lastInventory = currentInventory;
-	}
 	
 	/* Energy System */
 	
@@ -353,7 +380,7 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 	
 	/* Helper Functions */
 	
-	private static final int ENERGY_REQ = 40;
+	private static final int ENERGY_REQ = 1200;
 
 	public IEnergyStorage getEnergyStorage() {
 		return ENERGY_STORAGE;
@@ -404,6 +431,14 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 	
 	public Map<Integer, ItemStack> getLastInventory() {
 		return lastInventory;
+	}
+	
+	public int getMaxProgress() {
+		return maxProgress;
+	}
+	
+	public int getProgress() {
+		return progress;
 	}
 }
 

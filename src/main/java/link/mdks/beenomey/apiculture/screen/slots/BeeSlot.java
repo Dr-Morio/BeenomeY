@@ -9,9 +9,12 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class BeeSlot extends SlotItemHandler{
 
+	private static boolean isBlocked;
+	
 	public BeeSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
 		super(itemHandler, index, xPosition, yPosition);
 	}
+	
 
 	@Override
 	public boolean mayPlace(@NotNull ItemStack stack) {
