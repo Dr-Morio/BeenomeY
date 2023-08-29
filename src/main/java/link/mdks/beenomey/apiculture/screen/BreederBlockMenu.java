@@ -1,6 +1,5 @@
 package link.mdks.beenomey.apiculture.screen;
 
-import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.entity.BreederBlockEntity;
 import link.mdks.beenomey.apiculture.screen.slots.BeeSlot;
 import link.mdks.beenomey.apiculture.screen.slots.BlockedBeeSlot;
@@ -20,7 +19,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.items.SlotItemHandler;
 
 public class BreederBlockMenu extends AbstractContainerMenu{
 	

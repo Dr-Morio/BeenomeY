@@ -9,8 +9,6 @@ import link.mdks.beenomey.apiculture.blocks.entity.ApiaryModBlockEntity;
 import link.mdks.beenomey.apiculture.util.BeeManager;
 import link.mdks.beenomey.apiculture.util.BeeType;
 import link.mdks.beenomey.init.BeeInit;
-import link.mdks.beenomey.init.ItemInit;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.fml.util.thread.SidedThreadGroups;
@@ -66,8 +64,8 @@ public class ApiaryModBlockRecipeHandler{
 		    	ItemStack is = pEntity.itemHandler.getStackInSlot(i);
 		    	if(is.getItem() != Items.AIR) {
 			    	int maxBeeLife = is.getMaxDamage();
-			    	int damage = is.getDamageValue();
-					int effectiveLife = is.getTag().getInt("EffectiveLifecycle");
+			    	//int damage = is.getDamageValue();
+					//int effectiveLife = is.getTag().getInt("EffectiveLifecycle");
 					int effectiveLifeAD = is.getTag().getInt("EffectiveLifecycleAD");
 					
 					if (effectiveLifeAD <= maxBeeLife) { //now damage is shown on item
@@ -148,7 +146,7 @@ public class ApiaryModBlockRecipeHandler{
 	}
 	
 	private static void SpawnPrincess(ApiaryModBlockEntity pEntity) {
-		Long gameTime = pEntity.getLevel().getGameTime(); //used for seed. To sync Server and Client for random on tick
+		//Long gameTime = pEntity.getLevel().getGameTime(); //used for seed. To sync Server and Client for random on tick
 		//Random randomProvider = new Random(gameTime);
 		Random randomProvider = new Random();
 		boolean needBee = true;

@@ -2,10 +2,7 @@ package link.mdks.beenomey.integration;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
-
-import com.mojang.blaze3d.vertex.PoseStack;
 
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockBeeRecipeReader;
@@ -19,7 +16,6 @@ import mezz.jei.api.gui.drawable.IDrawableStatic;
 import mezz.jei.api.gui.drawable.IDrawableAnimated.StartDirection;
 import mezz.jei.api.gui.ingredient.IRecipeSlotTooltipCallback;
 import mezz.jei.api.gui.ingredient.IRecipeSlotView;
-import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;

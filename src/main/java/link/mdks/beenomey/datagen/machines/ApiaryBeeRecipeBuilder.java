@@ -67,6 +67,7 @@ public class ApiaryBeeRecipeBuilder implements RecipeBuilder{
 	
 	public static class Result implements FinishedRecipe {
 		
+		@SuppressWarnings("unused")
 		private final ResourceLocation id;
 		private final ItemStack result;
 		private final ItemStack ingredientBee;
@@ -89,6 +90,7 @@ public class ApiaryBeeRecipeBuilder implements RecipeBuilder{
 		public void serializeRecipeData(JsonObject pJson) {
 			//JsonArray jsonarray = new JsonArray();
 			JsonArray ingredientsArray = new JsonArray();
+			@SuppressWarnings("unused")
 			JsonArray outputArray = new JsonArray();
 			JsonObject ingredientPrincessObject = new JsonObject();
 			JsonObject ingredientBeeObject = new JsonObject();

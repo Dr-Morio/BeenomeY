@@ -4,11 +4,8 @@ import java.util.HashMap;
 
 import link.mdks.beenomey.init.FluidInit;
 import net.minecraft.ChatFormatting;
-import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 public enum BeeType {
 	/**Lifecycle value is provided by Main Type 

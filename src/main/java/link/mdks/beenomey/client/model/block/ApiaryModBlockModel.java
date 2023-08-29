@@ -2,9 +2,7 @@ package link.mdks.beenomey.client.model.block;
 
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.entity.ApiaryModBlockEntity;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib.model.DefaultedBlockGeoModel;
 import software.bernie.geckolib.model.GeoModel;
 
 public class ApiaryModBlockModel extends GeoModel<ApiaryModBlockEntity>{

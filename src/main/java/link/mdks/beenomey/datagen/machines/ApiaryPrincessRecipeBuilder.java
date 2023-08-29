@@ -7,7 +7,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import link.mdks.beenomey.BeenomeY;
-import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockBeeRecipeReader;
 import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockPrincessRecipeReader;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
@@ -65,6 +64,7 @@ public class ApiaryPrincessRecipeBuilder implements RecipeBuilder{
 	
 	public static class Result implements FinishedRecipe {
 		
+		@SuppressWarnings("unused")
 		private final ResourceLocation id;
 		private final ItemStack result;
 		private final ItemStack ingredientBee;
@@ -85,6 +85,7 @@ public class ApiaryPrincessRecipeBuilder implements RecipeBuilder{
 		public void serializeRecipeData(JsonObject pJson) {
 			//JsonArray jsonarray = new JsonArray();
 			JsonArray ingredientsArray = new JsonArray();
+			@SuppressWarnings("unused")
 			JsonArray outputArray = new JsonArray();
 			JsonObject ingredientBeeObject = new JsonObject();
 			JsonObject outputOject = new JsonObject();

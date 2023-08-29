@@ -67,6 +67,7 @@ public class ApiaryCombRecipeBuilder implements RecipeBuilder{
 	
 	public static class Result implements FinishedRecipe {
 		
+		@SuppressWarnings("unused")
 		private final ResourceLocation id;
 		private final ItemStack result;
 		private final ItemStack ingredientBee;

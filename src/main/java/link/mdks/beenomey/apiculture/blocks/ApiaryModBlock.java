@@ -3,7 +3,6 @@ package link.mdks.beenomey.apiculture.blocks;
 import java.util.HashMap;
 import java.util.Map;
 
-import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.entity.ApiaryModBlockEntity;
 import link.mdks.beenomey.init.BlockEntityInit;
 import net.minecraft.core.BlockPos;

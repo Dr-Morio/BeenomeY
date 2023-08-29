@@ -7,9 +7,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import link.mdks.beenomey.BeenomeY;
-import link.mdks.beenomey.apiculture.recipe.ApiaryModBlockBeeRecipeReader;
 import link.mdks.beenomey.apiculture.recipe.BreederBlockRecipe;
-import link.mdks.beenomey.apiculture.util.BeeType;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.CriterionTriggerInstance;
@@ -66,6 +64,7 @@ public class BreederBlockRecipeBuilder implements RecipeBuilder{
 	
 	public static class Result implements FinishedRecipe {
 
+		@SuppressWarnings("unused")
 		private final ResourceLocation id;
 		private final List<ItemStack> bees;
 		private final FluidStack catalysator;

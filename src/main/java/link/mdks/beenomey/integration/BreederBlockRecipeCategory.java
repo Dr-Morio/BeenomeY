@@ -3,7 +3,6 @@ package link.mdks.beenomey.integration;
 import java.util.List;
 import java.util.Random;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.recipe.BreederBlockRecipe;
@@ -12,12 +11,8 @@ import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.ITickTimer;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
-import mezz.jei.api.gui.drawable.IDrawableAnimated;
-import mezz.jei.api.gui.drawable.IDrawableBuilder;
-import mezz.jei.api.gui.drawable.IDrawableStatic;
 import mezz.jei.api.gui.ingredient.IRecipeSlotTooltipCallback;
 import mezz.jei.api.gui.ingredient.IRecipeSlotView;
-import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
@@ -41,7 +36,8 @@ public class BreederBlockRecipeCategory implements IRecipeCategory<BreederBlockR
     private final IDrawable icon;
     
 
-    private IGuiHelper helper;
+    @SuppressWarnings("unused")
+	private IGuiHelper helper;
     ITickTimer tickProvider;
 	
     

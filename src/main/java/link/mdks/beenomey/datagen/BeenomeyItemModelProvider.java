@@ -3,7 +3,6 @@ package link.mdks.beenomey.datagen;
 import java.util.Collection;
 
 import link.mdks.beenomey.BeenomeY;
-import link.mdks.beenomey.apiculture.util.BeeType;
 import link.mdks.beenomey.init.BeeInit;
 import link.mdks.beenomey.init.ItemInit;
 import net.minecraft.data.PackOutput;

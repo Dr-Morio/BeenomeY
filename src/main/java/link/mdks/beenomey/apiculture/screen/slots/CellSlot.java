@@ -2,7 +2,6 @@ package link.mdks.beenomey.apiculture.screen.slots;
 
 import org.jetbrains.annotations.NotNull;
 
-import link.mdks.beenomey.apiculture.items.ItemBee;
 import link.mdks.beenomey.apiculture.items.ItemCell;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
