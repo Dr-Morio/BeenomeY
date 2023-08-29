@@ -51,7 +51,7 @@ public class FluidTypeInit {
             FluidType.Properties.create().lightLevel(2).density(15).viscosity(5).sound(SoundAction.get("drink"),
                     SoundEvents.HONEY_DRINK));
     
-    public static final RegistryObject<FluidType> VOID_HONEY_FLUID_TYPE = registerNeutral("voidhoney_fluid",
+    public static final RegistryObject<FluidType> VOID_HONEY_FLUID_TYPE = registerNeutral("void_honey_fluid",
         	FluidResourceProvider.VOID_HONEY_TINT_COLOR, FluidResourceProvider.VOID_HONEY_FOG_COLOR,
             FluidType.Properties.create().lightLevel(2).density(15).viscosity(5).sound(SoundAction.get("drink"),
                 SoundEvents.HONEY_DRINK));
@@ -166,7 +166,7 @@ public class FluidTypeInit {
             FluidType.Properties.create().lightLevel(2).density(15).viscosity(5).sound(SoundAction.get("drink"),
                     SoundEvents.HONEY_DRINK));
 
-    public static final RegistryObject<FluidType> NETEHR_STAR_HONEY_FLUID_TYPE = registerHot("nether_star_honey_fluid",
+    public static final RegistryObject<FluidType> NETHER_STAR_HONEY_FLUID_TYPE = registerHot("nether_star_honey_fluid",
     		FluidResourceProvider.NETHER_STAR_HONEY_TINT_COLOR, FluidResourceProvider.NETHER_STAR_HONEY_FOG_COLOR,
             FluidType.Properties.create().lightLevel(2).density(15).viscosity(5).sound(SoundAction.get("drink"),
                     SoundEvents.HONEY_DRINK));

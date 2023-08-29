@@ -2,13 +2,14 @@ package link.mdks.beenomey.apiculture.util;
 
 import java.util.HashMap;
 
-import javax.annotation.Nullable;
-
+import link.mdks.beenomey.init.FluidInit;
 import link.mdks.beenomey.init.ItemInit;
-import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class BeeManager {
     private static BeeType mainBeeType;
@@ -98,9 +99,52 @@ public class BeeManager {
     	put(BeeType.AMETHYST, ItemInit.AMETHYST_HONEYCOMB.get());
     }};
     
-    public static ItemStack getComb(BeeType type, @Nullable int count) {
+    public static ItemStack getComb(BeeType type, int count) {
     	return new ItemStack(beeCombs.get(type), count);
     }
+ 
+    @SuppressWarnings("serial")
+	private static HashMap<BeeType, ResourceLocation> beeFluids = new HashMap<BeeType, ResourceLocation>() {{
+    	put(BeeType.FOREST,             FluidInit.SOURCE_HONEY.getId());
+    	put(BeeType.FROZEN,             FluidInit.SOURCE_FROZEN_HONEY.getId());
+    	put(BeeType.DESERT,             FluidInit.SOURCE_DESERT_HONEY.getId());
+    	put(BeeType.ROCK,               FluidInit.SOURCE_ROCK_HONEY.getId());
+    	put(BeeType.INFERNO,            FluidInit.SOURCE_INFERNO_HONEY.getId());
+    	put(BeeType.VOID,               FluidInit.SOURCE_VOID_HONEY.getId());
+    	put(BeeType.COAL,               FluidInit.SOURCE_COAL_HONEY.getId());
+    	put(BeeType.GUNPOWDER,          FluidInit.SOURCE_GUNPOWDER_HONEY.getId());
+    	put(BeeType.FLINT,              FluidInit.SOURCE_FLINT_HONEY.getId());
+    	put(BeeType.SLIME,              FluidInit.SOURCE_SLIME_HONEY.getId());
+    	put(BeeType.SUGAR,              FluidInit.SOURCE_SUGAR_HONEY.getId());
+    	put(BeeType.GLASS,              FluidInit.SOURCE_GLASS_HONEY.getId());
+    	put(BeeType.CLAY,               FluidInit.SOURCE_CLAY_HONEY.getId());
+    	put(BeeType.STRING,             FluidInit.SOURCE_STRING_HONEY.getId());
+    	put(BeeType.NETHER_WART,        FluidInit.SOURCE_NETHER_WART_HONEY.getId());
+    	put(BeeType.SOUL_SAND,          FluidInit.SOURCE_SOUL_SAND_HONEY.getId());
+    	put(BeeType.MUSHROOM,           FluidInit.SOURCE_MUSHROOM_HONEY.getId());
+    	put(BeeType.LAVA,               FluidInit.SOURCE_LAVA_HONEY.getId());
+    	put(BeeType.LAPIS_LAZULI,       FluidInit.SOURCE_LAPIS_LAZULI_HONEY.getId());
+    	put(BeeType.REDSTONE,           FluidInit.SOURCE_REDSTONE_HONEY.getId());
+    	put(BeeType.IRON,               FluidInit.SOURCE_IRON_HONEY.getId());
+    	put(BeeType.GOLD,               FluidInit.SOURCE_GOLD_HONEY.getId());
+    	put(BeeType.COPPER,             FluidInit.SOURCE_COPPER_HONEY.getId());
+    	put(BeeType.DIAMOND,            FluidInit.SOURCE_DIAMOND_HONEY.getId());
+    	put(BeeType.OBSIDIAN,           FluidInit.SOURCE_OBSIDIAN_HONEY.getId());
+    	put(BeeType.GLOWSTONE,          FluidInit.SOURCE_GLOWSTONE_HONEY.getId());
+    	put(BeeType.BLAZE,              FluidInit.SOURCE_BLAZE_HONEY.getId());
+    	put(BeeType.EMERALD,            FluidInit.SOURCE_EMERALD_HONEY.getId());
+    	put(BeeType.NETEHR_STAR,        FluidInit.SOURCE_NETHER_STAR_HONEY.getId());
+    	put(BeeType.NETHER_QUARZ,       FluidInit.SOURCE_NETHER_QUARZ_HONEY.getId());
+    	put(BeeType.PRISMARINE,         FluidInit.SOURCE_PRISMARINE_HONEY.getId());
+    	put(BeeType.CHORUS,             FluidInit.SOURCE_CHORUS_HONEY.getId());
+    	put(BeeType.NETHERITE,          FluidInit.SOURCE_NETHERITE_HONEY.getId());
+    	put(BeeType.EXP,                FluidInit.SOURCE_EXP_HONEY.getId());
+    	put(BeeType.ENDER_PEARL,        FluidInit.SOURCE_ENDER_PEARL_HONEY.getId());
+    	put(BeeType.AMETHYST,           FluidInit.SOURCE_AMETHYST_HONEY.getId());
+    }};
     
+    public static Fluid getFluid(BeeType type) {
+    	return ForgeRegistries.FLUIDS.getValue(beeFluids.get(type));
+    }
     
 }

@@ -1,15 +1,22 @@
 package link.mdks.beenomey.apiculture.blocks.entity;
 
-import org.apache.commons.compress.archivers.zip.X000A_NTFS;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.swing.plaf.basic.BasicComboBoxUI.ItemHandler;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.BreederBlock;
-import link.mdks.beenomey.apiculture.fluids.BaseFluidType;
+import link.mdks.beenomey.apiculture.recipe.BreederBlockRecipe;
+import link.mdks.beenomey.apiculture.recipehandler.BreederBlockRecipeHandler;
 import link.mdks.beenomey.apiculture.screen.BreederBlockMenu;
+import link.mdks.beenomey.apiculture.util.BeeType;
 import link.mdks.beenomey.init.BlockEntityInit;
 import link.mdks.beenomey.init.FluidInit;
+import link.mdks.beenomey.init.FluidTypeInit;
 import link.mdks.beenomey.networking.NetworkMessages;
 import link.mdks.beenomey.networking.packets.EnergySyncS2CPacket;
 import link.mdks.beenomey.networking.packets.FluidSyncS2CPacket;
@@ -18,6 +25,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -25,11 +33,11 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
@@ -37,10 +45,13 @@ import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.minecraftforge.fml.util.thread.SidedThreadGroups;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import oshi.util.tuples.Triplet;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimationController;
@@ -58,6 +69,13 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 
 	private static final RawAnimation OPEN = RawAnimation.begin().thenPlayAndHold("breeder_block.open");
 	private static final RawAnimation CLOSE = RawAnimation.begin().thenPlayAndHold("breeder_block.close");
+	
+	// Crafting System
+	public Map<Integer, ItemStack> lastInventory = new HashMap<Integer, ItemStack>();
+	public int lastFluidAmount = 0;
+	public int lastEnergyAmount = 0;
+	public boolean isCrafting = false;
+	public Triplet<BeeType, BeeType, BeeType> loadedRecipe;
 	
 	
 	// Inventory Stuff
@@ -94,6 +112,11 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 				};
 			}
 		};
+		
+		// Save inventory for hasChanged Checkup
+		for (int i = 0; i < itemHandler.getSlots(); i++) {
+			lastInventory.put(i, itemHandler.getStackInSlot(i));
+		}
 	}
 
 	
@@ -225,28 +248,93 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 			((BreederBlock) blockState.getBlock()).checkCurrentInteractions(); // updates BlockAnimation based on Interactions
 			return;
 		}
-		// ENERGY INPUT FOR DEVELOPMENT
-		if(level.getBlockState(blockPos.above()).getBlock() == Blocks.DIRT) {
-			pEntity.ENERGY_STORAGE.receiveEnergy(100, false);
+		if (Thread.currentThread().getThreadGroup() == SidedThreadGroups.SERVER) {
+			
+			//Check for fluid updates if slot has change
+			if(pEntity.lastInventory.get(6) != pEntity.itemHandler.getStackInSlot(6) || pEntity.lastInventory.get(5) != pEntity.itemHandler.getStackInSlot(5)) {
+				BreederBlockRecipeHandler.fluidTick(pEntity);
+				saveInventory(pEntity);
+				setChanged(level, blockPos, blockState);
+			}
+
+			//check for valid recipe if inventory has changed
+			if(BreederBlockRecipeHandler.hasInventoryChanged(pEntity)) {
+				BeenomeY.LOGGER.debug("Breeder: INVENTORY CHANGED -- Try to Load Recipe");
+				pEntity.resetProgress();
+				pEntity.isCrafting = false;
+				pEntity.setChanged();
+				BreederBlockRecipeHandler.loadRecipe(pEntity);
+			}
+			
+			//check for valid recipe if fluid has changed 
+			if(BreederBlockRecipeHandler.hasFluidChanged(pEntity)) {
+				BeenomeY.LOGGER.debug("Breeder: FLUID CHANGED -- Try to load Recipe");
+				pEntity.lastFluidAmount = pEntity.getFluidTank().getFluidAmount();
+				BreederBlockRecipeHandler.loadRecipe(pEntity);
+			}
+			
+			//check for valid recipe if Energy has changed 
+			if(BreederBlockRecipeHandler.hasEnergyChanged(pEntity)) {
+				BeenomeY.LOGGER.debug("Breeder: ENERGY CHANGED -- Try to load recipe");
+				pEntity.lastEnergyAmount = pEntity.getEnergyStorage().getEnergyStored();
+				BreederBlockRecipeHandler.loadRecipe(pEntity);
+			}
+			
+			//if recipe was valid and energy and fluid is enough add progress
+			if (pEntity.isCrafting) {
+				if(BreederBlockRecipeHandler.hasEnoughEnergy(pEntity) && BreederBlockRecipeHandler.hasEnoughFluid(pEntity)) {
+					pEntity.progress++;
+					pEntity.setChanged();
+				} else if (!BreederBlockRecipeHandler.hasEnoughEnergy(pEntity) || !BreederBlockRecipeHandler.hasEnoughFluid(pEntity)) {
+					BeenomeY.LOGGER.debug("Breeder: SOMETHING CHANGED - CANCLE CRAFTING " + BreederBlockRecipeHandler.hasEnoughEnergy(pEntity) + " " + !BreederBlockRecipeHandler.hasEnoughFluid(pEntity));
+					pEntity.resetProgress();
+					pEntity.isCrafting = false;
+					pEntity.setChanged();
+				}
+			}
+			
+			//check if crafting is done
+			if(pEntity.progress >= pEntity.maxProgress) {
+				BeenomeY.LOGGER.debug("Breeder: CRAFTING STARTS");
+				BreederBlockRecipeHandler.craft(pEntity);
+				pEntity.resetProgress();
+				pEntity.isCrafting = false;
+				pEntity.setChanged();
+			}
+			
+			
+			// ENERGY INPUT FOR DEVELOPMENT
+			if(level.getBlockState(blockPos.above()).getBlock() == Blocks.DIRT) {
+				pEntity.ENERGY_STORAGE.receiveEnergy(100, false);
+			}
+			
+			// FLUID INPUT FOR DEVELOPMENT
+			if(level.getBlockState(blockPos.above()).getBlock() == Blocks.STONE) {
+				//pEntity.FLUID_TANK.fill(new FluidStack(FluidInit.SOURCE_INFERNO_HONEY.get(), 100), FluidAction.EXECUTE);
+				pEntity.FLUID_TANK.fill(new FluidStack(ForgeRegistries.FLUIDS.getValue(FluidInit.SOURCE_ROCK_HONEY.getId()), 100), FluidAction.EXECUTE);
+			}
+			
+			if(level.getBlockState(blockPos.above()).getBlock() == Blocks.COBBLESTONE) {
+				pEntity.FLUID_TANK.fill(new FluidStack(FluidInit.SOURCE_FROZEN_HONEY.get(), 100), FluidAction.EXECUTE);
+			}
+			
+			if(level.getBlockState(blockPos.above()).getBlock() == Blocks.DIRT) {
+				pEntity.FLUID_TANK.fill(new FluidStack(FluidInit.SOURCE_ENDER_PEARL_HONEY.get(), 100), FluidAction.EXECUTE);
+			}
+			
+			if(level.getBlockState(blockPos.above()).getBlock() == Blocks.OBSIDIAN) {
+				pEntity.FLUID_TANK.fill(new FluidStack(FluidInit.SOURCE_MUSHROOM_HONEY.get(), 100), FluidAction.EXECUTE);
+			}
 		}
-		
-		// FLUID INPUT FOR DEVELOPMENT
-		if(level.getBlockState(blockPos.above()).getBlock() == Blocks.STONE) {
-			pEntity.FLUID_TANK.fill(new FluidStack(FluidInit.SOURCE_INFERNO_HONEY.get(), 100), FluidAction.EXECUTE);
+	}
+	
+	public static void saveInventory(BreederBlockEntity pEntity) {
+		/* Saves Inventory for next Tick */
+		Map<Integer, ItemStack> currentInventory = new HashMap<Integer, ItemStack>();
+		for (int i = 0; i < pEntity.itemHandler.getSlots(); i++) {
+			currentInventory.put(i, pEntity.itemHandler.getStackInSlot(i));
 		}
-		
-		if(level.getBlockState(blockPos.above()).getBlock() == Blocks.COBBLESTONE) {
-			pEntity.FLUID_TANK.fill(new FluidStack(FluidInit.SOURCE_FROZEN_HONEY.get(), 100), FluidAction.EXECUTE);
-		}
-		
-		if(level.getBlockState(blockPos.above()).getBlock() == Blocks.DIRT) {
-			pEntity.FLUID_TANK.fill(new FluidStack(FluidInit.SOURCE_ENDER_PEARL_HONEY.get(), 100), FluidAction.EXECUTE);
-		}
-		
-		if(level.getBlockState(blockPos.above()).getBlock() == Blocks.OBSIDIAN) {
-			pEntity.FLUID_TANK.fill(new FluidStack(FluidInit.SOURCE_MUSHROOM_HONEY.get(), 100), FluidAction.EXECUTE);
-		}
-		
+		pEntity.lastInventory = currentInventory;
 	}
 	
 	/* Energy System */
@@ -265,7 +353,7 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 	
 	/* Helper Functions */
 	
-	private static final int ENERGY_REQ = 32;
+	private static final int ENERGY_REQ = 40;
 
 	public IEnergyStorage getEnergyStorage() {
 		return ENERGY_STORAGE;
@@ -274,6 +362,10 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 
 	public void setEnergyLevel(int energy) {
 		this.ENERGY_STORAGE.setEnergy(energy);
+	}
+	
+	public int getReqEnergy() {
+		return ENERGY_REQ;
 	}
 	
 	/* Fliud System */
@@ -306,5 +398,12 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 		return this.FLUID_TANK.getFluid();
 	}
 	
+	public FluidTank getFluidTank() {
+		return FLUID_TANK;
+	}
+	
+	public Map<Integer, ItemStack> getLastInventory() {
+		return lastInventory;
+	}
 }
 

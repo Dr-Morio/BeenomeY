@@ -27,7 +27,7 @@ public class FluidInit {
 	public static final RegistryObject<FlowingFluid> FLOWING_FROZEN_HONEY = FLUIDS.register("frozen_flowing_honey",
 	    () -> new ForgeFlowingFluid.Flowing(FluidInit.FROZEN_HONEY_FLUID_PROPERTIES));
 	            
-
+	
 //	public static final RegistryObject<FlowingFluid> SOURCE_OCEAN_HONEY = FLUIDS.register("ocean_honey_fluid",
 //	    () -> new ForgeFlowingFluid.Source(FluidInit.OCEAN_HONEY_FLUID_PROPERTIES));
 //	public static final RegistryObject<FlowingFluid> FLOWING_OCEAN_HONEY = FLUIDS.register("ocean_flowing_honey",
@@ -189,10 +189,10 @@ public class FluidInit {
 	    () -> new ForgeFlowingFluid.Flowing(FluidInit.EMERALD_HONEY_FLUID_PROPERTIES));
 	            
 
-	public static final RegistryObject<FlowingFluid> SOURCE_NETEHR_STAR_HONEY = FLUIDS.register("netehr_star_honey_fluid",
-	    () -> new ForgeFlowingFluid.Source(FluidInit.NETEHR_STAR_HONEY_FLUID_PROPERTIES));
-	public static final RegistryObject<FlowingFluid> FLOWING_NETEHR_STAR_HONEY = FLUIDS.register("netehr_star_flowing_honey",
-	    () -> new ForgeFlowingFluid.Flowing(FluidInit.NETEHR_STAR_HONEY_FLUID_PROPERTIES));
+public static final RegistryObject<FlowingFluid> SOURCE_NETHER_STAR_HONEY = FLUIDS.register("nether_star_honey_fluid",
+	    () -> new ForgeFlowingFluid.Source(FluidInit.NETHER_STAR_HONEY_FLUID_PROPERTIES));
+	public static final RegistryObject<FlowingFluid> FLOWING_NETHER_STAR_HONEY = FLUIDS.register("netehr_star_flowing_honey",
+	    () -> new ForgeFlowingFluid.Flowing(FluidInit.NETHER_STAR_HONEY_FLUID_PROPERTIES));
 	            
 
 	public static final RegistryObject<FlowingFluid> SOURCE_NETHER_QUARZ_HONEY = FLUIDS.register("nether_quarz_honey_fluid",
@@ -412,10 +412,10 @@ public class FluidInit {
             .bucket(ItemInit.EMERALD_HONEY_CELL);
                 
 
-    public static final ForgeFlowingFluid.Properties NETEHR_STAR_HONEY_FLUID_PROPERTIES = new ForgeFlowingFluid.Properties(
-            FluidTypeInit.NETEHR_STAR_HONEY_FLUID_TYPE, SOURCE_NETEHR_STAR_HONEY, FLOWING_NETEHR_STAR_HONEY)
-    .slopeFindDistance(2).levelDecreasePerBlock(2).tickRate(15)/*.block(BlockInit.NETEHR_STAR_HONEY_FLUID_BLOCK)*/
-            .bucket(ItemInit.NETEHR_STAR_HONEY_CELL);
+    public static final ForgeFlowingFluid.Properties NETHER_STAR_HONEY_FLUID_PROPERTIES = new ForgeFlowingFluid.Properties(
+            FluidTypeInit.NETHER_STAR_HONEY_FLUID_TYPE, SOURCE_NETHER_STAR_HONEY, FLOWING_NETHER_STAR_HONEY)
+    .slopeFindDistance(2).levelDecreasePerBlock(2).tickRate(15)/*.block(BlockInit.NETHER_STAR_HONEY_FLUID_BLOCK)*/
+            .bucket(ItemInit.NETHER_STAR_HONEY_CELL);
                 
 
     public static final ForgeFlowingFluid.Properties NETHER_QUARZ_HONEY_FLUID_PROPERTIES = new ForgeFlowingFluid.Properties(

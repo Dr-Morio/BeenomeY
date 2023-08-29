@@ -6,8 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
+import org.antlr.v4.runtime.misc.Triple;
+
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.recipe.BreederBlockRecipe;
+import link.mdks.beenomey.apiculture.recipehandler.BreederBlockRecipeHandler;
 import link.mdks.beenomey.apiculture.util.BeeManager;
 import link.mdks.beenomey.apiculture.util.BeeType;
 import link.mdks.beenomey.datagen.machines.ApiaryBeeRecipeBuilder;
@@ -24,22 +27,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.minecraftforge.fluids.FluidStack;
+import oshi.util.tuples.Triplet;
 
 public class BeenomeyRecipeProvider extends RecipeProvider implements IConditionBuilder{
 
 	public BeenomeyRecipeProvider(PackOutput output) {
 		super(output);
 	}
-	
-	private List<ItemStack> dummyBeeIngredientBreederRecipeBuilder(BeeType bT1, BeeType bT2, int beeAmount) {
-		List<ItemStack> ingredients = new ArrayList<ItemStack>();
-		for (int i = 0; i < beeAmount; i++) {
-			ingredients.add(BeeManager.getBee(bT1, bT2, new ItemStack(BeeInit.getCommonBee())));
-		}
-		return ingredients;
-	}
-	
-	
 	
 	@Override
 	protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
@@ -82,25 +76,37 @@ public class BeenomeyRecipeProvider extends RecipeProvider implements ICondition
 			}
 		}
 		
+		/* Recipe set for Breeder */
+		for(Triplet<BeeType, BeeType, BeeType> recipe  : BreederBlockRecipeHandler.getRecipes()) {
+			List<ItemStack> bees = new ArrayList<ItemStack>();
+			bees.add(BeeManager.getBee(recipe.getA(), recipe.getA(), new ItemStack(BeeInit.getCommonBee())));
+			bees.add(BeeManager.getBee(recipe.getA(), recipe.getA(), new ItemStack(BeeInit.getCommonBee())));
+			bees.add(BeeManager.getBee(recipe.getB(), recipe.getB(), new ItemStack(BeeInit.getCommonBee())));
+			bees.add(BeeManager.getBee(recipe.getB(), recipe.getB(), new ItemStack(BeeInit.getCommonBee())));
+			
+			new BreederBlockRecipeBuilder(
+					bees,
+					new FluidStack(BeeManager.getFluid(recipe.getC()), 4000), 
+					BeeManager.getBee(recipe.getC(), recipe.getC(), new ItemStack(BeeInit.getCommonBee())), 20)
+			.unlockedBy("has_bees", inventoryTrigger(ItemPredicate.Builder.item().of(BeeInit.getCommonBee()).build()))
+			.save(consumer);;
+		};
 		
-		
-		
-		// Hardcoded Dummy Recipe set for Breeder
-		new BreederBlockRecipeBuilder(
-				dummyBeeIngredientBreederRecipeBuilder(BeeType.FOREST,  BeeType.FOREST, 4),
-				new FluidStack(FluidInit.SOURCE_INFERNO_HONEY.get(), 4000),
-				BeeManager.getBee(BeeType.FOREST, BeeType.INFERNO, new ItemStack(BeeInit.getCommonBee())),
-				5)
-		.unlockedBy("has_bees", inventoryTrigger(ItemPredicate.Builder.item().of(BeeInit.getCommonBee()).build()))
-		.save(consumer);
-		
-		new BreederBlockRecipeBuilder(
-				dummyBeeIngredientBreederRecipeBuilder(BeeType.FROZEN,  BeeType.INFERNO, 4),
-				new FluidStack(FluidInit.SOURCE_FROZEN_HONEY.get(), 4000),
-				BeeManager.getBee(BeeType.FROZEN, BeeType.FROZEN, new ItemStack(BeeInit.getCommonBee())),
-				5)
-		.unlockedBy("has_bees", inventoryTrigger(ItemPredicate.Builder.item().of(BeeInit.getCommonBee()).build()))
-		.save(consumer);
+//		new BreederBlockRecipeBuilder(
+//				dummyBeeIngredientBreederRecipeBuilder(BeeType.FOREST,  BeeType.FOREST, 4),
+//				new FluidStack(FluidInit.SOURCE_INFERNO_HONEY.get(), 4000),
+//				BeeManager.getBee(BeeType.FOREST, BeeType.INFERNO, new ItemStack(BeeInit.getCommonBee())),
+//				5)
+//		.unlockedBy("has_bees", inventoryTrigger(ItemPredicate.Builder.item().of(BeeInit.getCommonBee()).build()))
+//		.save(consumer);
+//		
+//		new BreederBlockRecipeBuilder(
+//				dummyBeeIngredientBreederRecipeBuilder(BeeType.FROZEN,  BeeType.INFERNO, 4),
+//				new FluidStack(FluidInit.SOURCE_FROZEN_HONEY.get(), 4000),
+//				BeeManager.getBee(BeeType.FROZEN, BeeType.FROZEN, new ItemStack(BeeInit.getCommonBee())),
+//				5)
+//		.unlockedBy("has_bees", inventoryTrigger(ItemPredicate.Builder.item().of(BeeInit.getCommonBee()).build()))
+//		.save(consumer);
 	}
 }
 

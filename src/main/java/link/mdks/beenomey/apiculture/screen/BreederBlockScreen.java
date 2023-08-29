@@ -62,7 +62,7 @@ public class BreederBlockScreen extends AbstractContainerScreen<BreederBlockMenu
 		energyInfoArea.draw(pPoseStack);
 		
 		//Fluid
-		fluidTankRenderer.render(pPoseStack, x + 70, y + 99, menu.getFluidStack());
+		fluidTankRenderer.render(pPoseStack, x + 94, y + 99, menu.getFluidStack());
 		
 	}
 	
@@ -123,11 +123,11 @@ public class BreederBlockScreen extends AbstractContainerScreen<BreederBlockMenu
 	/* Fluid System */
 	
 	private void assignFluidRenderer() {
-		fluidTankRenderer = new FluidTankRenderer(16000, true, 74, 12);
+		fluidTankRenderer = new FluidTankRenderer(16000, true, 50, 12);
 	}
 	
 	private void renderFluidTankTooltips(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y) {
-		if(isMouseAboveArea(pMouseX, pMouseY, x, y,70, 99)) {
+		if(isMouseAboveArea(pMouseX, pMouseY, x, y,94, 99)) {
 			renderTooltip(pPoseStack, fluidTankRenderer.getTooltip(menu.getFluidStack(), TooltipFlag.NORMAL),
 					Optional.empty(), pMouseX - x, pMouseY - y);
 		}

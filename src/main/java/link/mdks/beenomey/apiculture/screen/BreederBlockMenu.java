@@ -3,6 +3,7 @@ package link.mdks.beenomey.apiculture.screen;
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.entity.BreederBlockEntity;
 import link.mdks.beenomey.apiculture.screen.slots.BeeSlot;
+import link.mdks.beenomey.apiculture.screen.slots.CellSlot;
 import link.mdks.beenomey.init.BlockInit;
 import link.mdks.beenomey.init.MenuTypeInit;
 import net.minecraft.network.FriendlyByteBuf;
@@ -27,7 +28,7 @@ public class BreederBlockMenu extends AbstractContainerMenu{
 	public final BreederBlockEntity blockEntity;
 	private final Level level;
 	private final ContainerData data;
-	private final static int breederSlots = 6;
+	private final static int breederSlots = 7;
 	
 	// Fluid System
 	private FluidStack fluidStack;
@@ -64,9 +65,9 @@ public class BreederBlockMenu extends AbstractContainerMenu{
 			//Result Slot
 			this.addSlot(new SlotItemHandler(handler, 4, 80, 22)); // Slot yPosition -21 (Half of additional image Size)
 			
-			//Hones Slot
-			this.addSlot(new SlotItemHandler(handler, 5, 155, 76)); // Slot yPosition -21 (Half of additional image Size)
-
+			//Fluid Slots
+			this.addSlot(new CellSlot(handler, 5, 67, 76)); // Slot yPosition -21 (Half of additional image Size)
+			this.addSlot(new CellSlot(handler, 6, 155, 76)); // Slot yPosition -21 (Half of additional image Size)
 		});
 		
 		addDataSlots(data);

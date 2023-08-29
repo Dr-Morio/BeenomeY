@@ -200,8 +200,8 @@ public class ItemInit {
     public static final RegistryObject<Item> EMERALD_HONEY_CELL = CELLS.register("emerald_honey_cell", 
         	() -> new ItemCell(FluidInit.SOURCE_EMERALD_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
                 
-    public static final RegistryObject<Item> NETEHR_STAR_HONEY_CELL = CELLS.register("nether_star_honey_cell", 
-        	() -> new ItemCell(FluidInit.SOURCE_NETEHR_STAR_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
+    public static final RegistryObject<Item> NETHER_STAR_HONEY_CELL = CELLS.register("nether_star_honey_cell", 
+        	() -> new ItemCell(FluidInit.SOURCE_NETHER_STAR_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));
                 
     public static final RegistryObject<Item> NETHER_QUARZ_HONEY_CELL = CELLS.register("nether_quarz_honey_cell", 
         	() -> new ItemCell(FluidInit.SOURCE_NETHER_QUARZ_HONEY, new Item.Properties().craftRemainder(EMPTY_CELL.get()).stacksTo(1)));

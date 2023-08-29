@@ -107,9 +107,9 @@ public class BreederBlockRecipeBuilder implements RecipeBuilder{
 			
 			outputOject.addProperty("chance", this.chance);
 			outputOject.addProperty("item", ForgeRegistries.ITEMS.getKey(result.getItem()).toString());
-			outputOject.addProperty("mainType", bees.get(0).getTag().getString("MainType").toString());
-			BeeType secondType = BeeType.getBeeType(catalysator.getFluid());
-			outputOject.addProperty("secondType", secondType.toString());
+			//outputOject.addProperty("mainType", bees.get(0).getTag().getString("MainType").toString());
+			outputOject.addProperty("mainType", result.getTag().getString("MainType").toString());
+			outputOject.addProperty("secondType", result.getTag().getString("SecondType").toString());
 			pJson.add("output", outputOject);
 			
 			
@@ -117,12 +117,8 @@ public class BreederBlockRecipeBuilder implements RecipeBuilder{
 
 		@Override
 		public ResourceLocation getId() {
-			String ingredientBeeMainType = bees.get(0).getTag().get("MainType").getAsString();
-			String ingredientBeeSecondType = bees.get(0).getTag().get("SecondType").getAsString();
-			String catalysator = this.catalysator.getTranslationKey().replace("fluid_type.beenomey.", "");
 			String resultBeeMainType = this.result.getTag().get("MainType").getAsString();
-			String resultBeeSecondType = this.result.getTag().get("SecondType").getAsString();
-			String path = (ingredientBeeMainType + "_" + ingredientBeeSecondType + "_bee__" + catalysator + "__" + resultBeeMainType + "_" + resultBeeSecondType).toLowerCase() + "_bee";
+			String path = ("breeder_" + resultBeeMainType.toLowerCase() + "_bee");
 			ResourceLocation name = new ResourceLocation(BeenomeY.MODID, path);
 			return name;
 		}
