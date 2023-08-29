@@ -25,13 +25,15 @@ import net.minecraftforge.registries.ForgeRegistry;
 
 public class BreederBlockRecipe implements Recipe<SimpleContainer>{
 	
+	private final int recipeId;
 	private final ResourceLocation id;
 	private final NonNullList<ItemStack> inputBees;
 	private final FluidStack catalysator;
 	private final ItemStack output;
 	private final int chance;
 	
-	public BreederBlockRecipe(ResourceLocation id, NonNullList<ItemStack> inputBees, FluidStack catalysator, ItemStack output, int chance) {
+	public BreederBlockRecipe(int recipeId, ResourceLocation id, NonNullList<ItemStack> inputBees, FluidStack catalysator, ItemStack output, int chance) {
+		this.recipeId = recipeId;
 		this.id = id;
 		this.inputBees = inputBees;
 		this.catalysator = catalysator;
@@ -71,6 +73,12 @@ public class BreederBlockRecipe implements Recipe<SimpleContainer>{
 	public ResourceLocation getId() {
 		return id;
 	}
+	
+
+	public int getRecieId() {
+		return this.recipeId;
+	}
+
 
 	@Override
 	public RecipeSerializer<?> getSerializer() {
@@ -148,7 +156,12 @@ public class BreederBlockRecipe implements Recipe<SimpleContainer>{
 			JsonObject fluidObject = pSerializedRecipe.getAsJsonObject("fluid");
 			FluidStack catalysator = new FluidStack(ForgeRegistries.FLUIDS.getValue(new ResourceLocation(fluidObject.get("FluidName").getAsString())), fluidObject.get("Amount").getAsInt());
 
-			return new BreederBlockRecipe(pRecipeId, inputs, catalysator, output, outputChance);
+			
+			/* Unique Data -> Recipe ID */
+			JsonObject data = pSerializedRecipe.getAsJsonObject("data");
+			int recipeId = data.get("recipeId").getAsInt();
+			
+			return new BreederBlockRecipe(recipeId, pRecipeId, inputs, catalysator, output, outputChance);
 			
             
             
@@ -162,6 +175,7 @@ public class BreederBlockRecipe implements Recipe<SimpleContainer>{
 			FluidStack catalysator;
 			ItemStack output;
 			int chance;
+			int recipeId;
 			 
             for (int i = 0; i < inputs.size(); i++) {
                 inputs.set(i, pBuffer.readItem());
@@ -170,8 +184,9 @@ public class BreederBlockRecipe implements Recipe<SimpleContainer>{
             catalysator = pBuffer.readFluidStack();
             output = pBuffer.readItem();
             chance = pBuffer.readInt();
+            recipeId = pBuffer.readInt();
             
-            return new BreederBlockRecipe(pRecipeId, inputs, catalysator, output, chance);
+            return new BreederBlockRecipe(recipeId, pRecipeId, inputs, catalysator, output, chance);
 		}
 
 		@Override
@@ -189,6 +204,7 @@ public class BreederBlockRecipe implements Recipe<SimpleContainer>{
 			
 			pBuffer.writeInt(pRecipe.getChance());
 			
+			pBuffer.writeInt(pRecipe.getRecieId());
 		}
 		
 	}

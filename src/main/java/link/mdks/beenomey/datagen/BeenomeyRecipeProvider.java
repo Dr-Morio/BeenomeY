@@ -77,7 +77,9 @@ public class BeenomeyRecipeProvider extends RecipeProvider implements ICondition
 		}
 		
 		/* Recipe set for Breeder */
-		for(Triplet<BeeType, BeeType, BeeType> recipe  : BreederBlockRecipeHandler.getRecipes()) {
+		//for(Triplet<BeeType, BeeType, BeeType> recipe  : BreederBlockRecipeHandler.getRecipes()) {
+		for(int i = 0; i < BreederBlockRecipeHandler.getRecipes().size(); i++) {
+			Triplet<BeeType, BeeType, BeeType> recipe = BreederBlockRecipeHandler.getRecipes().get(i);
 			List<ItemStack> bees = new ArrayList<ItemStack>();
 			bees.add(BeeManager.getBee(recipe.getA(), recipe.getA(), new ItemStack(BeeInit.getCommonBee())));
 			bees.add(BeeManager.getBee(recipe.getA(), recipe.getA(), new ItemStack(BeeInit.getCommonBee())));
@@ -85,6 +87,7 @@ public class BeenomeyRecipeProvider extends RecipeProvider implements ICondition
 			bees.add(BeeManager.getBee(recipe.getB(), recipe.getB(), new ItemStack(BeeInit.getCommonBee())));
 			
 			new BreederBlockRecipeBuilder(
+					i,
 					bees,
 					new FluidStack(BeeManager.getFluid(recipe.getC()), 4000), 
 					BeeManager.getBee(recipe.getC(), recipe.getC(), new ItemStack(BeeInit.getCommonBee())), 20)

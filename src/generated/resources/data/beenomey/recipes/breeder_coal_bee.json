@@ -1,5 +1,8 @@
 {
   "type": "beenomey:breeder_recipe",
+  "data": {
+    "recipeId": 0
+  },
   "fluid": {
     "Amount": 4000,
     "FluidName": "beenomey:coal_honey_fluid"

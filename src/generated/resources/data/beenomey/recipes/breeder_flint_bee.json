@@ -1,5 +1,8 @@
 {
   "type": "beenomey:breeder_recipe",
+  "data": {
+    "recipeId": 1
+  },
   "fluid": {
     "Amount": 4000,
     "FluidName": "beenomey:flint_honey_fluid"
