@@ -1,6 +1,7 @@
 package link.mdks.beenomey.integration;
 
 import java.util.List;
+import java.util.Random;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
@@ -75,13 +76,24 @@ public class BreederBlockRecipeCategory implements IRecipeCategory<BreederBlockR
 	@Override
 	public void setRecipe(IRecipeLayoutBuilder builder, BreederBlockRecipe recipe, IFocusGroup focuses) {
 		
-		builder.addSlot(RecipeIngredientRole.INPUT, 46, 15).addItemStack(recipe.getIngredientsAsItemStacks().get(0)).addTooltipCallback(consumerTooltip());
-		builder.addSlot(RecipeIngredientRole.INPUT, 114, 15).addItemStack(recipe.getIngredientsAsItemStacks().get(1)).addTooltipCallback(consumerTooltip());
-		builder.addSlot(RecipeIngredientRole.INPUT, 46, 71).addItemStack(recipe.getIngredientsAsItemStacks().get(2)).addTooltipCallback(consumerTooltip());
-		builder.addSlot(RecipeIngredientRole.INPUT, 114, 71).addItemStack(recipe.getIngredientsAsItemStacks().get(3)).addTooltipCallback(consumerTooltip());
+		Random rnd = new Random();
 		
-		builder.addSlot(RecipeIngredientRole.INPUT, 70, 99)
-		.addFluidStack(recipe.getFluidStack().getFluid(), recipe.getFluidStack().getAmount()).setFluidRenderer(16000, true, 74, 12);
+		if(rnd.nextBoolean() == true) {
+			builder.addSlot(RecipeIngredientRole.INPUT, 46, 15).addItemStack(recipe.getIngredientsAsItemStacks().get(0)).addTooltipCallback(consumerTooltip());
+			builder.addSlot(RecipeIngredientRole.INPUT, 114, 15).addItemStack(recipe.getIngredientsAsItemStacks().get(1)).addTooltipCallback(consumerTooltip());
+			builder.addSlot(RecipeIngredientRole.INPUT, 46, 71).addItemStack(recipe.getIngredientsAsItemStacks().get(2)).addTooltipCallback(consumerTooltip());
+			builder.addSlot(RecipeIngredientRole.INPUT, 114, 71).addItemStack(recipe.getIngredientsAsItemStacks().get(3)).addTooltipCallback(consumerTooltip());
+		} else {
+			
+			builder.addSlot(RecipeIngredientRole.INPUT, 46, 15).addItemStack(recipe.getIngredientsAsItemStacks().get(3)).addTooltipCallback(consumerTooltip());
+			builder.addSlot(RecipeIngredientRole.INPUT, 114, 15).addItemStack(recipe.getIngredientsAsItemStacks().get(2)).addTooltipCallback(consumerTooltip());
+			builder.addSlot(RecipeIngredientRole.INPUT, 46, 71).addItemStack(recipe.getIngredientsAsItemStacks().get(1)).addTooltipCallback(consumerTooltip());
+			builder.addSlot(RecipeIngredientRole.INPUT, 114, 71).addItemStack(recipe.getIngredientsAsItemStacks().get(0)).addTooltipCallback(consumerTooltip());
+			
+		}
+
+		builder.addSlot(RecipeIngredientRole.INPUT, 94, 99)
+		.addFluidStack(recipe.getFluidStack().getFluid(), recipe.getFluidStack().getAmount()).setFluidRenderer(16000, true, 50, 12);
 		
 		builder.addSlot(RecipeIngredientRole.OUTPUT, 80, 43).addItemStack(recipe.getResultItem(Minecraft.getInstance().level.registryAccess())).addTooltipCallback(creationTooltip());
 		
