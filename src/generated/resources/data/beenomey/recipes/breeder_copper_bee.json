@@ -1,8 +1,5 @@
 {
   "type": "beenomey:breeder_recipe",
-  "data": {
-    "recipeId": 2
-  },
   "fluid": {
     "Amount": 4000,
     "FluidName": "beenomey:copper_honey_fluid"

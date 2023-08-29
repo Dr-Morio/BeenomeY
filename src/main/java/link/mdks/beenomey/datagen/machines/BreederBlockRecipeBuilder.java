@@ -31,10 +31,8 @@ public class BreederBlockRecipeBuilder implements RecipeBuilder{
 	private final ItemStack result;
 	private final int chance;
 	private final Advancement.Builder advancement = Advancement.Builder.advancement();
-	private int recipeId;
 
-	public BreederBlockRecipeBuilder(int recipeId, List<ItemStack> bees, FluidStack catalysator, ItemStack result, int chance) {
-		this.recipeId = recipeId;
+	public BreederBlockRecipeBuilder(List<ItemStack> bees, FluidStack catalysator, ItemStack result, int chance) {
 		this.bees = bees;
 		this.catalysator = catalysator;
 		this.result = result;
@@ -62,13 +60,12 @@ public class BreederBlockRecipeBuilder implements RecipeBuilder{
 		this.advancement.parent(new ResourceLocation("recipes/root"))
 		.addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(pRecipeId))
 		.rewards(AdvancementRewards.Builder.recipe(pRecipeId)).requirements(RequirementsStrategy.OR);
-		pFinishedRecipeConsumer.accept(new BreederBlockRecipeBuilder.Result(recipeId, pRecipeId, bees, catalysator, result, chance, advancement,
+		pFinishedRecipeConsumer.accept(new BreederBlockRecipeBuilder.Result(pRecipeId, bees, catalysator, result, chance, advancement,
 				new ResourceLocation(pRecipeId.getNamespace(), "recipes/" + this.result.getItem() + "/" + pRecipeId.getPath())));
 	}
 	
 	public static class Result implements FinishedRecipe {
 
-		private int recipeId;
 		private final ResourceLocation id;
 		private final List<ItemStack> bees;
 		private final FluidStack catalysator;
@@ -77,8 +74,7 @@ public class BreederBlockRecipeBuilder implements RecipeBuilder{
 		private final Advancement.Builder advancement;
 		private final ResourceLocation advancementId;
 		
-		public Result(int recipeId, ResourceLocation id, List<ItemStack> bees, FluidStack catalysator, ItemStack result, int chance, Advancement.Builder advancement, ResourceLocation advancementId) {
-			this.recipeId = recipeId;
+		public Result(ResourceLocation id, List<ItemStack> bees, FluidStack catalysator, ItemStack result, int chance, Advancement.Builder advancement, ResourceLocation advancementId) {
 			this.id = id;
 			this.bees = bees;
 			this.catalysator = catalysator;
@@ -93,7 +89,6 @@ public class BreederBlockRecipeBuilder implements RecipeBuilder{
 			JsonArray ingredientsArray = new JsonArray();
 			JsonObject fluidObject = new JsonObject();
 			JsonObject outputOject = new JsonObject();
-			JsonObject idObject = new JsonObject();
 			
 			for(ItemStack bee : bees) {
 				JsonObject ingredientBeeObject = new JsonObject();
@@ -117,9 +112,7 @@ public class BreederBlockRecipeBuilder implements RecipeBuilder{
 			outputOject.addProperty("secondType", result.getTag().getString("SecondType").toString());
 			pJson.add("output", outputOject);
 			
-			//Add unique ID
-			idObject.addProperty("recipeId", recipeId);
-			pJson.add("data", idObject);
+			
 		}
 
 		@Override
