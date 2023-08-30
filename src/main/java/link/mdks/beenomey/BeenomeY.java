@@ -123,7 +123,9 @@ public class BeenomeY
 
     		/* Register every clean breed Bee*/
     		for(BeeType type : BeeType.values()) {
-    			event.accept(BeeManager.getBee(type, type, new ItemStack(BeeInit.getCommonBee())));
+    			if(type != BeeType.EMPTY) {
+    				event.accept(BeeManager.getBee(type, type, new ItemStack(BeeInit.getCommonBee())));
+    			}
     		}
     		
 //    		/* Register every cross breed Bee*/

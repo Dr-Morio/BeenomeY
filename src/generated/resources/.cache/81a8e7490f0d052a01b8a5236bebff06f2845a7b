@@ -1,4 +1,4 @@
-// 1.19.4	2023-08-26T23:57:15.8493418	Item Models: beenomey
+// 1.19.4	2023-08-30T18:47:30.1898734	Item Models: beenomey
 51b30ed3ee4b762bad0e89c4f8a05ebd7126bac3 assets/beenomey/models/item/amethyst_honeycomb.json
 4e220ef6776c87135a4c55545d7e750fb301f807 assets/beenomey/models/item/amethyst_honey_cell.json
 16920cff363699f13c67a7160d4eaa2576202295 assets/beenomey/models/item/bee/amethyst_bee.json
@@ -55,6 +55,8 @@ b39133a02dbeb15e18026ff5641be7bf6fe7638d assets/beenomey/models/item/bee/nether_
 4cb9e9c0e109309027f7680da2a6e7c7e4d3e319 assets/beenomey/models/item/bee/nether_star_princess.json
 9109e6e7f8aecd338dfd83ce373507378a2ce85f assets/beenomey/models/item/bee/nether_wart_bee.json
 472483e2711a8695a4e61c72608a14a85d94f1b2 assets/beenomey/models/item/bee/nether_wart_princess.json
+3c0f26ac3ba128c0f1182eea1bbae5bddf9872ae assets/beenomey/models/item/bee/obfuscated_bee.json
+3a0ff501142d7f2ead1b36f46deb1806712cea9c assets/beenomey/models/item/bee/obfuscated_princess.json
 44fbb5e78cecb949810479f8170f03d6cee48989 assets/beenomey/models/item/bee/obsidian_bee.json
 0ead2a35414e26ef3b4e032830a9dc29c85fe6f8 assets/beenomey/models/item/bee/obsidian_princess.json
 e8691b68d73d69b86cfa2ef58ecad220677074b0 assets/beenomey/models/item/bee/ocean_bee.json

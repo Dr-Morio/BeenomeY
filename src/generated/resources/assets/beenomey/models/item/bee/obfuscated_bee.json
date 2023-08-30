@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "beenomey:item/bee/body/bee_base_1",
+    "layer1": "beenomey:item/bee/body/bee_body_color_5",
+    "layer2": "beenomey:item/bee/type_frame/obfuscated"
+  }
+}

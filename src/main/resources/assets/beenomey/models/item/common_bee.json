@@ -232,6 +232,12 @@
         "beenomey:texture_variant": 38
       },
       "model": "beenomey:item/bee/amethyst_bee"
-    }    
+    },
+                {
+      "predicate": {
+        "beenomey:texture_variant": 99
+      },
+      "model": "beenomey:item/bee/obfuscated_bee"
+    }     
   ]
 }

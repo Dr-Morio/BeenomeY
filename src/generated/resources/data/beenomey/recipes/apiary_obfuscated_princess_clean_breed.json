@@ -1,0 +1,40 @@
+{
+  "type": "beenomey:apiary_recipe_princess",
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "OBFUSCATED",
+      "secondType": "OBFUSCATED"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "OBFUSCATED",
+      "secondType": "OBFUSCATED"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "OBFUSCATED",
+      "secondType": "OBFUSCATED"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "OBFUSCATED",
+      "secondType": "OBFUSCATED"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "OBFUSCATED",
+      "secondType": "OBFUSCATED"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "OBFUSCATED",
+      "secondType": "OBFUSCATED"
+    }
+  ],
+  "output": {
+    "item": "beenomey:princess_bee",
+    "mainType": "OBFUSCATED",
+    "secondType": "OBFUSCATED"
+  }
+}

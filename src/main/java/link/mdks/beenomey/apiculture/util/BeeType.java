@@ -61,7 +61,8 @@ public enum BeeType {
 	NETHERITE(		35f,	3,	0.5f,	-53,	100,	0.01f,	ChatFormatting.DARK_RED),
 	EXP(			36f,	1,	1.0f,	-38,	128,	0.01f,	ChatFormatting.GREEN),
 	ENDER_PEARL(	37f,	2,	1.1f,	80,		13,		0.15f,	ChatFormatting.DARK_BLUE),
-	AMETHYST(		38f,	3,	1.1f,	-22,	22,		0.02f,	ChatFormatting.WHITE);
+	AMETHYST(		38f,	3,	1.1f,	-22,	22,		0.02f,	ChatFormatting.WHITE),
+	OBFUSCATED(		99f,	20,	1.0f,	50,	0,			0.0f,	ChatFormatting.OBFUSCATED);
 
 	//kakao
 	
