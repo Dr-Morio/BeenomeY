@@ -162,9 +162,6 @@ public class BreederBlockRecipeHandler {
 		
         Optional<BreederBlockRecipe> recipe = level.getRecipeManager()
                 .getRecipeFor(BreederBlockRecipe.Type.INSTANCE, inventory, level);
-		
-
-        //BeenomeY.LOGGER.debug("recipe: "  + recipe.get().getFluidStack().getTranslationKey());
         
 		//Consume 
 		pEntity.itemHandler.extractItem(0, 1, false);
@@ -172,17 +169,14 @@ public class BreederBlockRecipeHandler {
 		pEntity.itemHandler.extractItem(2, 1, false);
 		pEntity.itemHandler.extractItem(3, 1, false);
 		
-		//pEntity.getFluidTank().drain(4000, FluidAction.EXECUTE);
-		
-		//pEntity.getEnergyStorage().extractEnergy(pEntity.getReqEnergy(), false);
 		pEntity.setChanged();
 		
 		BeenomeY.LOGGER.debug("Breeder: CONSUMED ALL");
 		//Place new Bee (maybe)
 		Random rnd = new Random();
 		int pick = rnd.nextInt(1,100);
-		BeenomeY.LOGGER.debug("Breeder: CHANCE IS 20 - PICK IS: " + pick);
-		if(/*pick <= 20*/ true) {
+		BeenomeY.LOGGER.debug("Breeder: CHANCE IS " + recipe.get().getChance() + " - PICK IS: " + pick);
+		if(pick <= recipe.get().getChance()) {
 			pEntity.itemHandler.setStackInSlot(4, 
 					BeeManager.getBee(
 							pEntity.loadedRecipe.getC(), 
