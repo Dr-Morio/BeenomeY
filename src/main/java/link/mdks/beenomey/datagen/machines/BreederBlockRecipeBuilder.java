@@ -116,8 +116,12 @@ public class BreederBlockRecipeBuilder implements RecipeBuilder{
 
 		@Override
 		public ResourceLocation getId() {
+			String firstBeeMainType = this.bees.get(0).getTag().get("MainType").getAsString();
+			String lastBeeMainType = this.bees.get(3).getTag().get("MainType").getAsString();
 			String resultBeeMainType = this.result.getTag().get("MainType").getAsString();
-			String path = ("breeder_" + resultBeeMainType.toLowerCase() + "_bee");
+			String path = ("breeder_" + firstBeeMainType.toLowerCase() + 
+					"_" + lastBeeMainType.toLowerCase() + 
+					"_" + resultBeeMainType.toLowerCase() + "_bee");
 			ResourceLocation name = new ResourceLocation(BeenomeY.MODID, path);
 			return name;
 		}

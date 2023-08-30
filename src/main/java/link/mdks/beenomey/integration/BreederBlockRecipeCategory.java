@@ -72,21 +72,10 @@ public class BreederBlockRecipeCategory implements IRecipeCategory<BreederBlockR
 	@Override
 	public void setRecipe(IRecipeLayoutBuilder builder, BreederBlockRecipe recipe, IFocusGroup focuses) {
 		
-		Random rnd = new Random();
-		
-		if(rnd.nextBoolean() == true) {
-			builder.addSlot(RecipeIngredientRole.INPUT, 46, 15).addItemStack(recipe.getIngredientsAsItemStacks().get(0)).addTooltipCallback(consumerTooltip());
-			builder.addSlot(RecipeIngredientRole.INPUT, 114, 15).addItemStack(recipe.getIngredientsAsItemStacks().get(1)).addTooltipCallback(consumerTooltip());
-			builder.addSlot(RecipeIngredientRole.INPUT, 46, 71).addItemStack(recipe.getIngredientsAsItemStacks().get(2)).addTooltipCallback(consumerTooltip());
-			builder.addSlot(RecipeIngredientRole.INPUT, 114, 71).addItemStack(recipe.getIngredientsAsItemStacks().get(3)).addTooltipCallback(consumerTooltip());
-		} else {
-			
-			builder.addSlot(RecipeIngredientRole.INPUT, 46, 15).addItemStack(recipe.getIngredientsAsItemStacks().get(3)).addTooltipCallback(consumerTooltip());
-			builder.addSlot(RecipeIngredientRole.INPUT, 114, 15).addItemStack(recipe.getIngredientsAsItemStacks().get(2)).addTooltipCallback(consumerTooltip());
-			builder.addSlot(RecipeIngredientRole.INPUT, 46, 71).addItemStack(recipe.getIngredientsAsItemStacks().get(1)).addTooltipCallback(consumerTooltip());
-			builder.addSlot(RecipeIngredientRole.INPUT, 114, 71).addItemStack(recipe.getIngredientsAsItemStacks().get(0)).addTooltipCallback(consumerTooltip());
-			
-		}
+		builder.addSlot(RecipeIngredientRole.INPUT, 46, 15).addItemStack(recipe.getIngredientsAsItemStacks().get(0)).addTooltipCallback(consumerTooltip());
+		builder.addSlot(RecipeIngredientRole.INPUT, 114, 15).addItemStack(recipe.getIngredientsAsItemStacks().get(1)).addTooltipCallback(consumerTooltip());
+		builder.addSlot(RecipeIngredientRole.INPUT, 46, 71).addItemStack(recipe.getIngredientsAsItemStacks().get(2)).addTooltipCallback(consumerTooltip());
+		builder.addSlot(RecipeIngredientRole.INPUT, 114, 71).addItemStack(recipe.getIngredientsAsItemStacks().get(3)).addTooltipCallback(consumerTooltip());
 
 		builder.addSlot(RecipeIngredientRole.INPUT, 94, 99)
 		.addFluidStack(recipe.getFluidStack().getFluid(), recipe.getFluidStack().getAmount()).setFluidRenderer(16000, true, 50, 12);

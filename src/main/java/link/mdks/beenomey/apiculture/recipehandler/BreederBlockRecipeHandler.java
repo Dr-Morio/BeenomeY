@@ -4,31 +4,38 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.entity.BreederBlockEntity;
 import link.mdks.beenomey.apiculture.items.ItemCell;
+import link.mdks.beenomey.apiculture.recipe.BreederBlockRecipe;
 import link.mdks.beenomey.apiculture.util.BeeManager;
 import link.mdks.beenomey.apiculture.util.BeeType;
 import link.mdks.beenomey.init.BeeInit;
 import link.mdks.beenomey.init.ItemInit;
 import net.minecraft.util.Tuple;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
-import oshi.util.tuples.Triplet;
+import oshi.util.tuples.Quartet;
 
 public class BreederBlockRecipeHandler {
 
 	@SuppressWarnings("serial")
-	private static final List<Triplet<BeeType, BeeType, BeeType>> recipes = new ArrayList<Triplet<BeeType,BeeType,BeeType>>() {{
-		add(0, new Triplet<BeeType, BeeType, BeeType>(BeeType.DESERT, BeeType.ROCK, BeeType.COAL));
-		add(1, new Triplet<BeeType, BeeType, BeeType>(BeeType.DESERT, BeeType.COAL, BeeType.FLINT));
-		add(2, new Triplet<BeeType, BeeType, BeeType>(BeeType.IRON, BeeType.GOLD, BeeType.COPPER));
+	private static final List<Quartet<BeeType, BeeType, BeeType, Integer>> recipes = new ArrayList<Quartet<BeeType,BeeType,BeeType, Integer>>() {{
+		add(0, new Quartet<BeeType, BeeType, BeeType, Integer>(BeeType.DESERT, BeeType.ROCK, BeeType.COAL, 20));
+		add(1, new Quartet<BeeType, BeeType, BeeType, Integer>(BeeType.ROCK, BeeType.DESERT, BeeType.COAL, 20));
+		add(2, new Quartet<BeeType, BeeType, BeeType, Integer>(BeeType.DESERT, BeeType.COAL, BeeType.FLINT, 20));
+		add(3, new Quartet<BeeType, BeeType, BeeType, Integer>(BeeType.COAL, BeeType.DESERT, BeeType.FLINT, 20));
+		add(4, new Quartet<BeeType, BeeType, BeeType, Integer>(BeeType.IRON, BeeType.GOLD, BeeType.COPPER, 20));
+		add(5, new Quartet<BeeType, BeeType, BeeType, Integer>(BeeType.GOLD, BeeType.IRON, BeeType.COPPER, 20));
 	}};
 	
 	public static void fluidTick(BreederBlockEntity pEntity) {
@@ -101,7 +108,7 @@ public class BreederBlockRecipeHandler {
 						BeeType.valueOf(pEntity.itemHandler.getStackInSlot(2).getTag().get("MainType").getAsString()));
 				
 				
-				for(Triplet<BeeType, BeeType, BeeType> recipe : recipes) {
+				for(Quartet<BeeType, BeeType, BeeType, Integer> recipe : recipes) {
 					if ((input.getA() == recipe.getA() || input.getA() == recipe.getB()) ||
 							(input.getB() == recipe.getA() || input.getB() == recipe.getB())) {
 						BeenomeY.LOGGER.debug("Breeder: VALID ITEMS");
@@ -111,9 +118,12 @@ public class BreederBlockRecipeHandler {
 								BeenomeY.LOGGER.debug("Breeder: ENOUGH FLUID");
 								if (hasEnoughEnergy(pEntity)) {
 									BeenomeY.LOGGER.debug("Breeder: ENOUGH ENERGY");
-									pEntity.isCrafting = true;
-									pEntity.loadedRecipe = recipe;
-									BeenomeY.LOGGER.debug("Breeder: CRAFTING BEGINS");
+									if (isValidRecipeByJson(pEntity)) {
+										BeenomeY.LOGGER.debug("Breeder: RECIPE IS VALID");
+										pEntity.isCrafting = true;
+										pEntity.loadedRecipe = recipe;
+										BeenomeY.LOGGER.debug("Breeder: CRAFTING BEGINS");
+									}
 								}
 							}
 						}
@@ -123,7 +133,39 @@ public class BreederBlockRecipeHandler {
 		}
 	}
 	
+	public static boolean isValidRecipeByJson(BreederBlockEntity pEntity) {
+		Level level = pEntity.getLevel();
+        SimpleContainer inventory = new SimpleContainer(pEntity.itemHandler.getSlots());
+        for (int i = 0; i < 4; i++) { // only get item ingredient slots (without cell slots and result slot)
+            inventory.setItem(i, pEntity.itemHandler.getStackInSlot(i));
+        }
+		
+        Optional<BreederBlockRecipe> recipe = level.getRecipeManager()
+                .getRecipeFor(BreederBlockRecipe.Type.INSTANCE, inventory, level);
+        
+        if(recipe.isEmpty()) {
+        	return false;
+        } else {
+        	return true;
+        }
+        
+	}
+
 	public static void craft(BreederBlockEntity pEntity) {
+		
+		//get Chance value
+        Level level = pEntity.getLevel();
+        SimpleContainer inventory = new SimpleContainer(pEntity.itemHandler.getSlots());
+        for (int i = 0; i < 4; i++) { // only get item ingredient slots (without cell slots and result slot)
+            inventory.setItem(i, pEntity.itemHandler.getStackInSlot(i));
+        }
+		
+        Optional<BreederBlockRecipe> recipe = level.getRecipeManager()
+                .getRecipeFor(BreederBlockRecipe.Type.INSTANCE, inventory, level);
+		
+
+        //BeenomeY.LOGGER.debug("recipe: "  + recipe.get().getFluidStack().getTranslationKey());
+        
 		//Consume 
 		pEntity.itemHandler.extractItem(0, 1, false);
 		pEntity.itemHandler.extractItem(1, 1, false);
@@ -219,7 +261,7 @@ public class BreederBlockRecipeHandler {
 		return false;
 	}
 	
-	public static List<Triplet<BeeType, BeeType, BeeType>> getRecipes() {
+	public static List<Quartet<BeeType, BeeType, BeeType, Integer>> getRecipes() {
 		return recipes;
 	}
 

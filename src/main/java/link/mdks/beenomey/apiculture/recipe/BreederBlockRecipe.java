@@ -1,10 +1,14 @@
 package link.mdks.beenomey.apiculture.recipe;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jetbrains.annotations.Nullable;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.util.BeeManager;
 import link.mdks.beenomey.apiculture.util.BeeType;
 import link.mdks.beenomey.init.BeeInit;
@@ -43,7 +47,13 @@ public class BreederBlockRecipe implements Recipe<SimpleContainer>{
 		if(pLevel.isClientSide) {
 			return false;
 		}
-		return false;
+		
+		for(int i = 0; i < inputBees.size(); i++) { // Checks 4 Item Stacks (Slot 0-3) if they are equal to Json recipe
+			if(!pContainer.getItem(i).getTag().equals(inputBees.get(i).getTag())) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@Override

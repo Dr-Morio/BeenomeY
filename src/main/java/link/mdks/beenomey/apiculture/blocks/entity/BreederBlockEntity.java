@@ -49,6 +49,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import oshi.util.tuples.Quartet;
 import oshi.util.tuples.Triplet;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -73,7 +74,7 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 	public int lastFluidAmount = 0;
 	public int lastEnergyAmount = 0;
 	public boolean isCrafting = false;
-	public Triplet<BeeType, BeeType, BeeType> loadedRecipe;
+	public Quartet<BeeType, BeeType, BeeType, Integer> loadedRecipe;
 	
 	
 	// Inventory Stuff
@@ -331,7 +332,8 @@ public class BreederBlockEntity extends BlockEntity implements GeoBlockEntity, M
 				pEntity.setChanged();
 			}
 			
-			
+	        
+	        
 			// ENERGY INPUT FOR DEVELOPMENT
 			if(level.getBlockState(blockPos.above()).getBlock() == Blocks.DIRT) {
 				pEntity.ENERGY_STORAGE.receiveEnergy(100, false);

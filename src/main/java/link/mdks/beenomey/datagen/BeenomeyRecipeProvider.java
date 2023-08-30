@@ -19,6 +19,7 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.minecraftforge.fluids.FluidStack;
+import oshi.util.tuples.Quartet;
 import oshi.util.tuples.Triplet;
 
 public class BeenomeyRecipeProvider extends RecipeProvider implements IConditionBuilder{
@@ -69,7 +70,7 @@ public class BeenomeyRecipeProvider extends RecipeProvider implements ICondition
 		}
 		
 		/* Recipe set for Breeder */
-		for(Triplet<BeeType, BeeType, BeeType> recipe  : BreederBlockRecipeHandler.getRecipes()) {
+		for(Quartet<BeeType, BeeType, BeeType, Integer> recipe  : BreederBlockRecipeHandler.getRecipes()) {
 			List<ItemStack> bees = new ArrayList<ItemStack>();
 			bees.add(BeeManager.getBee(recipe.getA(), recipe.getA(), new ItemStack(BeeInit.getCommonBee())));
 			bees.add(BeeManager.getBee(recipe.getA(), recipe.getA(), new ItemStack(BeeInit.getCommonBee())));
@@ -79,7 +80,7 @@ public class BeenomeyRecipeProvider extends RecipeProvider implements ICondition
 			new BreederBlockRecipeBuilder(
 					bees,
 					new FluidStack(BeeManager.getFluid(recipe.getC()), 4000), 
-					BeeManager.getBee(recipe.getC(), recipe.getC(), new ItemStack(BeeInit.getCommonBee())), 20)
+					BeeManager.getBee(recipe.getC(), recipe.getC(), new ItemStack(BeeInit.getCommonBee())), recipe.getD())
 			.unlockedBy("has_bees", inventoryTrigger(ItemPredicate.Builder.item().of(BeeInit.getCommonBee()).build()))
 			.save(consumer);;
 		};

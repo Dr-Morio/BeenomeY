@@ -1,0 +1,35 @@
+{
+  "type": "beenomey:breeder_recipe",
+  "fluid": {
+    "Amount": 4000,
+    "FluidName": "beenomey:copper_honey_fluid"
+  },
+  "ingredients": [
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "GOLD",
+      "secondType": "GOLD"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "GOLD",
+      "secondType": "GOLD"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "IRON",
+      "secondType": "IRON"
+    },
+    {
+      "item": "beenomey:common_bee",
+      "mainType": "IRON",
+      "secondType": "IRON"
+    }
+  ],
+  "output": {
+    "chance": 20,
+    "item": "beenomey:common_bee",
+    "mainType": "COPPER",
+    "secondType": "COPPER"
+  }
+}
