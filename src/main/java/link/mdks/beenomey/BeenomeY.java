@@ -111,11 +111,6 @@ public class BeenomeY
     			event.accept(comb);
     		}
     		
-    		/* Register all Structureombs*/
-    		for(RegistryObject<Item> comb : ItemInit.getStructurecombItems()) {
-    			event.accept(comb);
-    		}
-    		
     		/* Register all Buckets*/
     		for(RegistryObject<Item> cell : ItemInit.getCellItems()) {
     			event.accept(cell);

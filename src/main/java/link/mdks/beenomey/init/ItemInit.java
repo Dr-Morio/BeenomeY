@@ -19,7 +19,6 @@ public class ItemInit {
 	
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, BeenomeY.MODID);
 	public static final DeferredRegister<Item> HONEYCOMBS = DeferredRegister.create(ForgeRegistries.ITEMS, BeenomeY.MODID);
-	public static final DeferredRegister<Item> STRUCTURECOMBS = DeferredRegister.create(ForgeRegistries.ITEMS, BeenomeY.MODID);
 
 	public static final DeferredRegister<Item> CELLS = DeferredRegister.create(ForgeRegistries.ITEMS, BeenomeY.MODID);
 
@@ -232,16 +231,11 @@ public class ItemInit {
     public static void register(IEventBus eventBus) {
     	ITEMS.register(eventBus);
     	HONEYCOMBS.register(eventBus);
-    	STRUCTURECOMBS.register(eventBus);
     	CELLS.register(eventBus);
     }
     
     public static Collection<RegistryObject<Item>> getHoneycombItems() {
     	return HONEYCOMBS.getEntries();
-    }
-    
-    public static Collection<RegistryObject<Item>> getStructurecombItems() {
-    	return STRUCTURECOMBS.getEntries();
     }
     
     public static Collection<RegistryObject<Item>> getCellItems() {
