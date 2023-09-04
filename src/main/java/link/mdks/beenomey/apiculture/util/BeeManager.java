@@ -42,6 +42,7 @@ public class BeeManager {
         tag.putFloat("CompDrop", compDrop);
         tag.putFloat("CompDropMultiplier", compDropMultiplier);
         tag.putInt("EffectiveCompDrop", CalculateEffectiveValue(compDrop, compDropMultiplier));
+        tag.putString("Ecosystem", MainBeeType.ecosystem.toString());
 
         itemStack.setTag(tag);
 

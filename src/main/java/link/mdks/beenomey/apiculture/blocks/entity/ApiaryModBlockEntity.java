@@ -3,6 +3,7 @@ package link.mdks.beenomey.apiculture.blocks.entity;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 
 import org.jetbrains.annotations.NotNull;
@@ -12,6 +13,7 @@ import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.ApiaryModBlock;
 import link.mdks.beenomey.apiculture.recipehandler.ApiaryModBlockRecipeHandler;
 import link.mdks.beenomey.apiculture.screen.ApiaryModBlockMenu;
+import link.mdks.beenomey.apiculture.util.Ecosystem;
 import link.mdks.beenomey.init.BeeInit;
 import link.mdks.beenomey.init.BlockEntityInit;
 import link.mdks.beenomey.init.ItemInit;
@@ -20,6 +22,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -30,6 +33,8 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -39,6 +44,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fml.util.thread.SidedThreadGroups;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.registries.ForgeRegistries;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar;
@@ -307,7 +313,7 @@ public class ApiaryModBlockEntity extends BlockEntity implements  GeoBlockEntity
 			((ApiaryModBlock) blockState.getBlock()).checkCurrentInteractions(); // updates BlockAnimation based on Interactions
 			return;
 		}
-
+		
 		//The fllowing should only be called on server side
 		if (Thread.currentThread().getThreadGroup() == SidedThreadGroups.SERVER) {
 			
@@ -347,11 +353,26 @@ public class ApiaryModBlockEntity extends BlockEntity implements  GeoBlockEntity
 				// Bee will determine progress speed
 				addBreedProgress(pEntity);
 				setChanged(level, blockPos, blockState);
+				
+//				
+////				BeenomeY.LOGGER.debug("Temp: " + level.getBiome(blockPos).unwrapKey().get().location());
+////				
+////				BeenomeY.LOGGER.debug("Temp: " + Biomes.BADLANDS.location());
+////				
+////				BeenomeY.LOGGER.debug("Temp2: " + level.getBiome(blockPos).unwrapKey().get());
+////				
+////				BeenomeY.LOGGER.debug("Temp2: " + Biomes.BADLANDS);
+//				
+				
+				
 				if(pEntity.progress >= pEntity.maxProgress) {
+					//Kill every Bee that is not in the right biome
+
 					ApiaryModBlockRecipeHandler.updateBees(pEntity, mode);
 					pEntity.resetProgress();
 					setChanged(level, blockPos, blockState);
 				}
+				
 			}
 			break;
 		}

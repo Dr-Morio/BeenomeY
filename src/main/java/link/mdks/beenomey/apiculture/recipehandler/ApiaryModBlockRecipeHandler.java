@@ -8,6 +8,7 @@ import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.entity.ApiaryModBlockEntity;
 import link.mdks.beenomey.apiculture.util.BeeManager;
 import link.mdks.beenomey.apiculture.util.BeeType;
+import link.mdks.beenomey.apiculture.util.Ecosystem;
 import link.mdks.beenomey.init.BeeInit;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -63,20 +64,29 @@ public class ApiaryModBlockRecipeHandler{
 		    for(int i = 4; i <=10; i++) {
 		    	ItemStack is = pEntity.itemHandler.getStackInSlot(i);
 		    	if(is.getItem() != Items.AIR) {
-			    	int maxBeeLife = is.getMaxDamage();
-			    	//int damage = is.getDamageValue();
-					//int effectiveLife = is.getTag().getInt("EffectiveLifecycle");
-					int effectiveLifeAD = is.getTag().getInt("EffectiveLifecycleAD");
-					
-					if (effectiveLifeAD <= maxBeeLife) { //now damage is shown on item
-						is.setDamageValue(is.getDamageValue() + 1);//Damage Bee as Item
-						is.getTag().putInt("EffectiveLifecycleAD", (effectiveLifeAD - 1)); //Damage Bee in Tag
-					} else { // Just Tag Damage is shown
-						is.getTag().putInt("EffectiveLifecycleAD", (effectiveLifeAD - 1)); //Damage Bee in Tag
-					}
-					//Check if bee is dead now
-					if(effectiveLifeAD - 1 == 0) {
-						//Consume bee
+		    		
+		    		//Kill bee if its wrong Ecosystem
+		    		BeenomeY.LOGGER.debug("ECO Bee: " + Ecosystem.valueOf(is.getTag().getString("Ecosystem")));
+		    		BeenomeY.LOGGER.debug("ECO Level: " + Ecosystem.getBiomeTemp(pEntity.getLevel().getBiome(pEntity.getBlockPos()).unwrapKey().get()));
+		    		if(Ecosystem.valueOf(is.getTag().getString("Ecosystem")) == Ecosystem.getBiomeTemp(pEntity.getLevel().getBiome(pEntity.getBlockPos()).unwrapKey().get())) {
+				    	int maxBeeLife = is.getMaxDamage();
+				    	//int damage = is.getDamageValue();
+						//int effectiveLife = is.getTag().getInt("EffectiveLifecycle");
+						int effectiveLifeAD = is.getTag().getInt("EffectiveLifecycleAD");
+						
+						if (effectiveLifeAD <= maxBeeLife) { //now damage is shown on item
+							is.setDamageValue(is.getDamageValue() + 1);//Damage Bee as Item
+							is.getTag().putInt("EffectiveLifecycleAD", (effectiveLifeAD - 1)); //Damage Bee in Tag
+						} else { // Just Tag Damage is shown
+							is.getTag().putInt("EffectiveLifecycleAD", (effectiveLifeAD - 1)); //Damage Bee in Tag
+						}
+						//Check if bee is dead now
+						if(effectiveLifeAD - 1 == 0) {
+							//Consume bee
+							pEntity.itemHandler.extractItem(i, 1, false);
+							emptyBeeSlots++;
+						}
+					} else {
 						pEntity.itemHandler.extractItem(i, 1, false);
 						emptyBeeSlots++;
 					}

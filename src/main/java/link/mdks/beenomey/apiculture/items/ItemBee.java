@@ -56,6 +56,7 @@ public class ItemBee extends Item implements IForgeItem{
 
 		components.add(Component.literal("Main Type: " + itemStack.getTag().getString("MainType")).withStyle(mainColor));
 		components.add(Component.literal("Second Type: " + itemStack.getTag().getString("SecondType")).withStyle(secondColor));
+		components.add(Component.literal("Ecosystem: " + itemStack.getTag().getString("Ecosystem")).withStyle(ChatFormatting.WHITE));
 
 		if (Screen.hasShiftDown()) {
 			components.add(Component.literal("Life: " + itemStack.getTag().getInt("EffectiveLifecycleAD")).withStyle(ChatFormatting.GREEN)); //After Damage
