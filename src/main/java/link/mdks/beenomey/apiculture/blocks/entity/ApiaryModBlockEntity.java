@@ -12,6 +12,7 @@ import org.jetbrains.annotations.Nullable;
 import link.mdks.beenomey.BeenomeY;
 import link.mdks.beenomey.apiculture.blocks.ApiaryModBlock;
 import link.mdks.beenomey.apiculture.recipehandler.ApiaryModBlockRecipeHandler;
+import link.mdks.beenomey.apiculture.recipehandler.ApiaryModBlockRecipeHandler.ApiaryMode;
 import link.mdks.beenomey.apiculture.screen.ApiaryModBlockMenu;
 import link.mdks.beenomey.apiculture.util.Ecosystem;
 import link.mdks.beenomey.init.BeeInit;
@@ -66,10 +67,11 @@ public class ApiaryModBlockEntity extends BlockEntity implements  GeoBlockEntity
 	
 	// Inventory Stuff
 	private final ContainerData data;
-	private int progress = 0;
-	private int maxProgress = 58;
+	public int progress = 0;
+	public int maxProgress = 58;
 	
-	protected static Map<Integer, ItemStack> lastInventory = new HashMap<Integer, ItemStack>();
+	public Map<Integer, ItemStack> lastInventory = new HashMap<Integer, ItemStack>();
+	public ApiaryModBlockRecipeHandler.ApiaryMode mode;
 	
 	
 	public ApiaryModBlockEntity(BlockPos pos, BlockState state) {
@@ -103,6 +105,9 @@ public class ApiaryModBlockEntity extends BlockEntity implements  GeoBlockEntity
 		for (int i = 4; i < 11; i++) { // Only slot 4 - 10 are Bee Slots and relevant
 			lastInventory.put(i, itemHandler.getStackInSlot(i));
 		}
+		
+		// Set default Mode
+		this.mode = ApiaryMode.IDLE;
 		
 	}
 
@@ -283,129 +288,52 @@ public class ApiaryModBlockEntity extends BlockEntity implements  GeoBlockEntity
 		Containers.dropContents(this.level, this.worldPosition, inventory);
 	}
 	
-	
-	private static boolean hasInventoryChanged(ApiaryModBlockEntity pEntity) {
-		/* Checks if inventory has changed */
-		Map<Integer, ItemStack> currentInventory = new HashMap<Integer, ItemStack>();
-		for(int i = 4; i < 11; i++) { // Only slot 4 - 10 are Bee Slots and relevant
-			currentInventory.put(i, pEntity.itemHandler.getStackInSlot(i));
-		}
-		
-		if (lastInventory.size() != currentInventory.size()) {
-			lastInventory = currentInventory;
-			return true;
-		}
-		
-		for (int i = 4; i < 11; i ++) {
-			if (currentInventory.get(i) != lastInventory.get(i)) {
-				lastInventory = currentInventory;
-				return true;
-			}
-		}
-		lastInventory = currentInventory;
-		return false;
+	public ApiaryMode getActiveMode() {
+		return this.mode;
 		
 	}
-	
 	
 	public static void tick(Level level, BlockPos blockPos, BlockState blockState, ApiaryModBlockEntity pEntity) {
 		if(level.isClientSide()) {
 			((ApiaryModBlock) blockState.getBlock()).checkCurrentInteractions(); // updates BlockAnimation based on Interactions
 			return;
 		}
-		
 		//The fllowing should only be called on server side
 		if (Thread.currentThread().getThreadGroup() == SidedThreadGroups.SERVER) {
 			
-		// Check if inventory has changed since last Tick
-		if (hasInventoryChanged(pEntity)) {
-			pEntity.resetProgress();
-		}
+			//Check if inventory has changed
+			if(ApiaryModBlockRecipeHandler.hasInventoryChanged(pEntity)) {
+				BeenomeY.LOGGER.debug("CHANGED!!!!!!");
+				pEntity.resetProgress();
+				pEntity.setChanged();
+			}
 			
-		// Determine Apiary Mode
-		ApiaryModBlockRecipeHandler.ApiaryMode mode = ApiaryModBlockRecipeHandler.determineApiaryMode(pEntity);
-		int bees = ApiaryModBlockRecipeHandler.beeLoad(pEntity);
-
-		switch (mode) {
-		case DECIDE:
-			if(bees < 6) {
-				pEntity.resetProgress();
-				break;}
-			else {
-				//Decide beginns
-				pEntity.progress++;
-				setChanged(level, blockPos, blockState);
-				
-				if(pEntity.progress >= pEntity.maxProgress) {
-					ApiaryModBlockRecipeHandler.updateBees(pEntity, mode);
-					pEntity.resetProgress();
-					setChanged(level, blockPos, blockState);
-				}
+			//Check if recipe should start
+			if (ApiaryModBlockRecipeHandler.hasValidRecipe(pEntity)) {
+				BeenomeY.LOGGER.debug("IsValid");
+				pEntity.mode = ApiaryModBlockRecipeHandler.getMode(pEntity);
+				pEntity.setChanged();
 			}
-			break;
-		case BREED:
-			if(bees < 3 || pEntity.itemHandler.getStackInSlot(10).getItem() == Items.AIR) {
-				pEntity.resetProgress();
-				break;}
-			else {
-				//BREED beginns
-				//pEntity.progress++;
-				// Bee will determine progress speed
-				addBreedProgress(pEntity);
-				setChanged(level, blockPos, blockState);
-				
-//				
-////				BeenomeY.LOGGER.debug("Temp: " + level.getBiome(blockPos).unwrapKey().get().location());
-////				
-////				BeenomeY.LOGGER.debug("Temp: " + Biomes.BADLANDS.location());
-////				
-////				BeenomeY.LOGGER.debug("Temp2: " + level.getBiome(blockPos).unwrapKey().get());
-////				
-////				BeenomeY.LOGGER.debug("Temp2: " + Biomes.BADLANDS);
-//				
-				
-				
-				if(pEntity.progress >= pEntity.maxProgress) {
-					//Kill every Bee that is not in the right biome
-
-					ApiaryModBlockRecipeHandler.updateBees(pEntity, mode);
-					pEntity.resetProgress();
-					setChanged(level, blockPos, blockState);
-				}
-				
+			
+			//Add Progress if it should
+			if(ApiaryModBlockRecipeHandler.isWorking(pEntity)) {
+				BeenomeY.LOGGER.debug("STILL HERE :D");
+				ApiaryModBlockRecipeHandler.addProgress(pEntity);
+				pEntity.setChanged();
 			}
-			break;
+			
+			//Check if progress is 100%
+			if(pEntity.progress >= pEntity.maxProgress) {
+				ApiaryModBlockRecipeHandler.startCrafting(pEntity);
+				pEntity.resetProgress();
+				pEntity.setChanged();
+			}
+			
 		}
-	
 	}
-}
 
 	private void resetProgress() {
 		this.progress = 0;
+		this.mode = ApiaryMode.IDLE;
 	}
-	
-	private static void addBreedProgress(ApiaryModBlockEntity pEntity ) {
-		// get Tick multiplayer
-		int randomTickChance = pEntity.itemHandler.getStackInSlot(10).getTag().getInt("RandomTickChance");
-		Random randomProvider = new Random();
-		int referencePositiveTickChance = randomProvider.nextInt(1,100);
-		int referenceNegativeTickChance = referencePositiveTickChance * -1;
-		BeenomeY.LOGGER.debug("RANDOM TICK: " + referencePositiveTickChance + " / " + randomTickChance);
-		
-		if(randomTickChance >= 0) {
-			if (randomTickChance >= referencePositiveTickChance) {
-				pEntity.progress++;//Positive Progress by Chance
-				BeenomeY.LOGGER.debug("RANDOM TICK: TICK");
-			}
-		} else {
-			if (randomTickChance >= referenceNegativeTickChance) {
-				BeenomeY.LOGGER.debug("RANDOM TICK: NO TICK");
-				pEntity.progress--; //Negative Progress by Chance
-			}
-			
-		}
-		//Default Progress
-		pEntity.progress++;
-	}
-	
 }
